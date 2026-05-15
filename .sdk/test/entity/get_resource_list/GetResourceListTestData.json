@@ -1,0 +1,30 @@
+{
+  "existing": {
+    "get_resource_list": {
+      "GET_RESOURCE_LIST00": {
+        "index": "s1e",
+        "name": "s1f",
+        "url": "s20"
+      },
+      "GET_RESOURCE_LIST01": {
+        "index": "s3c",
+        "name": "s3d",
+        "url": "s3e"
+      },
+      "GET_RESOURCE_LIST02": {
+        "index": "s5a",
+        "name": "s5b",
+        "url": "s5c"
+      }
+    }
+  },
+  "new": {
+    "get_resource_list": {
+      "get_resource_list_ref01": {
+        "index": "s78",
+        "name": "s79",
+        "url": "s7a"
+      }
+    }
+  }
+}

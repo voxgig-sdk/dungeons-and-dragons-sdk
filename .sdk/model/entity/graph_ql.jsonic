@@ -1,0 +1,57 @@
+# Entity: graph_ql
+
+main: kit: entity: graph_ql: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "data"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "error"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "operation_name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "query"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "variable"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "graph_ql"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/graphql"
+          parts: [
+            "graphql"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

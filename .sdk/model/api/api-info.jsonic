@@ -1,0 +1,28 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "5e-bits Community"
+        url: "https://discord.gg/TQuYTv7"
+      }
+      description: "REST + GraphQL API for the 5e SRD database. Access the complete Fifth Edition System Reference Document database including spells, monsters, classes, equipment, and more."
+      license: {
+        name: "Open Gaming License"
+        url: "https://5e-bits.github.io/docs/"
+      }
+      servers: [
+        {
+          description: "Production API server"
+          url: "https://www.dnd5eapi.co/api"
+        }
+      ]
+      title: "Dungeons and Dragons 5e SRD API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

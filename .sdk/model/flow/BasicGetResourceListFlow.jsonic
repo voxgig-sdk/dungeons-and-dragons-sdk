@@ -1,0 +1,26 @@
+# BasicGetResourceListFlow
+
+main: kit: flow: BasicGetResourceListFlow:
+{
+  entity: "get_resource_list",
+  kind: "basic",
+  name: "BasicGetResourceListFlow",
+  step: [
+    {
+      match: {
+        resource: "resource01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "get_resource_list_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGetResourceListFlow"
+}

@@ -1,0 +1,37 @@
+<?php
+declare(strict_types=1);
+
+// DungeonsAndDragons SDK base feature
+
+class DungeonsAndDragonsBaseFeature
+{
+    public string $version;
+    public string $name;
+    public bool $active;
+
+    public function __construct()
+    {
+        $this->version = '0.0.1';
+        $this->name = 'base';
+        $this->active = true;
+    }
+
+    public function get_version(): string { return $this->version; }
+    public function get_name(): string { return $this->name; }
+    public function get_active(): bool { return $this->active; }
+
+    public function init(DungeonsAndDragonsContext $ctx, array $options): void {}
+    public function PostConstruct(DungeonsAndDragonsContext $ctx): void {}
+    public function PostConstructEntity(DungeonsAndDragonsContext $ctx): void {}
+    public function SetData(DungeonsAndDragonsContext $ctx): void {}
+    public function GetData(DungeonsAndDragonsContext $ctx): void {}
+    public function GetMatch(DungeonsAndDragonsContext $ctx): void {}
+    public function SetMatch(DungeonsAndDragonsContext $ctx): void {}
+    public function PrePoint(DungeonsAndDragonsContext $ctx): void {}
+    public function PreSpec(DungeonsAndDragonsContext $ctx): void {}
+    public function PreRequest(DungeonsAndDragonsContext $ctx): void {}
+    public function PreResponse(DungeonsAndDragonsContext $ctx): void {}
+    public function PreResult(DungeonsAndDragonsContext $ctx): void {}
+    public function PreDone(DungeonsAndDragonsContext $ctx): void {}
+    public function PreUnexpected(DungeonsAndDragonsContext $ctx): void {}
+}

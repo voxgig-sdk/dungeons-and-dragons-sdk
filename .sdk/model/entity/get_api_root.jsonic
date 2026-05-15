@@ -1,0 +1,154 @@
+# Entity: get_api_root
+
+main: kit: entity: get_api_root: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "ability_score"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "alignment"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "background"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "class"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "condition"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "damage_type"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "equipment"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "equipment_category"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "feat"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "feature"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "key"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "language"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "magic_item"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "magic_school"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "monster"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "proficiency"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "race"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "rule"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "rule_section"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "skill"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "spell"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "subclass"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "subrace"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "trait"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "weapon_property"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "get_api_root"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          method: "GET"
+          orig: "/"
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

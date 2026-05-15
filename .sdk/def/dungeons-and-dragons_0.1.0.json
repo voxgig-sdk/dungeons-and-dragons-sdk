@@ -1,0 +1,354 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Dungeons and Dragons 5e SRD API",
+    "description": "REST + GraphQL API for the 5e SRD database. Access the complete Fifth Edition System Reference Document database including spells, monsters, classes, equipment, and more.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "5e-bits Community",
+      "url": "https://discord.gg/TQuYTv7"
+    },
+    "license": {
+      "name": "Open Gaming License",
+      "url": "https://5e-bits.github.io/docs/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://www.dnd5eapi.co/api",
+      "description": "Production API server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Resources",
+      "description": "Access to D&D 5e SRD resources"
+    },
+    {
+      "name": "GraphQL",
+      "description": "GraphQL endpoint for flexible queries"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "Resources"
+        ],
+        "summary": "Get API root endpoints",
+        "description": "Returns a list of all available resource endpoints in the API",
+        "operationId": "getApiRoot",
+        "responses": {
+          "200": {
+            "description": "Successful response with list of available endpoints",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "example": {
+                    "ability-scores": "/api/ability-scores",
+                    "alignments": "/api/alignments",
+                    "backgrounds": "/api/backgrounds",
+                    "classes": "/api/classes",
+                    "conditions": "/api/conditions",
+                    "damage-types": "/api/damage-types",
+                    "equipment": "/api/equipment",
+                    "equipment-categories": "/api/equipment-categories",
+                    "feats": "/api/feats",
+                    "features": "/api/features",
+                    "languages": "/api/languages",
+                    "magic-items": "/api/magic-items",
+                    "magic-schools": "/api/magic-schools",
+                    "monsters": "/api/monsters",
+                    "proficiencies": "/api/proficiencies",
+                    "races": "/api/races",
+                    "rule-sections": "/api/rule-sections",
+                    "rules": "/api/rules",
+                    "skills": "/api/skills",
+                    "spells": "/api/spells",
+                    "subclasses": "/api/subclasses",
+                    "subraces": "/api/subraces",
+                    "traits": "/api/traits",
+                    "weapon-properties": "/api/weapon-properties"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{resource}": {
+      "get": {
+        "tags": [
+          "Resources"
+        ],
+        "summary": "Get all items for a resource",
+        "description": "Returns a list of all items for the specified resource type (e.g., spells, monsters, classes)",
+        "operationId": "getResourceList",
+        "parameters": [
+          {
+            "name": "resource",
+            "in": "path",
+            "required": true,
+            "description": "The resource type to retrieve (e.g., spells, monsters, classes, equipment)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ability-scores",
+                "alignments",
+                "backgrounds",
+                "classes",
+                "conditions",
+                "damage-types",
+                "equipment",
+                "equipment-categories",
+                "feats",
+                "features",
+                "languages",
+                "magic-items",
+                "magic-schools",
+                "monsters",
+                "proficiencies",
+                "races",
+                "rule-sections",
+                "rules",
+                "skills",
+                "spells",
+                "subclasses",
+                "subraces",
+                "traits",
+                "weapon-properties"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with list of resources",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer",
+                      "description": "Total number of results"
+                    },
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "index": {
+                            "type": "string",
+                            "description": "Resource index for URL purposes"
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Name of the resource"
+                          },
+                          "url": {
+                            "type": "string",
+                            "description": "URL of the resource"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource type not found"
+          }
+        }
+      }
+    },
+    "/{resource}/{index}": {
+      "get": {
+        "tags": [
+          "Resources"
+        ],
+        "summary": "Get specific resource by index",
+        "description": "Returns detailed information about a specific resource item by its index",
+        "operationId": "getResourceByIndex",
+        "parameters": [
+          {
+            "name": "resource",
+            "in": "path",
+            "required": true,
+            "description": "The resource type (e.g., spells, monsters, classes)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "index",
+            "in": "path",
+            "required": true,
+            "description": "The index of the specific resource item",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with resource details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "index": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        }
+      }
+    },
+    "/graphql": {
+      "post": {
+        "tags": [
+          "GraphQL"
+        ],
+        "summary": "GraphQL endpoint",
+        "description": "Execute GraphQL queries against the D&D 5e SRD database for flexible data retrieval",
+        "operationId": "graphqlQuery",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "query"
+                ],
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "description": "GraphQL query string"
+                  },
+                  "variables": {
+                    "type": "object",
+                    "description": "Optional variables for the query"
+                  },
+                  "operationName": {
+                    "type": "string",
+                    "description": "Optional operation name if multiple operations in query"
+                  }
+                }
+              },
+              "example": {
+                "query": "query { spell(index: \"fireball\") { name level school { name } } }"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful GraphQL response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "description": "Query results"
+                    },
+                    "errors": {
+                      "type": "array",
+                      "description": "Any errors that occurred",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "message": {
+                            "type": "string"
+                          },
+                          "locations": {
+                            "type": "array",
+                            "items": {
+                              "type": "object"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid GraphQL query"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ResourceList": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "description": "Total number of results"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceReference"
+            }
+          }
+        }
+      },
+      "ResourceReference": {
+        "type": "object",
+        "properties": {
+          "index": {
+            "type": "string",
+            "description": "Resource index for URL purposes"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the resource"
+          },
+          "url": {
+            "type": "string",
+            "description": "URL of the resource"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 4
+  metrics: count: path: 4
+  metrics: count: method: 4
+
+  entity: get_api_root: {
+    path: "/": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: get_resource_by_index: {
+    path: "/{resource}/{index}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: get_resource_list: {
+    path: "/{resource}": {
+      rename: param: "resource": *"id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: graph_ql: {
+    path: "/graphql": {
+      op: create: method: *POST
+    }
+  }
+
+}

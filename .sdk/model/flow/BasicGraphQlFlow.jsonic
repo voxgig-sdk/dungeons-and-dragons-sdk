@@ -1,0 +1,18 @@
+# BasicGraphQlFlow
+
+main: kit: flow: BasicGraphQlFlow:
+{
+  entity: "graph_ql",
+  kind: "basic",
+  name: "BasicGraphQlFlow",
+  step: [
+    {
+      input: {
+        ref: "graph_ql_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicGraphQlFlow"
+}

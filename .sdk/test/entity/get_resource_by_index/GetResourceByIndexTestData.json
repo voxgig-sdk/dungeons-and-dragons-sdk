@@ -1,0 +1,33 @@
+{
+  "existing": {
+    "get_resource_by_index": {
+      "GET_RESOURCE_BY_INDEX00": {
+        "index": "s1e",
+        "name": "s1f",
+        "url": "s20",
+        "resource": "RESOURCE01"
+      },
+      "GET_RESOURCE_BY_INDEX01": {
+        "index": "s3c",
+        "name": "s3d",
+        "url": "s3e",
+        "resource": "RESOURCE01"
+      },
+      "GET_RESOURCE_BY_INDEX02": {
+        "index": "s5a",
+        "name": "s5b",
+        "url": "s5c",
+        "resource": "RESOURCE01"
+      }
+    }
+  },
+  "new": {
+    "get_resource_by_index": {
+      "get_resource_by_index_ref01": {
+        "index": "s78",
+        "name": "s79",
+        "url": "s7a"
+      }
+    }
+  }
+}

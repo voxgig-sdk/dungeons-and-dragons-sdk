@@ -1,0 +1,33 @@
+# BasicGetResourceByIndexFlow
+
+main: kit: flow: BasicGetResourceByIndexFlow:
+{
+  entity: "get_resource_by_index",
+  kind: "basic",
+  name: "BasicGetResourceByIndexFlow",
+  step: [
+    {
+      input: {
+        ref: "get_resource_by_index_ref01",
+        srcdatavar: "get_resource_by_index_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "get_resource_by_index01",
+        resource: "resource01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-get_resource_by_index_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGetResourceByIndexFlow"
+}
