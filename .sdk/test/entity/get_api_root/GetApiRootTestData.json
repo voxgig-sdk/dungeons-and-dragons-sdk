@@ -26,7 +26,8 @@
         "subclass": "s10f",
         "subrace": "s110",
         "trait": "s111",
-        "weapon_property": "s112"
+        "weapon_property": "s112",
+        "id": "GET_API_ROOT00"
       },
       "GET_API_ROOT01": {
         "ability_score": "s1f4",
@@ -53,7 +54,8 @@
         "subclass": "s209",
         "subrace": "s20a",
         "trait": "s20b",
-        "weapon_property": "s20c"
+        "weapon_property": "s20c",
+        "id": "GET_API_ROOT01"
       },
       "GET_API_ROOT02": {
         "ability_score": "s2ee",
@@ -80,7 +82,8 @@
         "subclass": "s303",
         "subrace": "s304",
         "trait": "s305",
-        "weapon_property": "s306"
+        "weapon_property": "s306",
+        "id": "GET_API_ROOT02"
       }
     }
   },

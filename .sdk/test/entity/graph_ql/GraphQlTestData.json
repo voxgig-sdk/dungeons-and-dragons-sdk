@@ -6,21 +6,24 @@
         "error": [],
         "operation_name": "s34",
         "query": "s35",
-        "variable": {}
+        "variable": {},
+        "id": "GRAPH_QL00"
       },
       "GRAPH_QL01": {
         "data": {},
         "error": [],
         "operation_name": "s66",
         "query": "s67",
-        "variable": {}
+        "variable": {},
+        "id": "GRAPH_QL01"
       },
       "GRAPH_QL02": {
         "data": {},
         "error": [],
         "operation_name": "s98",
         "query": "s99",
-        "variable": {}
+        "variable": {},
+        "id": "GRAPH_QL02"
       }
     }
   },

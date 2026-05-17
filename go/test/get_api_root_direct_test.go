@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/dungeons-and-dragons-sdk"
-	"github.com/voxgig-sdk/dungeons-and-dragons-sdk/core"
+	sdk "github.com/voxgig-sdk/dungeons-and-dragons-sdk/go"
+	"github.com/voxgig-sdk/dungeons-and-dragons-sdk/go/core"
 )
 
 func TestGetApiRootDirect(t *testing.T) {

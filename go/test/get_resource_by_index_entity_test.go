@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/dungeons-and-dragons-sdk"
-	"github.com/voxgig-sdk/dungeons-and-dragons-sdk/core"
+	sdk "github.com/voxgig-sdk/dungeons-and-dragons-sdk/go"
+	"github.com/voxgig-sdk/dungeons-and-dragons-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/dungeons-and-dragons-sdk/go/utility/struct"
 )
 
 func TestGetResourceByIndexEntity(t *testing.T) {

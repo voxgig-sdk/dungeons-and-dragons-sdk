@@ -5,19 +5,22 @@
         "index": "s1e",
         "name": "s1f",
         "url": "s20",
-        "resource": "RESOURCE01"
+        "resource": "RESOURCE01",
+        "id": "GET_RESOURCE_BY_INDEX00"
       },
       "GET_RESOURCE_BY_INDEX01": {
         "index": "s3c",
         "name": "s3d",
         "url": "s3e",
-        "resource": "RESOURCE01"
+        "resource": "RESOURCE01",
+        "id": "GET_RESOURCE_BY_INDEX01"
       },
       "GET_RESOURCE_BY_INDEX02": {
         "index": "s5a",
         "name": "s5b",
         "url": "s5c",
-        "resource": "RESOURCE01"
+        "resource": "RESOURCE01",
+        "id": "GET_RESOURCE_BY_INDEX02"
       }
     }
   },

@@ -1,9 +1,9 @@
 package utility
 
 import (
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/dungeons-and-dragons-sdk/go/utility/struct"
 
-	"github.com/voxgig-sdk/dungeons-and-dragons-sdk/core"
+	"github.com/voxgig-sdk/dungeons-and-dragons-sdk/go/core"
 )
 
 func makeFetchDefUtil(ctx *core.Context) (map[string]any, error) {

@@ -1,10 +1,10 @@
 package voxgigdungeonsanddragonssdk
 
 import (
-	"github.com/voxgig-sdk/dungeons-and-dragons-sdk/core"
-	"github.com/voxgig-sdk/dungeons-and-dragons-sdk/entity"
-	"github.com/voxgig-sdk/dungeons-and-dragons-sdk/feature"
-	_ "github.com/voxgig-sdk/dungeons-and-dragons-sdk/utility"
+	"github.com/voxgig-sdk/dungeons-and-dragons-sdk/go/core"
+	"github.com/voxgig-sdk/dungeons-and-dragons-sdk/go/entity"
+	"github.com/voxgig-sdk/dungeons-and-dragons-sdk/go/feature"
+	_ "github.com/voxgig-sdk/dungeons-and-dragons-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/dungeons-and-dragons-sdk/core"
+import "github.com/voxgig-sdk/dungeons-and-dragons-sdk/go/core"
 
 func prepareBodyUtil(ctx *core.Context) any {
 	op := ctx.Op

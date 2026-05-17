@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/dungeons-and-dragons-sdk"
+	sdk "github.com/voxgig-sdk/dungeons-and-dragons-sdk/go"
 )
 
 func TestExists(t *testing.T) {
