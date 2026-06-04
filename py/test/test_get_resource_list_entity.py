@@ -94,7 +94,6 @@ def _get_resource_list_basic_setup(extra):
         "DUNGEONSANDDRAGONS_TEST_GET_RESOURCE_LIST_ENTID": idmap,
         "DUNGEONSANDDRAGONS_TEST_LIVE": "FALSE",
         "DUNGEONSANDDRAGONS_TEST_EXPLAIN": "FALSE",
-        "DUNGEONSANDDRAGONS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -105,7 +104,6 @@ def _get_resource_list_basic_setup(extra):
     if env.get("DUNGEONSANDDRAGONS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("DUNGEONSANDDRAGONS_APIKEY"),
             },
             extra or {},
         ])

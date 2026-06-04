@@ -21,8 +21,32 @@ main: {
       ]
       title: "Dungeons and Dragons 5e SRD API"
       version: "1.0.0"
+      tagline: "Query the Dungeons & Dragons 5e SRD via REST or GraphQL — spells, monsters, classes, races, equipment and more"
+      homepage: "https://www.dnd5eapi.co/"
+      docs_url: "https://5e-bits.github.io/docs/"
+      license_short: "Content released under the Open Gaming License (OGL); API code is open source on GitHub."
+      license_md: `- API content is drawn from the D&D 5e System Reference Document (SRD), distributed under the Open Gaming License (OGL).
+- Attribution to Wizards of the Coast and the SRD should accompany derivative works that reuse the content.
+- API code and tooling are maintained as open source by the 5e-bits community on GitHub.
+- Only SRD-licensed material is exposed; non-SRD content (e.g. books beyond the SRD) is not included.`
+      about_md: `The Dungeons & Dragons 5e SRD API is a community-built service maintained by [5e-bits](https://5e-bits.github.io/docs/) that exposes the open System Reference Document for fifth-edition D&D. It is served from \`https://www.dnd5eapi.co/api\` and can be queried as either a REST API or a GraphQL endpoint.
+
+What you get from the API:
+
+- Character building blocks: ability scores, alignments, backgrounds, classes, races, subraces, subclasses, feats and proficiencies.
+- Game mechanics: conditions, damage types, features, skills, traits and rule sections.
+- Equipment and items: equipment, equipment categories, magic items and weapon properties.
+- Spellcasting: full spell list and magic schools.
+- Bestiary and world: monsters, languages and general rules text.
+
+Resources are reachable via predictable index paths such as \`/api/spells\`, \`/api/races/dwarf\` or \`/api/ability-scores/cha\`, and the same data is queryable via GraphQL for shaped responses. No authentication or API key is required, and CORS is enabled so the API can be called directly from browsers.`
+      entity_desc: {
+        get_api_root: "Lists the available resource categories exposed by the API at the root path `GET /api`, acting as a discovery endpoint."
+        get_resource_by_index: "Fetches a single SRD resource by its index slug, e.g. `GET /api/spells/fireball` or `GET /api/races/dwarf`."
+        get_resource_list: "Returns the index list of items within a given resource category, e.g. `GET /api/spells`, `GET /api/monsters` or `GET /api/equipment`."
+        graph_ql: "GraphQL endpoint that mirrors the REST data model and lets you request shaped queries across SRD entities in a single round trip."
+      }
+      auth: false
     }
   }
-}
-
 }
