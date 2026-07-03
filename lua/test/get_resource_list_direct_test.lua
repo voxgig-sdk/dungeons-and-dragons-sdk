@@ -77,12 +77,14 @@ function get_resource_list_direct_setup(mockres)
   local env = runner.env_override({
     ["DUNGEONSANDDRAGONS_TEST_GET_RESOURCE_LIST_ENTID"] = {},
     ["DUNGEONSANDDRAGONS_TEST_LIVE"] = "FALSE",
+    ["DUNGEONSANDDRAGONS_APIKEY"] = "NONE",
   })
 
   local live = env["DUNGEONSANDDRAGONS_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["DUNGEONSANDDRAGONS_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

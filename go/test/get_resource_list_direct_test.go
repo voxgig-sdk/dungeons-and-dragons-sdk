@@ -118,12 +118,14 @@ func get_resource_listDirectSetup(mockres any) *get_resource_listDirectSetupResu
 	env := envOverride(map[string]any{
 		"DUNGEONSANDDRAGONS_TEST_GET_RESOURCE_LIST_ENTID": map[string]any{},
 		"DUNGEONSANDDRAGONS_TEST_LIVE":    "FALSE",
+		"DUNGEONSANDDRAGONS_APIKEY":       "NONE",
 	})
 
 	live := env["DUNGEONSANDDRAGONS_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["DUNGEONSANDDRAGONS_APIKEY"],
 		}
 		client := sdk.NewDungeonsAndDragonsSDK(mergedOpts)
 

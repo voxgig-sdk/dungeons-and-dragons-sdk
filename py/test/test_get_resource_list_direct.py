@@ -73,12 +73,14 @@ def _get_resource_list_direct_setup(mockres):
     env = runner.env_override({
         "DUNGEONSANDDRAGONS_TEST_GET_RESOURCE_LIST_ENTID": {},
         "DUNGEONSANDDRAGONS_TEST_LIVE": "FALSE",
+        "DUNGEONSANDDRAGONS_APIKEY": "NONE",
     })
 
     live = env.get("DUNGEONSANDDRAGONS_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("DUNGEONSANDDRAGONS_APIKEY"),
         }
         client = DungeonsAndDragonsSDK(merged_opts)
         return {

@@ -121,6 +121,7 @@ func get_resource_listBasicSetup(extra map[string]any) *entityTestSetup {
 		"DUNGEONSANDDRAGONS_TEST_GET_RESOURCE_LIST_ENTID": idmap,
 		"DUNGEONSANDDRAGONS_TEST_LIVE":      "FALSE",
 		"DUNGEONSANDDRAGONS_TEST_EXPLAIN":   "FALSE",
+		"DUNGEONSANDDRAGONS_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["DUNGEONSANDDRAGONS_TEST_GET_RESOURCE_LIST_ENTID"])
@@ -131,6 +132,7 @@ func get_resource_listBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["DUNGEONSANDDRAGONS_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["DUNGEONSANDDRAGONS_APIKEY"],
 			},
 			extra,
 		})

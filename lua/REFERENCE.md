@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -136,7 +136,7 @@ local get_api_root = client:GetApiRoot(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GetApiRoot(nil):load({ id = "get_api_root_id" }, nil)
+local result, err = client:GetApiRoot():load({ id = "get_api_root_id" })
 ```
 
 ### Common Methods
@@ -190,7 +190,7 @@ local get_resource_by_index = client:GetResourceByIndex(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GetResourceByIndex(nil):load({ id = "get_resource_by_index_id" }, nil)
+local result, err = client:GetResourceByIndex():load({ id = "get_resource_by_index_id" })
 ```
 
 ### Common Methods
@@ -244,7 +244,7 @@ local get_resource_list = client:GetResourceList(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:GetResourceList(nil):list(nil, nil)
+local results, err = client:GetResourceList():list()
 ```
 
 ### Common Methods
@@ -300,9 +300,9 @@ local graph_ql = client:GraphQl(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:GraphQl(nil):create({
+local result, err = client:GraphQl():create({
   query = --[[ `$STRING` ]],
-}, nil)
+})
 ```
 
 ### Common Methods

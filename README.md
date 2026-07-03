@@ -1,22 +1,8 @@
 # DungeonsAndDragons SDK
 
-Query the Dungeons & Dragons 5e SRD via REST or GraphQL — spells, monsters, classes, races, equipment and more
+Dungeons and Dragons 5e SRD API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Dungeons and Dragons 5e SRD API
-
-The Dungeons & Dragons 5e SRD API is a community-built service maintained by [5e-bits](https://5e-bits.github.io/docs/) that exposes the open System Reference Document for fifth-edition D&D. It is served from `https://www.dnd5eapi.co/api` and can be queried as either a REST API or a GraphQL endpoint.
-
-What you get from the API:
-
-- Character building blocks: ability scores, alignments, backgrounds, classes, races, subraces, subclasses, feats and proficiencies.
-- Game mechanics: conditions, damage types, features, skills, traits and rule sections.
-- Equipment and items: equipment, equipment categories, magic items and weapon properties.
-- Spellcasting: full spell list and magic schools.
-- Bestiary and world: monsters, languages and general rules text.
-
-Resources are reachable via predictable index paths such as `/api/spells`, `/api/races/dwarf` or `/api/ability-scores/cha`, and the same data is queryable via GraphQL for shaped responses. No authentication or API key is required, and CORS is enabled so the API can be called directly from browsers.
 
 ## Try it
 
@@ -50,27 +36,31 @@ gem install dungeons-and-dragons-sdk
 luarocks install dungeons-and-dragons-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { DungeonsAndDragonsSDK } from 'dungeons-and-dragons'
 
-const client = new DungeonsAndDragonsSDK({})
+const client = new DungeonsAndDragonsSDK({
+  apikey: process.env.DUNGEONS-AND-DRAGONS_APIKEY,
+})
 
+// Load getapiroot data
+const getapiroot = await client.GetApiRoot().load({})
+console.log(getapiroot.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -100,10 +90,10 @@ The API exposes 4 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **GetApiRoot** | Lists the available resource categories exposed by the API at the root path `GET /api`, acting as a discovery endpoint. | `/` |
-| **GetResourceByIndex** | Fetches a single SRD resource by its index slug, e.g. `GET /api/spells/fireball` or `GET /api/races/dwarf`. | `/{resource}/{index}` |
-| **GetResourceList** | Returns the index list of items within a given resource category, e.g. `GET /api/spells`, `GET /api/monsters` or `GET /api/equipment`. | `/{resource}` |
-| **GraphQl** | GraphQL endpoint that mirrors the REST data model and lets you request shaped queries across SRD entities in a single round trip. | `/graphql` |
+| **GetApiRoot** |  | `/` |
+| **GetResourceByIndex** |  | `/{resource}/{index}` |
+| **GetResourceList** |  | `/{resource}` |
+| **GraphQl** |  | `/graphql` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -113,15 +103,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from dungeonsanddragons_sdk import DungeonsAndDragonsSDK
 
-client = DungeonsAndDragonsSDK({})
+client = DungeonsAndDragonsSDK({
+    "apikey": os.environ.get("DUNGEONS-AND-DRAGONS_APIKEY"),
+})
 
 
 # Load a specific getapiroot
-getapiroot, err = client.GetApiRoot(None).load(
-    {"id": "example_id"}, None
-)
+getapiroot, err = client.GetApiRoot().load({"id": "example_id"})
+print(getapiroot)
 ```
 
 ### PHP
@@ -130,13 +122,14 @@ getapiroot, err = client.GetApiRoot(None).load(
 <?php
 require_once 'dungeonsanddragons_sdk.php';
 
-$client = new DungeonsAndDragonsSDK([]);
+$client = new DungeonsAndDragonsSDK([
+    "apikey" => getenv("DUNGEONS-AND-DRAGONS_APIKEY"),
+]);
 
 
 // Load a specific getapiroot
-[$getapiroot, $err] = $client->GetApiRoot(null)->load(
-    ["id" => "example_id"], null
-);
+[$getapiroot, $err] = $client->GetApiRoot()->load(["id" => "example_id"]);
+print_r($getapiroot);
 ```
 
 ### Golang
@@ -144,8 +137,13 @@ $client = new DungeonsAndDragonsSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/dungeons-and-dragons-sdk/go"
 
-client := sdk.NewDungeonsAndDragonsSDK(map[string]any{})
+client := sdk.NewDungeonsAndDragonsSDK(map[string]any{
+    "apikey": os.Getenv("DUNGEONS-AND-DRAGONS_APIKEY"),
+})
 
+// Load getapiroot data
+getapiroot, err := client.GetApiRoot(nil).Load(map[string]any{}, nil)
+fmt.Println(getapiroot)
 ```
 
 ### Ruby
@@ -153,13 +151,14 @@ client := sdk.NewDungeonsAndDragonsSDK(map[string]any{})
 ```ruby
 require_relative "DungeonsAndDragons_sdk"
 
-client = DungeonsAndDragonsSDK.new({})
+client = DungeonsAndDragonsSDK.new({
+  "apikey" => ENV["DUNGEONS-AND-DRAGONS_APIKEY"],
+})
 
 
 # Load a specific getapiroot
-getapiroot, err = client.GetApiRoot(nil).load(
-  { "id" => "example_id" }, nil
-)
+getapiroot, err = client.GetApiRoot().load({ "id" => "example_id" })
+puts getapiroot
 ```
 
 ### Lua
@@ -167,13 +166,14 @@ getapiroot, err = client.GetApiRoot(nil).load(
 ```lua
 local sdk = require("dungeons-and-dragons_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("DUNGEONS-AND-DRAGONS_APIKEY"),
+})
 
 
 -- Load a specific getapiroot
-local getapiroot, err = client:GetApiRoot(nil):load(
-  { id = "example_id" }, nil
-)
+local getapiroot, err = client:GetApiRoot():load({ id = "example_id" })
+print(getapiroot)
 ```
 
 ## Unit testing in offline mode
@@ -192,25 +192,21 @@ const result = await client.GetApiRoot().load({ id: 'test01' })
 ### Python
 
 ```python
-client = DungeonsAndDragonsSDK.test(None, None)
-result, err = client.GetApiRoot(None).load(
-    {"id": "test01"}, None
-)
+client = DungeonsAndDragonsSDK.test()
+result, err = client.GetApiRoot().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = DungeonsAndDragonsSDK::test(null, null);
-[$result, $err] = $client->GetApiRoot(null)->load(
-    ["id" => "test01"], null
-);
+$client = DungeonsAndDragonsSDK::test();
+[$result, $err] = $client->GetApiRoot()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.GetApiRoot(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -219,19 +215,15 @@ result, err := client.GetApiRoot(nil).Load(
 ### Ruby
 
 ```ruby
-client = DungeonsAndDragonsSDK.test(nil, nil)
-result, err = client.GetApiRoot(nil).load(
-  { "id" => "test01" }, nil
-)
+client = DungeonsAndDragonsSDK.test
+result, err = client.GetApiRoot().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:GetApiRoot(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:GetApiRoot():load({ id = "test01" })
 ```
 
 ## How it works
@@ -335,16 +327,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Dungeons and Dragons 5e SRD API
-
-- Upstream: [https://www.dnd5eapi.co/](https://www.dnd5eapi.co/)
-- API docs: [https://5e-bits.github.io/docs/](https://5e-bits.github.io/docs/)
-
-- API content is drawn from the D&D 5e System Reference Document (SRD), distributed under the Open Gaming License (OGL).
-- Attribution to Wizards of the Coast and the SRD should accompany derivative works that reuse the content.
-- API code and tooling are maintained as open source by the 5e-bits community on GitHub.
-- Only SRD-licensed material is exposed; non-SRD content (e.g. books beyond the SRD) is not included.
 
 ---
 

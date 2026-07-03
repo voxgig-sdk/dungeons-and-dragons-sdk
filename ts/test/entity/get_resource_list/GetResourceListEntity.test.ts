@@ -114,6 +114,7 @@ function basicSetup(extra?: any) {
     'DUNGEONS_AND_DRAGONS_TEST_GET_RESOURCE_LIST_ENTID': idmap,
     'DUNGEONS_AND_DRAGONS_TEST_LIVE': 'FALSE',
     'DUNGEONS_AND_DRAGONS_TEST_EXPLAIN': 'FALSE',
+    'DUNGEONS_AND_DRAGONS_APIKEY': 'NONE',
   })
 
   idmap = env['DUNGEONS_AND_DRAGONS_TEST_GET_RESOURCE_LIST_ENTID']
@@ -123,6 +124,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new DungeonsAndDragonsSDK(merge([
       {
+        apikey: env.DUNGEONS_AND_DRAGONS_APIKEY,
       },
       extra
     ]))

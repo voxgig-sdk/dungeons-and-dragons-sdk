@@ -99,12 +99,14 @@ func get_api_rootDirectSetup(mockres any) *get_api_rootDirectSetupResult {
 	env := envOverride(map[string]any{
 		"DUNGEONSANDDRAGONS_TEST_GET_API_ROOT_ENTID": map[string]any{},
 		"DUNGEONSANDDRAGONS_TEST_LIVE":    "FALSE",
+		"DUNGEONSANDDRAGONS_APIKEY":       "NONE",
 	})
 
 	live := env["DUNGEONSANDDRAGONS_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["DUNGEONSANDDRAGONS_APIKEY"],
 		}
 		client := sdk.NewDungeonsAndDragonsSDK(mergedOpts)
 
