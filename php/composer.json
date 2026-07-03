@@ -1,8 +1,17 @@
 {
   "name": "voxgig-sdk/dungeons-and-dragons",
-  "description": "DungeonsAndDragons SDK for PHP",
+  "description": "Unofficial generated PHP SDK for the Dungeons and Dragons 5e SRD public API. Not affiliated with or endorsed by the upstream API provider.",
   "type": "library",
+  "keywords": ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "dungeons-and-dragons"],
+  "homepage": "https://github.com/voxgig-sdk/dungeons-and-dragons-sdk",
   "license": "MIT",
+  "authors": [
+    { "name": "Voxgig", "homepage": "https://voxgig.com" }
+  ],
+  "support": {
+    "issues": "https://github.com/voxgig-sdk/dungeons-and-dragons-sdk/issues",
+    "source": "https://github.com/voxgig-sdk/dungeons-and-dragons-sdk"
+  },
   "minimum-stability": "stable",
   "require": {
     "php": ">=8.2"

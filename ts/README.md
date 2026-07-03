@@ -10,7 +10,7 @@ The TypeScript SDK for the DungeonsAndDragons API — a type-safe, entity-orient
 
 ## Install
 ```bash
-npm install dungeons-and-dragons
+npm install @voxgig-sdk/dungeons-and-dragons
 ```
 ## Tutorial: your first API call
 

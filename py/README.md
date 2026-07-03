@@ -10,7 +10,7 @@ The Python SDK for the DungeonsAndDragons API — an entity-oriented client foll
 
 ## Install
 ```bash
-pip install dungeons-and-dragons-sdk
+pip install voxgig-sdk-dungeons-and-dragons
 ```
 
 Or install from source:

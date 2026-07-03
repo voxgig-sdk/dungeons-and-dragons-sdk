@@ -10,13 +10,13 @@ The Ruby SDK for the DungeonsAndDragons API — an entity-oriented client using 
 
 ## Install
 ```bash
-gem install dungeons-and-dragons-sdk
+gem install voxgig-sdk-dungeons-and-dragons
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "dungeons-and-dragons-sdk"
+gem "voxgig-sdk-dungeons-and-dragons"
 ```
 
 Then run:

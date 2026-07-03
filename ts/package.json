@@ -1,7 +1,23 @@
 {
   "name": "@voxgig-sdk/dungeons-and-dragons",
   "version": "0.0.1",
-  "description": "DESCRIPTION",
+  "description": "Unofficial generated TypeScript SDK for the Dungeons and Dragons 5e SRD public API. Not affiliated with or endorsed by the upstream API provider.",
+  "keywords": [
+    "voxgig",
+    "sdk",
+    "generated-sdk",
+    "openapi",
+    "api-client",
+    "dungeons-and-dragons"
+  ],
+  "homepage": "https://github.com/voxgig-sdk/dungeons-and-dragons-sdk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voxgig-sdk/dungeons-and-dragons-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/voxgig-sdk/dungeons-and-dragons-sdk/issues"
+  },
   "main": "dist/DungeonsAndDragonsSDK.js",
   "type": "commonjs",
   "types": "dist/DungeonsAndDragonsSDK.d.ts",
@@ -14,7 +30,10 @@
     "clean": "rm -rf node_modules yarn.lock package-lock.json",
     "reset": "npm run clean && npm i && npm run build && npm test"
   },
-  "author": "DungeonsAndDragons",
+  "author": {
+    "name": "Voxgig",
+    "url": "https://voxgig.com"
+  },
   "license": "MIT",
   "dependencies": {},
   "peerDependencies": {},

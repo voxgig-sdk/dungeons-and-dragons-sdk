@@ -10,7 +10,7 @@ The PHP SDK for the DungeonsAndDragons API — an entity-oriented client using P
 
 ## Install
 ```bash
-composer require voxgig/dungeons-and-dragons-sdk
+composer require voxgig-sdk/dungeons-and-dragons
 ```
 
 
