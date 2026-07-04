@@ -49,8 +49,7 @@ class TestGetApiRootEntity:
         # LOAD
         get_api_root_ref01_ent = client.GetApiRoot(None)
         get_api_root_ref01_match_dt0 = {}
-        get_api_root_ref01_data_dt0_loaded, err = get_api_root_ref01_ent.load(get_api_root_ref01_match_dt0, None)
-        assert err is None
+        get_api_root_ref01_data_dt0_loaded = get_api_root_ref01_ent.load(get_api_root_ref01_match_dt0, None)
         assert get_api_root_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _get_api_root_basic_setup(extra):
         "DUNGEONSANDDRAGONS_TEST_GET_API_ROOT_ENTID": idmap,
         "DUNGEONSANDDRAGONS_TEST_LIVE": "FALSE",
         "DUNGEONSANDDRAGONS_TEST_EXPLAIN": "FALSE",
-        "DUNGEONSANDDRAGONS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _get_api_root_basic_setup(extra):
     if env.get("DUNGEONSANDDRAGONS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("DUNGEONSANDDRAGONS_APIKEY"),
             },
             extra or {},
         ])

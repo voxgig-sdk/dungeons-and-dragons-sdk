@@ -42,8 +42,7 @@ class GetResourceByIndexEntityTest < Minitest::Test
     # LOAD
     get_resource_by_index_ref01_ent = client.GetResourceByIndex(nil)
     get_resource_by_index_ref01_match_dt0 = {}
-    get_resource_by_index_ref01_data_dt0_loaded, err = get_resource_by_index_ref01_ent.load(get_resource_by_index_ref01_match_dt0, nil)
-    assert_nil err
+    get_resource_by_index_ref01_data_dt0_loaded = get_resource_by_index_ref01_ent.load(get_resource_by_index_ref01_match_dt0, nil)
     assert !get_resource_by_index_ref01_data_dt0_loaded.nil?
 
   end
@@ -82,7 +81,6 @@ def get_resource_by_index_basic_setup(extra)
     "DUNGEONSANDDRAGONS_TEST_GET_RESOURCE_BY_INDEX_ENTID" => idmap,
     "DUNGEONSANDDRAGONS_TEST_LIVE" => "FALSE",
     "DUNGEONSANDDRAGONS_TEST_EXPLAIN" => "FALSE",
-    "DUNGEONSANDDRAGONS_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,7 +92,6 @@ def get_resource_by_index_basic_setup(extra)
   if env["DUNGEONSANDDRAGONS_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["DUNGEONSANDDRAGONS_APIKEY"],
       },
       extra || {},
     ])

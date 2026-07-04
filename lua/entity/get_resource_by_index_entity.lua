@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch GetResourceByIndexLoadMatch
+---@param ctrl? table
+---@return GetResourceByIndex
+---@return string? err
 function GetResourceByIndexEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

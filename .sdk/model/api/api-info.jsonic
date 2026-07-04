@@ -4,6 +4,7 @@
 main: {
   kit: {
     info: {
+      auth: false
       contact: {
         name: "5e-bits Community"
         url: "https://discord.gg/TQuYTv7"

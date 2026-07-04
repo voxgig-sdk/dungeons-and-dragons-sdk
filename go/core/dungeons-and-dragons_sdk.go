@@ -245,21 +245,33 @@ func (sdk *DungeonsAndDragonsSDK) Direct(fetchargs map[string]any) (map[string]a
 }
 
 
+// GetApiRoot returns a GetApiRoot entity bound to this client.
+// Idiomatic usage: client.GetApiRoot(nil).List(nil, nil) or
+// client.GetApiRoot(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DungeonsAndDragonsSDK) GetApiRoot(data map[string]any) DungeonsAndDragonsEntity {
 	return NewGetApiRootEntityFunc(sdk, data)
 }
 
 
+// GetResourceByIndex returns a GetResourceByIndex entity bound to this client.
+// Idiomatic usage: client.GetResourceByIndex(nil).List(nil, nil) or
+// client.GetResourceByIndex(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DungeonsAndDragonsSDK) GetResourceByIndex(data map[string]any) DungeonsAndDragonsEntity {
 	return NewGetResourceByIndexEntityFunc(sdk, data)
 }
 
 
+// GetResourceList returns a GetResourceList entity bound to this client.
+// Idiomatic usage: client.GetResourceList(nil).List(nil, nil) or
+// client.GetResourceList(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DungeonsAndDragonsSDK) GetResourceList(data map[string]any) DungeonsAndDragonsEntity {
 	return NewGetResourceListEntityFunc(sdk, data)
 }
 
 
+// GraphQl returns a GraphQl entity bound to this client.
+// Idiomatic usage: client.GraphQl(nil).List(nil, nil) or
+// client.GraphQl(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DungeonsAndDragonsSDK) GraphQl(data map[string]any) DungeonsAndDragonsEntity {
 	return NewGraphQlEntityFunc(sdk, data)
 }

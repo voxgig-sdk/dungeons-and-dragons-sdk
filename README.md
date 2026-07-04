@@ -10,26 +10,24 @@ This is an unofficial SDK for the Dungeons and Dragons 5e SRD public API, genera
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/dungeons-and-dragons` | `npm install @voxgig-sdk/dungeons-and-dragons` |
-| Python | `voxgig-sdk-dungeons-and-dragons` | `pip install voxgig-sdk-dungeons-and-dragons` |
-| PHP | `voxgig-sdk/dungeons-and-dragons` | `composer require voxgig-sdk/dungeons-and-dragons` |
-| Golang | `github.com/voxgig-sdk/dungeons-and-dragons-sdk/go` | `go get github.com/voxgig-sdk/dungeons-and-dragons-sdk/go` |
-| Ruby | `voxgig-sdk-dungeons-and-dragons` | `gem install voxgig-sdk-dungeons-and-dragons` |
-| Lua | `voxgig-sdk-dungeons-and-dragons` | `luarocks install voxgig-sdk-dungeons-and-dragons` |
+| TypeScript | `@voxgig-sdk/dungeons-and-dragons` | publish pending — [install from git tag](https://github.com/voxgig-sdk/dungeons-and-dragons-sdk/releases) |
+| Python | `voxgig-sdk-dungeons-and-dragons` | publish pending — [install from git tag](https://github.com/voxgig-sdk/dungeons-and-dragons-sdk/releases) |
+| PHP | `voxgig-sdk/dungeons-and-dragons` | publish pending — [install from git tag](https://github.com/voxgig-sdk/dungeons-and-dragons-sdk/releases) |
+| Golang | `github.com/voxgig-sdk/dungeons-and-dragons-sdk/go` | `go get github.com/voxgig-sdk/dungeons-and-dragons-sdk/go@latest` |
+| Ruby | `voxgig-sdk-dungeons-and-dragons` | publish pending — [install from git tag](https://github.com/voxgig-sdk/dungeons-and-dragons-sdk/releases) |
+| Lua | `voxgig-sdk-dungeons-and-dragons` | publish pending — [install from git tag](https://github.com/voxgig-sdk/dungeons-and-dragons-sdk/releases) |
 
 ## Quickstart
 
 ### TypeScript
 
 ```ts
-import { DungeonsAndDragonsSDK } from 'dungeons-and-dragons'
+import { DungeonsAndDragonsSDK } from '@voxgig-sdk/dungeons-and-dragons'
 
-const client = new DungeonsAndDragonsSDK({
-  apikey: process.env.DUNGEONS-AND-DRAGONS_APIKEY,
-})
+const client = new DungeonsAndDragonsSDK()
 
 // Load getapiroot data
-const getapiroot = await client.GetApiRoot().load({})
+const getapiroot = await client.getapiroot.load({})
 console.log(getapiroot.data)
 ```
 
@@ -71,10 +69,10 @@ The API exposes 4 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **GetApiRoot** |  | `/` |
-| **GetResourceByIndex** |  | `/{resource}/{index}` |
-| **GetResourceList** |  | `/{resource}` |
-| **GraphQl** |  | `/graphql` |
+| **GetApiRoot** | The GetApiRoot entity (load). | `/` |
+| **GetResourceByIndex** | The GetResourceByIndex entity (load). | `/{resource}/{index}` |
+| **GetResourceList** | The GetResourceList entity (list). | `/{resource}` |
+| **GraphQl** | The GraphQl entity (create). | `/graphql` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -84,16 +82,13 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
-import os
 from dungeonsanddragons_sdk import DungeonsAndDragonsSDK
 
-client = DungeonsAndDragonsSDK({
-    "apikey": os.environ.get("DUNGEONS-AND-DRAGONS_APIKEY"),
-})
+client = DungeonsAndDragonsSDK()
 
 
 # Load a specific getapiroot
-getapiroot, err = client.GetApiRoot().load({"id": "example_id"})
+getapiroot = client.getapiroot.load({"id": "example_id"})
 print(getapiroot)
 ```
 
@@ -103,13 +98,11 @@ print(getapiroot)
 <?php
 require_once 'dungeonsanddragons_sdk.php';
 
-$client = new DungeonsAndDragonsSDK([
-    "apikey" => getenv("DUNGEONS-AND-DRAGONS_APIKEY"),
-]);
+$client = new DungeonsAndDragonsSDK();
 
 
 // Load a specific getapiroot
-[$getapiroot, $err] = $client->GetApiRoot()->load(["id" => "example_id"]);
+$getapiroot = $client->getapiroot()->load(["id" => "example_id"]);
 print_r($getapiroot);
 ```
 
@@ -118,9 +111,7 @@ print_r($getapiroot);
 ```go
 import sdk "github.com/voxgig-sdk/dungeons-and-dragons-sdk/go"
 
-client := sdk.NewDungeonsAndDragonsSDK(map[string]any{
-    "apikey": os.Getenv("DUNGEONS-AND-DRAGONS_APIKEY"),
-})
+client := sdk.New()
 
 // Load getapiroot data
 getapiroot, err := client.GetApiRoot(nil).Load(map[string]any{}, nil)
@@ -132,13 +123,11 @@ fmt.Println(getapiroot)
 ```ruby
 require_relative "DungeonsAndDragons_sdk"
 
-client = DungeonsAndDragonsSDK.new({
-  "apikey" => ENV["DUNGEONS-AND-DRAGONS_APIKEY"],
-})
+client = DungeonsAndDragonsSDK.new
 
 
 # Load a specific getapiroot
-getapiroot, err = client.GetApiRoot().load({ "id" => "example_id" })
+getapiroot = client.getapiroot.load({ "id" => "example_id" })
 puts getapiroot
 ```
 
@@ -147,13 +136,11 @@ puts getapiroot
 ```lua
 local sdk = require("dungeons-and-dragons_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("DUNGEONS-AND-DRAGONS_APIKEY"),
-})
+local client = sdk.new()
 
 
 -- Load a specific getapiroot
-local getapiroot, err = client:GetApiRoot():load({ id = "example_id" })
+local getapiroot, err = client:getapiroot():load({ id = "example_id" })
 print(getapiroot)
 ```
 
@@ -166,7 +153,7 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = DungeonsAndDragonsSDK.test()
-const result = await client.GetApiRoot().load({ id: 'test01' })
+const result = await client.getapiroot.load({ id: 'test01' })
 // result.ok === true, result.data contains mock data
 ```
 
@@ -174,14 +161,14 @@ const result = await client.GetApiRoot().load({ id: 'test01' })
 
 ```python
 client = DungeonsAndDragonsSDK.test()
-result, err = client.GetApiRoot().load({"id": "test01"})
+result = client.getapiroot.load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
 $client = DungeonsAndDragonsSDK::test();
-[$result, $err] = $client->GetApiRoot()->load(["id" => "test01"]);
+$result = $client->getapiroot()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -197,14 +184,14 @@ result, err := client.GetApiRoot(nil).Load(
 
 ```ruby
 client = DungeonsAndDragonsSDK.test
-result, err = client.GetApiRoot().load({ "id" => "test01" })
+result = client.getapiroot.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:GetApiRoot():load({ id = "test01" })
+local result, err = client:getapiroot():load({ id = "test01" })
 ```
 
 ## How it works
@@ -257,7 +244,7 @@ console.log(result.data)
 
 **Python:**
 ```python
-result, err = client.direct({
+result = client.direct({
     "path": "/api/resource/{id}",
     "method": "GET",
     "params": {"id": "example"},
@@ -266,7 +253,7 @@ result, err = client.direct({
 
 **PHP:**
 ```php
-[$result, $err] = $client->direct([
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
@@ -284,7 +271,7 @@ result, err := client.Direct(map[string]any{
 
 **Ruby:**
 ```ruby
-result, err = client.direct({
+result = client.direct({
   "path" => "/api/resource/{id}",
   "method" => "GET",
   "params" => { "id" => "example" },

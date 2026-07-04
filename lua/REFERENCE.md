@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -96,7 +95,7 @@ same parameters as `direct()`.
 ## GetApiRootEntity
 
 ```lua
-local get_api_root = client:GetApiRoot(nil)
+local get_api_root = client:get_api_root(nil)
 ```
 
 ### Fields
@@ -136,7 +135,7 @@ local get_api_root = client:GetApiRoot(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GetApiRoot():load({ id = "get_api_root_id" })
+local result, err = client:get_api_root():load({ id = "get_api_root_id" })
 ```
 
 ### Common Methods
@@ -172,7 +171,7 @@ Return the entity name.
 ## GetResourceByIndexEntity
 
 ```lua
-local get_resource_by_index = client:GetResourceByIndex(nil)
+local get_resource_by_index = client:get_resource_by_index(nil)
 ```
 
 ### Fields
@@ -190,7 +189,7 @@ local get_resource_by_index = client:GetResourceByIndex(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GetResourceByIndex():load({ id = "get_resource_by_index_id" })
+local result, err = client:get_resource_by_index():load({ id = "get_resource_by_index_id" })
 ```
 
 ### Common Methods
@@ -226,7 +225,7 @@ Return the entity name.
 ## GetResourceListEntity
 
 ```lua
-local get_resource_list = client:GetResourceList(nil)
+local get_resource_list = client:get_resource_list(nil)
 ```
 
 ### Fields
@@ -244,7 +243,7 @@ local get_resource_list = client:GetResourceList(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:GetResourceList():list()
+local results, err = client:get_resource_list():list()
 ```
 
 ### Common Methods
@@ -280,7 +279,7 @@ Return the entity name.
 ## GraphQlEntity
 
 ```lua
-local graph_ql = client:GraphQl(nil)
+local graph_ql = client:graph_ql(nil)
 ```
 
 ### Fields
@@ -300,7 +299,7 @@ local graph_ql = client:GraphQl(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:GraphQl():create({
+local result, err = client:graph_ql():create({
   query = --[[ `$STRING` ]],
 })
 ```

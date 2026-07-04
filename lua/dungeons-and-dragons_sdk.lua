@@ -244,24 +244,76 @@ end
 
 
 
+-- Idiomatic facade: client:get_api_root():list() / client:get_api_root():load({ id = ... })
+function DungeonsAndDragonsSDK:get_api_root(data)
+  local EntityMod = require("entity.get_api_root_entity")
+  if data == nil then
+    if self._get_api_root == nil then
+      self._get_api_root = EntityMod.new(self, nil)
+    end
+    return self._get_api_root
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:get_api_root() instead.
 function DungeonsAndDragonsSDK:GetApiRoot(data)
   local EntityMod = require("entity.get_api_root_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:get_resource_by_index():list() / client:get_resource_by_index():load({ id = ... })
+function DungeonsAndDragonsSDK:get_resource_by_index(data)
+  local EntityMod = require("entity.get_resource_by_index_entity")
+  if data == nil then
+    if self._get_resource_by_index == nil then
+      self._get_resource_by_index = EntityMod.new(self, nil)
+    end
+    return self._get_resource_by_index
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:get_resource_by_index() instead.
 function DungeonsAndDragonsSDK:GetResourceByIndex(data)
   local EntityMod = require("entity.get_resource_by_index_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:get_resource_list():list() / client:get_resource_list():load({ id = ... })
+function DungeonsAndDragonsSDK:get_resource_list(data)
+  local EntityMod = require("entity.get_resource_list_entity")
+  if data == nil then
+    if self._get_resource_list == nil then
+      self._get_resource_list = EntityMod.new(self, nil)
+    end
+    return self._get_resource_list
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:get_resource_list() instead.
 function DungeonsAndDragonsSDK:GetResourceList(data)
   local EntityMod = require("entity.get_resource_list_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:graph_ql():list() / client:graph_ql():load({ id = ... })
+function DungeonsAndDragonsSDK:graph_ql(data)
+  local EntityMod = require("entity.graph_ql_entity")
+  if data == nil then
+    if self._graph_ql == nil then
+      self._graph_ql = EntityMod.new(self, nil)
+    end
+    return self._graph_ql
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:graph_ql() instead.
 function DungeonsAndDragonsSDK:GraphQl(data)
   local EntityMod = require("entity.graph_ql_entity")
   return EntityMod.new(self, data)

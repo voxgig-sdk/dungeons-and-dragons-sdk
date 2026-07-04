@@ -85,6 +85,27 @@ func (e *GetResourceListEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an GetResourceList; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *GetResourceListEntity) DataTyped(data ...GetResourceList) GetResourceList {
+	if len(data) > 0 {
+		return typedFrom[GetResourceList](e.Data(asMap(data[0])))
+	}
+	return typedFrom[GetResourceList](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through GetResourceList (all fields
+// optional at the wire level).
+func (e *GetResourceListEntity) MatchTyped(match ...GetResourceList) GetResourceList {
+	if len(match) > 0 {
+		return typedFrom[GetResourceList](e.Match(asMap(match[0])))
+	}
+	return typedFrom[GetResourceList](e.Match())
+}
+
 func (e *GetResourceListEntity) Load(_ map[string]any, _ map[string]any) (any, error) {
 	return core.UnsupportedOp("load", e.name)
 }
@@ -108,6 +129,17 @@ func (e *GetResourceListEntity) List(reqmatch map[string]any, ctrl map[string]an
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// GetResourceListListMatch and returns []GetResourceList. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *GetResourceListEntity) ListTyped(reqmatch GetResourceListListMatch, ctrl map[string]any) ([]GetResourceList, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[GetResourceList](res), nil
 }
 
 

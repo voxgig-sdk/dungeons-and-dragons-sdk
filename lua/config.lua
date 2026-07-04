@@ -14,9 +14,6 @@ local function make_config()
     },
     options = {
       base = "https://www.dnd5eapi.co/api",
-      auth = {
-        prefix = "Bearer",
-      },
       headers = {
         ["content-type"] = "application/json",
       },
@@ -274,6 +271,7 @@ local function make_config()
                       ["orig"] = "index",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                     {
                       ["active"] = true,
@@ -282,6 +280,7 @@ local function make_config()
                       ["orig"] = "resource",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 1,
                     },
                   },
                 },
@@ -352,6 +351,7 @@ local function make_config()
                       ["orig"] = "resource",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                 },

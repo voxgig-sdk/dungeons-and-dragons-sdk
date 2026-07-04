@@ -1,7 +1,13 @@
 # DungeonsAndDragons SDK GetResourceByIndex entity
 
+from __future__ import annotations
+
 from utility.voxgig_struct import voxgig_struct as vs
 from core import helpers
+from dungeonsanddragons_types import (
+    GetResourceByIndex,
+    GetResourceByIndexLoadMatch,
+)
 
 
 class GetResourceByIndexEntity:
@@ -44,7 +50,7 @@ class GetResourceByIndexEntity:
             self._data = helpers.to_map(vs.clone(args)) or {}
             self._utility.feature_hook(self._entctx, "SetData")
 
-    def data_get(self):
+    def data_get(self) -> GetResourceByIndex:
         self._utility.feature_hook(self._entctx, "GetData")
         return vs.clone(self._data)
 
@@ -53,12 +59,12 @@ class GetResourceByIndexEntity:
             self._match = helpers.to_map(vs.clone(args)) or {}
             self._utility.feature_hook(self._entctx, "SetMatch")
 
-    def match_get(self):
+    def match_get(self) -> GetResourceByIndex:
         self._utility.feature_hook(self._entctx, "GetMatch")
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch, ctrl=None):
+    def load(self, reqmatch: GetResourceByIndexLoadMatch, ctrl=None) -> GetResourceByIndex:
         utility = self._utility
         ctx = utility.make_context({
             "opname": "load",

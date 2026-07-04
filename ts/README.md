@@ -9,9 +9,12 @@ The TypeScript SDK for the DungeonsAndDragons API — a type-safe, entity-orient
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/dungeons-and-dragons
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/dungeons-and-dragons-sdk/releases](https://github.com/voxgig-sdk/dungeons-and-dragons-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { DungeonsAndDragonsSDK } from 'dungeons-and-dragons'
+import { DungeonsAndDragonsSDK } from '@voxgig-sdk/dungeons-and-dragons'
 
-const client = new DungeonsAndDragonsSDK({
-  apikey: process.env.DUNGEONS-AND-DRAGONS_APIKEY,
-})
+const client = new DungeonsAndDragonsSDK()
 ```
 
 ### 3. Load a getapiroot
 
 ```ts
-const result = await client.GetApiRoot().load({ id: 'example_id' })
+const result = await client.getapiroot.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -79,7 +80,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = DungeonsAndDragonsSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.getapiroot.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -87,7 +88,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new DungeonsAndDragonsSDK({ apikey: '...' })
+const client = new DungeonsAndDragonsSDK()
 const testClient = client.tester()
 ```
 
@@ -96,7 +97,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.getapiroot
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -123,7 +124,6 @@ const logger = {
 }
 
 const client = new DungeonsAndDragonsSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -133,8 +133,7 @@ const client = new DungeonsAndDragonsSDK({
 Create a `.env.local` file at the project root:
 
 ```
-DUNGEONS-AND-DRAGONS_TEST_LIVE=TRUE
-DUNGEONS-AND-DRAGONS_APIKEY=<your-key>
+DUNGEONS_AND_DRAGONS_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -152,7 +151,6 @@ cd ts && npm test
 
 ```ts
 new DungeonsAndDragonsSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -163,7 +161,6 @@ new DungeonsAndDragonsSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -331,7 +328,7 @@ API path: `/graphql`
 
 ### GetApiRoot
 
-Create an instance: `const get_api_root = client.GetApiRoot()`
+Create an instance: `const get_api_root = client.get_api_root`
 
 #### Operations
 
@@ -372,13 +369,13 @@ Create an instance: `const get_api_root = client.GetApiRoot()`
 #### Example: Load
 
 ```ts
-const get_api_root = await client.GetApiRoot().load({ id: 'get_api_root_id' })
+const get_api_root = await client.get_api_root.load({ id: 'get_api_root_id' })
 ```
 
 
 ### GetResourceByIndex
 
-Create an instance: `const get_resource_by_index = client.GetResourceByIndex()`
+Create an instance: `const get_resource_by_index = client.get_resource_by_index`
 
 #### Operations
 
@@ -397,13 +394,13 @@ Create an instance: `const get_resource_by_index = client.GetResourceByIndex()`
 #### Example: Load
 
 ```ts
-const get_resource_by_index = await client.GetResourceByIndex().load({ id: 'get_resource_by_index_id' })
+const get_resource_by_index = await client.get_resource_by_index.load({ id: 'get_resource_by_index_id' })
 ```
 
 
 ### GetResourceList
 
-Create an instance: `const get_resource_list = client.GetResourceList()`
+Create an instance: `const get_resource_list = client.get_resource_list`
 
 #### Operations
 
@@ -422,13 +419,13 @@ Create an instance: `const get_resource_list = client.GetResourceList()`
 #### Example: List
 
 ```ts
-const get_resource_lists = await client.GetResourceList().list()
+const get_resource_lists = await client.get_resource_list.list()
 ```
 
 
 ### GraphQl
 
-Create an instance: `const graph_ql = client.GraphQl()`
+Create an instance: `const graph_ql = client.graph_ql`
 
 #### Operations
 
@@ -449,7 +446,7 @@ Create an instance: `const graph_ql = client.GraphQl()`
 #### Example: Create
 
 ```ts
-const graph_ql = await client.GraphQl().create({
+const graph_ql = await client.graph_ql.create({
   query: /* `$STRING` */,
 })
 ```
@@ -512,7 +509,7 @@ dungeons-and-dragons/
 Import the SDK from the package root:
 
 ```ts
-import { DungeonsAndDragonsSDK } from 'dungeons-and-dragons'
+import { DungeonsAndDragonsSDK } from '@voxgig-sdk/dungeons-and-dragons'
 ```
 
 ### Entity state
@@ -522,11 +519,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const getapiroot = client.getapiroot
+await getapiroot.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// getapiroot.data() now returns the loaded getapiroot data
+// getapiroot.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

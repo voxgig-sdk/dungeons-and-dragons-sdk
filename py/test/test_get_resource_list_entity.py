@@ -52,8 +52,7 @@ class TestGetResourceListEntity:
             "resource": setup["idmap"]["resource01"],
         }
 
-        get_resource_list_ref01_list_result, err = get_resource_list_ref01_ent.list(get_resource_list_ref01_match, None)
-        assert err is None
+        get_resource_list_ref01_list_result = get_resource_list_ref01_ent.list(get_resource_list_ref01_match, None)
         assert isinstance(get_resource_list_ref01_list_result, list)
 
 
@@ -94,7 +93,6 @@ def _get_resource_list_basic_setup(extra):
         "DUNGEONSANDDRAGONS_TEST_GET_RESOURCE_LIST_ENTID": idmap,
         "DUNGEONSANDDRAGONS_TEST_LIVE": "FALSE",
         "DUNGEONSANDDRAGONS_TEST_EXPLAIN": "FALSE",
-        "DUNGEONSANDDRAGONS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -105,7 +103,6 @@ def _get_resource_list_basic_setup(extra):
     if env.get("DUNGEONSANDDRAGONS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("DUNGEONSANDDRAGONS_APIKEY"),
             },
             extra or {},
         ])

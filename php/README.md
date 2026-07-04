@@ -9,9 +9,10 @@ The PHP SDK for the DungeonsAndDragons API — an entity-oriented client using P
 
 
 ## Install
-```bash
-composer require voxgig-sdk/dungeons-and-dragons
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/dungeons-and-dragons-sdk/releases](https://github.com/voxgig-sdk/dungeons-and-dragons-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -25,17 +26,18 @@ loading a specific record.
 <?php
 require_once 'dungeonsanddragons_sdk.php';
 
-$client = new DungeonsAndDragonsSDK([
-    "apikey" => getenv("DUNGEONS-AND-DRAGONS_APIKEY"),
-]);
+$client = new DungeonsAndDragonsSDK();
 ```
 
 ### 3. Load a getapiroot
 
 ```php
-[$result, $err] = $client->GetApiRoot()->load(["id" => "example_id"]);
-if ($err) { throw new \Exception($err); }
-print_r($result);
+try {
+    $result = $client->getapiroot()->load(["id" => "example_id"]);
+    print_r($result);
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
+}
 ```
 
 
@@ -46,28 +48,31 @@ print_r($result);
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -81,7 +86,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = DungeonsAndDragonsSDK::test();
 
-[$result, $err] = $client->DungeonsAndDragons()->load(["id" => "test01"]);
+$result = $client->getapiroot()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -115,8 +120,7 @@ $client = new DungeonsAndDragonsSDK([
 Create a `.env.local` file at the project root:
 
 ```
-DUNGEONS-AND-DRAGONS_TEST_LIVE=TRUE
-DUNGEONS-AND-DRAGONS_APIKEY=<your-key>
+DUNGEONS_AND_DRAGONS_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -139,7 +143,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -188,8 +191,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -281,7 +288,7 @@ API path: `/graphql`
 
 ### GetApiRoot
 
-Create an instance: `const get_api_root = client.GetApiRoot()`
+Create an instance: `const get_api_root = client.get_api_root`
 
 #### Operations
 
@@ -322,13 +329,13 @@ Create an instance: `const get_api_root = client.GetApiRoot()`
 #### Example: Load
 
 ```ts
-const get_api_root = await client.GetApiRoot().load({ id: 'get_api_root_id' })
+const get_api_root = await client.get_api_root.load({ id: 'get_api_root_id' })
 ```
 
 
 ### GetResourceByIndex
 
-Create an instance: `const get_resource_by_index = client.GetResourceByIndex()`
+Create an instance: `const get_resource_by_index = client.get_resource_by_index`
 
 #### Operations
 
@@ -347,13 +354,13 @@ Create an instance: `const get_resource_by_index = client.GetResourceByIndex()`
 #### Example: Load
 
 ```ts
-const get_resource_by_index = await client.GetResourceByIndex().load({ id: 'get_resource_by_index_id' })
+const get_resource_by_index = await client.get_resource_by_index.load({ id: 'get_resource_by_index_id' })
 ```
 
 
 ### GetResourceList
 
-Create an instance: `const get_resource_list = client.GetResourceList()`
+Create an instance: `const get_resource_list = client.get_resource_list`
 
 #### Operations
 
@@ -372,13 +379,13 @@ Create an instance: `const get_resource_list = client.GetResourceList()`
 #### Example: List
 
 ```ts
-const get_resource_lists = await client.GetResourceList().list()
+const get_resource_lists = await client.get_resource_list.list()
 ```
 
 
 ### GraphQl
 
-Create an instance: `const graph_ql = client.GraphQl()`
+Create an instance: `const graph_ql = client.graph_ql`
 
 #### Operations
 
@@ -399,7 +406,7 @@ Create an instance: `const graph_ql = client.GraphQl()`
 #### Example: Create
 
 ```ts
-const graph_ql = await client.GraphQl().create({
+const graph_ql = await client.graph_ql.create({
   query: /* `$STRING` */,
 })
 ```
@@ -476,11 +483,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$getapiroot = $client->getapiroot();
+$getapiroot->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $getapiroot->dataGet() now returns the loaded getapiroot data
+// $getapiroot->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

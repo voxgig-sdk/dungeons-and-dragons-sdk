@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'DungeonsAndDragons_types'
+
 
 class DungeonsAndDragonsSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class DungeonsAndDragonsSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class DungeonsAndDragonsSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue DungeonsAndDragonsError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = DungeonsAndDragonsHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class DungeonsAndDragonsSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,34 +198,62 @@ class DungeonsAndDragonsSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.get_api_root.list / client.get_api_root.load({ "id" => ... })
+  def get_api_root
+    require_relative 'entity/get_api_root_entity'
+    @get_api_root ||= GetApiRootEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.get_api_root instead.
   def GetApiRoot(data = nil)
     require_relative 'entity/get_api_root_entity'
     GetApiRootEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.get_resource_by_index.list / client.get_resource_by_index.load({ "id" => ... })
+  def get_resource_by_index
+    require_relative 'entity/get_resource_by_index_entity'
+    @get_resource_by_index ||= GetResourceByIndexEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.get_resource_by_index instead.
   def GetResourceByIndex(data = nil)
     require_relative 'entity/get_resource_by_index_entity'
     GetResourceByIndexEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.get_resource_list.list / client.get_resource_list.load({ "id" => ... })
+  def get_resource_list
+    require_relative 'entity/get_resource_list_entity'
+    @get_resource_list ||= GetResourceListEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.get_resource_list instead.
   def GetResourceList(data = nil)
     require_relative 'entity/get_resource_list_entity'
     GetResourceListEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.graph_ql.list / client.graph_ql.load({ "id" => ... })
+  def graph_ql
+    require_relative 'entity/graph_ql_entity'
+    @graph_ql ||= GraphQlEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.graph_ql instead.
   def GraphQl(data = nil)
     require_relative 'entity/graph_ql_entity'
     GraphQlEntity.new(self, data)

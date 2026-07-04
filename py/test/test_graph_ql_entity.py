@@ -44,9 +44,7 @@ class TestGraphQlEntity:
         graph_ql_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.graph_ql"), "graph_ql_ref01"))
 
-        graph_ql_ref01_data_result, err = graph_ql_ref01_ent.create(graph_ql_ref01_data, None)
-        assert err is None
-        graph_ql_ref01_data = helpers.to_map(graph_ql_ref01_data_result)
+        graph_ql_ref01_data = helpers.to_map(graph_ql_ref01_ent.create(graph_ql_ref01_data, None))
         assert graph_ql_ref01_data is not None
 
 
@@ -87,7 +85,6 @@ def _graph_ql_basic_setup(extra):
         "DUNGEONSANDDRAGONS_TEST_GRAPH_QL_ENTID": idmap,
         "DUNGEONSANDDRAGONS_TEST_LIVE": "FALSE",
         "DUNGEONSANDDRAGONS_TEST_EXPLAIN": "FALSE",
-        "DUNGEONSANDDRAGONS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -98,7 +95,6 @@ def _graph_ql_basic_setup(extra):
     if env.get("DUNGEONSANDDRAGONS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("DUNGEONSANDDRAGONS_APIKEY"),
             },
             extra or {},
         ])

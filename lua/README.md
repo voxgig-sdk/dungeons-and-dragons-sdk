@@ -9,12 +9,9 @@ The Lua SDK for the DungeonsAndDragons API — an entity-oriented client using L
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-dungeons-and-dragons
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/dungeons-and-dragons-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("dungeons-and-dragons_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("DUNGEONS-AND-DRAGONS_APIKEY"),
-})
+local client = sdk.new()
 ```
 
 ### 3. Load a getapiroot
 
 ```lua
-local result, err = client:GetApiRoot():load({ id = "example_id" })
+local result, err = client:getapiroot():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -87,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:DungeonsAndDragons():load({ id = "test01" })
+local result, err = client:getapiroot():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -120,8 +115,7 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-DUNGEONS-AND-DRAGONS_TEST_LIVE=TRUE
-DUNGEONS-AND-DRAGONS_APIKEY=<your-key>
+DUNGEONS_AND_DRAGONS_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -144,7 +138,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -286,7 +279,7 @@ API path: `/graphql`
 
 ### GetApiRoot
 
-Create an instance: `const get_api_root = client.GetApiRoot()`
+Create an instance: `const get_api_root = client.get_api_root`
 
 #### Operations
 
@@ -327,13 +320,13 @@ Create an instance: `const get_api_root = client.GetApiRoot()`
 #### Example: Load
 
 ```ts
-const get_api_root = await client.GetApiRoot().load({ id: 'get_api_root_id' })
+const get_api_root = await client.get_api_root.load({ id: 'get_api_root_id' })
 ```
 
 
 ### GetResourceByIndex
 
-Create an instance: `const get_resource_by_index = client.GetResourceByIndex()`
+Create an instance: `const get_resource_by_index = client.get_resource_by_index`
 
 #### Operations
 
@@ -352,13 +345,13 @@ Create an instance: `const get_resource_by_index = client.GetResourceByIndex()`
 #### Example: Load
 
 ```ts
-const get_resource_by_index = await client.GetResourceByIndex().load({ id: 'get_resource_by_index_id' })
+const get_resource_by_index = await client.get_resource_by_index.load({ id: 'get_resource_by_index_id' })
 ```
 
 
 ### GetResourceList
 
-Create an instance: `const get_resource_list = client.GetResourceList()`
+Create an instance: `const get_resource_list = client.get_resource_list`
 
 #### Operations
 
@@ -377,13 +370,13 @@ Create an instance: `const get_resource_list = client.GetResourceList()`
 #### Example: List
 
 ```ts
-const get_resource_lists = await client.GetResourceList().list()
+const get_resource_lists = await client.get_resource_list.list()
 ```
 
 
 ### GraphQl
 
-Create an instance: `const graph_ql = client.GraphQl()`
+Create an instance: `const graph_ql = client.graph_ql`
 
 #### Operations
 
@@ -404,7 +397,7 @@ Create an instance: `const graph_ql = client.GraphQl()`
 #### Example: Create
 
 ```ts
-const graph_ql = await client.GraphQl().create({
+const graph_ql = await client.graph_ql.create({
   query: /* `$STRING` */,
 })
 ```
@@ -481,11 +474,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local getapiroot = client:getapiroot()
+getapiroot:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- getapiroot:data_get() now returns the loaded getapiroot data
+-- getapiroot:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

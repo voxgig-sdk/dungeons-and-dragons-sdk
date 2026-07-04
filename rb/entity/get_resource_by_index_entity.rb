@@ -45,6 +45,7 @@ class GetResourceByIndexEntity
     end
   end
 
+  # @return [GetResourceByIndex, Hash] the current GetResourceByIndex data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class GetResourceByIndexEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of GetResourceByIndex fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single GetResourceByIndex.
+  #
+  # @param reqmatch [GetResourceByIndexLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [GetResourceByIndex, Hash] the loaded GetResourceByIndex; raises DungeonsAndDragonsError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

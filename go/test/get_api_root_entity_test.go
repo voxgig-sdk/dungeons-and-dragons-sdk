@@ -117,7 +117,6 @@ func get_api_rootBasicSetup(extra map[string]any) *entityTestSetup {
 		"DUNGEONSANDDRAGONS_TEST_GET_API_ROOT_ENTID": idmap,
 		"DUNGEONSANDDRAGONS_TEST_LIVE":      "FALSE",
 		"DUNGEONSANDDRAGONS_TEST_EXPLAIN":   "FALSE",
-		"DUNGEONSANDDRAGONS_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["DUNGEONSANDDRAGONS_TEST_GET_API_ROOT_ENTID"])
@@ -128,7 +127,6 @@ func get_api_rootBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["DUNGEONSANDDRAGONS_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["DUNGEONSANDDRAGONS_APIKEY"],
 			},
 			extra,
 		})

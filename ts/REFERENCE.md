@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -146,7 +145,7 @@ Alias for `DungeonsAndDragonsSDK.test()`.
 ## GetApiRootEntity
 
 ```ts
-const get_api_root = client.GetApiRoot()
+const get_api_root = client.get_api_root
 ```
 
 ### Fields
@@ -186,7 +185,7 @@ const get_api_root = client.GetApiRoot()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.GetApiRoot().load({ id: 'get_api_root_id' })
+const result = await client.get_api_root.load({ id: 'get_api_root_id' })
 ```
 
 ### Common Methods
@@ -220,7 +219,7 @@ Return a copy of the entity options.
 ## GetResourceByIndexEntity
 
 ```ts
-const get_resource_by_index = client.GetResourceByIndex()
+const get_resource_by_index = client.get_resource_by_index
 ```
 
 ### Fields
@@ -238,7 +237,7 @@ const get_resource_by_index = client.GetResourceByIndex()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.GetResourceByIndex().load({ id: 'get_resource_by_index_id' })
+const result = await client.get_resource_by_index.load({ id: 'get_resource_by_index_id' })
 ```
 
 ### Common Methods
@@ -272,7 +271,7 @@ Return a copy of the entity options.
 ## GetResourceListEntity
 
 ```ts
-const get_resource_list = client.GetResourceList()
+const get_resource_list = client.get_resource_list
 ```
 
 ### Fields
@@ -290,7 +289,7 @@ const get_resource_list = client.GetResourceList()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.GetResourceList().list()
+const results = await client.get_resource_list.list()
 ```
 
 ### Common Methods
@@ -324,7 +323,7 @@ Return a copy of the entity options.
 ## GraphQlEntity
 
 ```ts
-const graph_ql = client.GraphQl()
+const graph_ql = client.graph_ql
 ```
 
 ### Fields
@@ -344,7 +343,7 @@ const graph_ql = client.GraphQl()
 Create a new entity with the given data.
 
 ```ts
-const result = await client.GraphQl().create({
+const result = await client.graph_ql.create({
   query: /* `$STRING` */,
 })
 ```

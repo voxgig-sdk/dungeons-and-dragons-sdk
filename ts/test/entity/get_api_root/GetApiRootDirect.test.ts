@@ -74,14 +74,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'DUNGEONSANDDRAGONS_TEST_GET_API_ROOT_ENTID': {},
     'DUNGEONSANDDRAGONS_TEST_LIVE': 'FALSE',
-    'DUNGEONSANDDRAGONS_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.DUNGEONSANDDRAGONS_TEST_LIVE
 
   if (live) {
     const client = new DungeonsAndDragonsSDK({
-      apikey: env.DUNGEONSANDDRAGONS_APIKEY,
     })
 
     let idmap: any = env['DUNGEONSANDDRAGONS_TEST_GET_API_ROOT_ENTID']

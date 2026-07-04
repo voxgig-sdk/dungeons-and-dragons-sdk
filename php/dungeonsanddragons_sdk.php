@@ -103,7 +103,7 @@ class DungeonsAndDragonsSDK
         return $this->_rootctx;
     }
 
-    public function prepare(array $fetchargs = []): array
+    public function prepare(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
         $fetchargs = $fetchargs ?? [];
@@ -149,19 +149,27 @@ class DungeonsAndDragonsSDK
 
         [$_, $err] = ($utility->prepare_auth)($ctx);
         if ($err) {
-            return [null, $err];
+            return ($utility->make_error)($ctx, $err);
         }
 
-        return ($utility->make_fetch_def)($ctx);
+        [$fetchdef, $fd_err] = ($utility->make_fetch_def)($ctx);
+        if ($fd_err) {
+            return ($utility->make_error)($ctx, $fd_err);
+        }
+        return $fetchdef;
     }
 
-    public function direct(array $fetchargs = []): array
+    public function direct(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
 
-        [$fetchdef, $err] = $this->prepare($fetchargs);
-        if ($err) {
-            return [["ok" => false, "err" => $err], null];
+        // direct() is the raw-HTTP escape hatch: it never throws, it returns
+        // an {ok, err, ...} dict. prepare() now raises on error, so catch it
+        // and surface the failure through the dict instead.
+        try {
+            $fetchdef = $this->prepare($fetchargs);
+        } catch (\Throwable $err) {
+            return ["ok" => false, "err" => $err];
         }
 
         $fetchargs = $fetchargs ?? [];
@@ -176,14 +184,14 @@ class DungeonsAndDragonsSDK
         [$fetched, $fetch_err] = ($utility->fetcher)($ctx, $url, $fetchdef);
 
         if ($fetch_err) {
-            return [["ok" => false, "err" => $fetch_err], null];
+            return ["ok" => false, "err" => $fetch_err];
         }
 
         if ($fetched === null) {
-            return [[
+            return [
                 "ok" => false,
                 "err" => $ctx->make_error("direct_no_response", "response: undefined"),
-            ], null];
+            ];
         }
 
         if (is_array($fetched)) {
@@ -208,45 +216,89 @@ class DungeonsAndDragonsSDK
                 }
             }
 
-            return [[
+            return [
                 "ok" => $status >= 200 && $status < 300,
                 "status" => $status,
                 "headers" => Struct::getprop($fetched, "headers"),
                 "data" => $json_data,
-            ], null];
+            ];
         }
 
-        return [[
+        return [
             "ok" => false,
             "err" => $ctx->make_error("direct_invalid", "invalid response type"),
-        ], null];
+        ];
     }
 
 
-    public function GetApiRoot($data = null)
+    private $_get_api_root = null;
+
+    // Idiomatic facade: $client->get_api_root()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias GetApiRoot() (PHP method
+    // names are case-insensitive).
+    public function get_api_root($data = null)
     {
         require_once __DIR__ . '/entity/get_api_root_entity.php';
+        if ($data === null) {
+            if ($this->_get_api_root === null) {
+                $this->_get_api_root = new GetApiRootEntity($this, null);
+            }
+            return $this->_get_api_root;
+        }
         return new GetApiRootEntity($this, $data);
     }
 
 
-    public function GetResourceByIndex($data = null)
+    private $_get_resource_by_index = null;
+
+    // Idiomatic facade: $client->get_resource_by_index()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias GetResourceByIndex() (PHP method
+    // names are case-insensitive).
+    public function get_resource_by_index($data = null)
     {
         require_once __DIR__ . '/entity/get_resource_by_index_entity.php';
+        if ($data === null) {
+            if ($this->_get_resource_by_index === null) {
+                $this->_get_resource_by_index = new GetResourceByIndexEntity($this, null);
+            }
+            return $this->_get_resource_by_index;
+        }
         return new GetResourceByIndexEntity($this, $data);
     }
 
 
-    public function GetResourceList($data = null)
+    private $_get_resource_list = null;
+
+    // Idiomatic facade: $client->get_resource_list()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias GetResourceList() (PHP method
+    // names are case-insensitive).
+    public function get_resource_list($data = null)
     {
         require_once __DIR__ . '/entity/get_resource_list_entity.php';
+        if ($data === null) {
+            if ($this->_get_resource_list === null) {
+                $this->_get_resource_list = new GetResourceListEntity($this, null);
+            }
+            return $this->_get_resource_list;
+        }
         return new GetResourceListEntity($this, $data);
     }
 
 
-    public function GraphQl($data = null)
+    private $_graph_ql = null;
+
+    // Idiomatic facade: $client->graph_ql()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias GraphQl() (PHP method
+    // names are case-insensitive).
+    public function graph_ql($data = null)
     {
         require_once __DIR__ . '/entity/graph_ql_entity.php';
+        if ($data === null) {
+            if ($this->_graph_ql === null) {
+                $this->_graph_ql = new GraphQlEntity($this, null);
+            }
+            return $this->_graph_ql;
+        }
         return new GraphQlEntity($this, $data);
     }
 

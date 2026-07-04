@@ -43,8 +43,7 @@ class GraphQlEntityTest extends TestCase
         $graph_ql_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.graph_ql"), "graph_ql_ref01"));
 
-        [$graph_ql_ref01_data_result, $err] = $graph_ql_ref01_ent->create($graph_ql_ref01_data, null);
-        $this->assertNull($err);
+        $graph_ql_ref01_data_result = $graph_ql_ref01_ent->create($graph_ql_ref01_data, null);
         $graph_ql_ref01_data = Helpers::to_map($graph_ql_ref01_data_result);
         $this->assertNotNull($graph_ql_ref01_data);
 
@@ -80,7 +79,6 @@ function graph_ql_basic_setup($extra)
         "DUNGEONSANDDRAGONS_TEST_GRAPH_QL_ENTID" => $idmap,
         "DUNGEONSANDDRAGONS_TEST_LIVE" => "FALSE",
         "DUNGEONSANDDRAGONS_TEST_EXPLAIN" => "FALSE",
-        "DUNGEONSANDDRAGONS_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -92,7 +90,6 @@ function graph_ql_basic_setup($extra)
     if ($env["DUNGEONSANDDRAGONS_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["DUNGEONSANDDRAGONS_APIKEY"],
             ],
             $extra ?? [],
         ]);

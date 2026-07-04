@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  GetResourceByIndex,
+  GetResourceByIndexLoadMatch,
+} from '../DungeonsAndDragonsTypes'
 
 // TODO: needs Entity superclass
-class GetResourceByIndexEntity extends DungeonsAndDragonsEntityBase {
+class GetResourceByIndexEntity extends DungeonsAndDragonsEntityBase<GetResourceByIndex> {
 
   constructor(client: DungeonsAndDragonsSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class GetResourceByIndexEntity extends DungeonsAndDragonsEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: GetResourceByIndexLoadMatch, ctrl?: Control): Promise<GetResourceByIndex> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class GetResourceByIndexEntity extends DungeonsAndDragonsEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<GetResourceByIndex> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

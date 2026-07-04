@@ -20,9 +20,6 @@ class DungeonsAndDragonsConfig
             ],
             "options" => [
                 "base" => "https://www.dnd5eapi.co/api",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
@@ -280,6 +277,7 @@ class DungeonsAndDragonsConfig
                         'orig' => 'index',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                       [
                         'active' => true,
@@ -288,6 +286,7 @@ class DungeonsAndDragonsConfig
                         'orig' => 'resource',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 1,
                       ],
                     ],
                   ],
@@ -358,6 +357,7 @@ class DungeonsAndDragonsConfig
                         'orig' => 'resource',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                   ],

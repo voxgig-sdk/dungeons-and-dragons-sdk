@@ -144,16 +144,23 @@ class DungeonsAndDragonsSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class DungeonsAndDragonsSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,30 +212,74 @@ class DungeonsAndDragonsSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def get_api_root(self):
+        """Idiomatic facade: client.get_api_root.list() / client.get_api_root.load({"id": ...})."""
+        from entity.get_api_root_entity import GetApiRootEntity
+        cached = getattr(self, "_get_api_root", None)
+        if cached is None:
+            cached = GetApiRootEntity(self, None)
+            self._get_api_root = cached
+        return cached
 
     def GetApiRoot(self, data=None):
+        # Deprecated: use client.get_api_root instead.
         from entity.get_api_root_entity import GetApiRootEntity
         return GetApiRootEntity(self, data)
 
 
+    @property
+    def get_resource_by_index(self):
+        """Idiomatic facade: client.get_resource_by_index.list() / client.get_resource_by_index.load({"id": ...})."""
+        from entity.get_resource_by_index_entity import GetResourceByIndexEntity
+        cached = getattr(self, "_get_resource_by_index", None)
+        if cached is None:
+            cached = GetResourceByIndexEntity(self, None)
+            self._get_resource_by_index = cached
+        return cached
+
     def GetResourceByIndex(self, data=None):
+        # Deprecated: use client.get_resource_by_index instead.
         from entity.get_resource_by_index_entity import GetResourceByIndexEntity
         return GetResourceByIndexEntity(self, data)
 
 
+    @property
+    def get_resource_list(self):
+        """Idiomatic facade: client.get_resource_list.list() / client.get_resource_list.load({"id": ...})."""
+        from entity.get_resource_list_entity import GetResourceListEntity
+        cached = getattr(self, "_get_resource_list", None)
+        if cached is None:
+            cached = GetResourceListEntity(self, None)
+            self._get_resource_list = cached
+        return cached
+
     def GetResourceList(self, data=None):
+        # Deprecated: use client.get_resource_list instead.
         from entity.get_resource_list_entity import GetResourceListEntity
         return GetResourceListEntity(self, data)
 
 
+    @property
+    def graph_ql(self):
+        """Idiomatic facade: client.graph_ql.list() / client.graph_ql.load({"id": ...})."""
+        from entity.graph_ql_entity import GraphQlEntity
+        cached = getattr(self, "_graph_ql", None)
+        if cached is None:
+            cached = GraphQlEntity(self, None)
+            self._graph_ql = cached
+        return cached
+
     def GraphQl(self, data=None):
+        # Deprecated: use client.graph_ql instead.
         from entity.graph_ql_entity import GraphQlEntity
         return GraphQlEntity(self, data)
 

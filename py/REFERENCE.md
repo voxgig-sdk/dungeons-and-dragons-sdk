@@ -20,7 +20,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `dict` | SDK configuration options. |
-| `options["apikey"]` | `str` | API key for authentication. |
 | `options["base"]` | `str` | Base URL for API requests. |
 | `options["prefix"]` | `str` | URL prefix appended after base. |
 | `options["suffix"]` | `str` | URL suffix appended after path. |
@@ -66,9 +65,9 @@ Return a deep copy of the current SDK options.
 
 Return a copy of the SDK utility object.
 
-#### `direct(fetchargs=None) -> tuple`
+#### `direct(fetchargs=None) -> dict`
 
-Make a direct HTTP request to any API endpoint. Returns `(result, err)`.
+Make a direct HTTP request to any API endpoint. Returns a result `dict` with `ok`, `status`, `headers`, and `data` (or `err` on failure). This escape hatch never raises — branch on `result["ok"]`.
 
 **Parameters:**
 
@@ -81,11 +80,11 @@ Make a direct HTTP request to any API endpoint. Returns `(result, err)`.
 | `fetchargs["headers"]` | `dict` | Request headers (merged with defaults). |
 | `fetchargs["body"]` | `any` | Request body (dicts are JSON-serialized). |
 
-**Returns:** `(result_dict, err)`
+**Returns:** `result_dict`
 
-#### `prepare(fetchargs=None) -> tuple`
+#### `prepare(fetchargs=None) -> dict`
 
-Prepare a fetch definition without sending. Returns `(fetchdef, err)`.
+Prepare a fetch definition without sending. Returns the `fetchdef` and raises on error.
 
 
 ---
@@ -93,7 +92,7 @@ Prepare a fetch definition without sending. Returns `(fetchdef, err)`.
 ## GetApiRootEntity
 
 ```python
-get_api_root = client.GetApiRoot()
+get_api_root = client.get_api_root
 ```
 
 ### Fields
@@ -128,12 +127,12 @@ get_api_root = client.GetApiRoot()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.GetApiRoot().load({"id": "get_api_root_id"})
+result = client.get_api_root.load({"id": "get_api_root_id"})
 ```
 
 ### Common Methods
@@ -168,7 +167,7 @@ Return the entity name.
 ## GetResourceByIndexEntity
 
 ```python
-get_resource_by_index = client.GetResourceByIndex()
+get_resource_by_index = client.get_resource_by_index
 ```
 
 ### Fields
@@ -181,12 +180,12 @@ get_resource_by_index = client.GetResourceByIndex()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.GetResourceByIndex().load({"id": "get_resource_by_index_id"})
+result = client.get_resource_by_index.load({"id": "get_resource_by_index_id"})
 ```
 
 ### Common Methods
@@ -221,7 +220,7 @@ Return the entity name.
 ## GetResourceListEntity
 
 ```python
-get_resource_list = client.GetResourceList()
+get_resource_list = client.get_resource_list
 ```
 
 ### Fields
@@ -234,12 +233,12 @@ get_resource_list = client.GetResourceList()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.GetResourceList().list({})
+results = client.get_resource_list.list({})
 ```
 
 ### Common Methods
@@ -274,7 +273,7 @@ Return the entity name.
 ## GraphQlEntity
 
 ```python
-graph_ql = client.GraphQl()
+graph_ql = client.graph_ql
 ```
 
 ### Fields
@@ -289,12 +288,12 @@ graph_ql = client.GraphQl()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> tuple`
+#### `create(reqdata, ctrl=None) -> dict`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result, err = client.GraphQl().create({
+result = client.graph_ql.create({
     "query": # `$STRING`,
 })
 ```
