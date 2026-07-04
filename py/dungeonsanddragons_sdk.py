@@ -220,73 +220,33 @@ class DungeonsAndDragonsSDK:
         }
 
 
-    @property
-    def get_api_root(self):
-        """Idiomatic facade: client.get_api_root.list() / client.get_api_root.load({"id": ...})."""
-        from entity.get_api_root_entity import GetApiRootEntity
-        cached = getattr(self, "_get_api_root", None)
-        if cached is None:
-            cached = GetApiRootEntity(self, None)
-            self._get_api_root = cached
-        return cached
-
-    def GetApiRoot(self, data=None):
-        # Deprecated: use client.get_api_root instead.
+    def GetApiRoot(self, data=None) -> "GetApiRootEntity":
+        """Entity factory: client.GetApiRoot().list({}) / client.GetApiRoot().load({"id": ...})."""
         from entity.get_api_root_entity import GetApiRootEntity
         return GetApiRootEntity(self, data)
 
 
-    @property
-    def get_resource_by_index(self):
-        """Idiomatic facade: client.get_resource_by_index.list() / client.get_resource_by_index.load({"id": ...})."""
-        from entity.get_resource_by_index_entity import GetResourceByIndexEntity
-        cached = getattr(self, "_get_resource_by_index", None)
-        if cached is None:
-            cached = GetResourceByIndexEntity(self, None)
-            self._get_resource_by_index = cached
-        return cached
-
-    def GetResourceByIndex(self, data=None):
-        # Deprecated: use client.get_resource_by_index instead.
+    def GetResourceByIndex(self, data=None) -> "GetResourceByIndexEntity":
+        """Entity factory: client.GetResourceByIndex().list({}) / client.GetResourceByIndex().load({"id": ...})."""
         from entity.get_resource_by_index_entity import GetResourceByIndexEntity
         return GetResourceByIndexEntity(self, data)
 
 
-    @property
-    def get_resource_list(self):
-        """Idiomatic facade: client.get_resource_list.list() / client.get_resource_list.load({"id": ...})."""
-        from entity.get_resource_list_entity import GetResourceListEntity
-        cached = getattr(self, "_get_resource_list", None)
-        if cached is None:
-            cached = GetResourceListEntity(self, None)
-            self._get_resource_list = cached
-        return cached
-
-    def GetResourceList(self, data=None):
-        # Deprecated: use client.get_resource_list instead.
+    def GetResourceList(self, data=None) -> "GetResourceListEntity":
+        """Entity factory: client.GetResourceList().list({}) / client.GetResourceList().load({"id": ...})."""
         from entity.get_resource_list_entity import GetResourceListEntity
         return GetResourceListEntity(self, data)
 
 
-    @property
-    def graph_ql(self):
-        """Idiomatic facade: client.graph_ql.list() / client.graph_ql.load({"id": ...})."""
-        from entity.graph_ql_entity import GraphQlEntity
-        cached = getattr(self, "_graph_ql", None)
-        if cached is None:
-            cached = GraphQlEntity(self, None)
-            self._graph_ql = cached
-        return cached
-
-    def GraphQl(self, data=None):
-        # Deprecated: use client.graph_ql instead.
+    def GraphQl(self, data=None) -> "GraphQlEntity":
+        """Entity factory: client.GraphQl().list({}) / client.GraphQl().load({"id": ...})."""
         from entity.graph_ql_entity import GraphQlEntity
         return GraphQlEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "DungeonsAndDragonsSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -306,3 +266,12 @@ class DungeonsAndDragonsSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.get_api_root_entity import GetApiRootEntity
+    from entity.get_resource_by_index_entity import GetResourceByIndexEntity
+    from entity.get_resource_list_entity import GetResourceListEntity
+    from entity.graph_ql_entity import GraphQlEntity

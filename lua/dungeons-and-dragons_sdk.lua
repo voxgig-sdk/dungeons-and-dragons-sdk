@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:get_api_root():list() / client:get_api_root():load({ id = ... })
-function DungeonsAndDragonsSDK:get_api_root(data)
+-- Idiomatic facade: client:GetApiRoot():list() / client:GetApiRoot():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DungeonsAndDragonsSDK:GetApiRoot(data)
   local EntityMod = require("entity.get_api_root_entity")
   if data == nil then
     if self._get_api_root == nil then
@@ -256,15 +257,10 @@ function DungeonsAndDragonsSDK:get_api_root(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:get_api_root() instead.
-function DungeonsAndDragonsSDK:GetApiRoot(data)
-  local EntityMod = require("entity.get_api_root_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:get_resource_by_index():list() / client:get_resource_by_index():load({ id = ... })
-function DungeonsAndDragonsSDK:get_resource_by_index(data)
+-- Idiomatic facade: client:GetResourceByIndex():list() / client:GetResourceByIndex():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DungeonsAndDragonsSDK:GetResourceByIndex(data)
   local EntityMod = require("entity.get_resource_by_index_entity")
   if data == nil then
     if self._get_resource_by_index == nil then
@@ -275,15 +271,10 @@ function DungeonsAndDragonsSDK:get_resource_by_index(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:get_resource_by_index() instead.
-function DungeonsAndDragonsSDK:GetResourceByIndex(data)
-  local EntityMod = require("entity.get_resource_by_index_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:get_resource_list():list() / client:get_resource_list():load({ id = ... })
-function DungeonsAndDragonsSDK:get_resource_list(data)
+-- Idiomatic facade: client:GetResourceList():list() / client:GetResourceList():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DungeonsAndDragonsSDK:GetResourceList(data)
   local EntityMod = require("entity.get_resource_list_entity")
   if data == nil then
     if self._get_resource_list == nil then
@@ -294,15 +285,10 @@ function DungeonsAndDragonsSDK:get_resource_list(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:get_resource_list() instead.
-function DungeonsAndDragonsSDK:GetResourceList(data)
-  local EntityMod = require("entity.get_resource_list_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:graph_ql():list() / client:graph_ql():load({ id = ... })
-function DungeonsAndDragonsSDK:graph_ql(data)
+-- Idiomatic facade: client:GraphQl():list() / client:GraphQl():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DungeonsAndDragonsSDK:GraphQl(data)
   local EntityMod = require("entity.graph_ql_entity")
   if data == nil then
     if self._graph_ql == nil then
@@ -310,12 +296,6 @@ function DungeonsAndDragonsSDK:graph_ql(data)
     end
     return self._graph_ql
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:graph_ql() instead.
-function DungeonsAndDragonsSDK:GraphQl(data)
-  local EntityMod = require("entity.graph_ql_entity")
   return EntityMod.new(self, data)
 end
 

@@ -208,52 +208,28 @@ class DungeonsAndDragonsSDK
   end
 
 
-  # Idiomatic facade: client.get_api_root.list / client.get_api_root.load({ "id" => ... })
-  def get_api_root
-    require_relative 'entity/get_api_root_entity'
-    @get_api_root ||= GetApiRootEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.get_api_root instead.
+  # Canonical facade: client.GetApiRoot.list / client.GetApiRoot.load({ "id" => ... })
   def GetApiRoot(data = nil)
     require_relative 'entity/get_api_root_entity'
     GetApiRootEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.get_resource_by_index.list / client.get_resource_by_index.load({ "id" => ... })
-  def get_resource_by_index
-    require_relative 'entity/get_resource_by_index_entity'
-    @get_resource_by_index ||= GetResourceByIndexEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.get_resource_by_index instead.
+  # Canonical facade: client.GetResourceByIndex.list / client.GetResourceByIndex.load({ "id" => ... })
   def GetResourceByIndex(data = nil)
     require_relative 'entity/get_resource_by_index_entity'
     GetResourceByIndexEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.get_resource_list.list / client.get_resource_list.load({ "id" => ... })
-  def get_resource_list
-    require_relative 'entity/get_resource_list_entity'
-    @get_resource_list ||= GetResourceListEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.get_resource_list instead.
+  # Canonical facade: client.GetResourceList.list / client.GetResourceList.load({ "id" => ... })
   def GetResourceList(data = nil)
     require_relative 'entity/get_resource_list_entity'
     GetResourceListEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.graph_ql.list / client.graph_ql.load({ "id" => ... })
-  def graph_ql
-    require_relative 'entity/graph_ql_entity'
-    @graph_ql ||= GraphQlEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.graph_ql instead.
+  # Canonical facade: client.GraphQl.list / client.GraphQl.load({ "id" => ... })
   def GraphQl(data = nil)
     require_relative 'entity/graph_ql_entity'
     GraphQlEntity.new(self, data)

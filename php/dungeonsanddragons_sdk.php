@@ -233,10 +233,10 @@ class DungeonsAndDragonsSDK
 
     private $_get_api_root = null;
 
-    // Idiomatic facade: $client->get_api_root()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias GetApiRoot() (PHP method
-    // names are case-insensitive).
-    public function get_api_root($data = null)
+    // Canonical facade: $client->GetApiRoot()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->get_api_root()
+    // resolves here too.
+    public function GetApiRoot($data = null)
     {
         require_once __DIR__ . '/entity/get_api_root_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class DungeonsAndDragonsSDK
 
     private $_get_resource_by_index = null;
 
-    // Idiomatic facade: $client->get_resource_by_index()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias GetResourceByIndex() (PHP method
-    // names are case-insensitive).
-    public function get_resource_by_index($data = null)
+    // Canonical facade: $client->GetResourceByIndex()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->get_resource_by_index()
+    // resolves here too.
+    public function GetResourceByIndex($data = null)
     {
         require_once __DIR__ . '/entity/get_resource_by_index_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class DungeonsAndDragonsSDK
 
     private $_get_resource_list = null;
 
-    // Idiomatic facade: $client->get_resource_list()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias GetResourceList() (PHP method
-    // names are case-insensitive).
-    public function get_resource_list($data = null)
+    // Canonical facade: $client->GetResourceList()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->get_resource_list()
+    // resolves here too.
+    public function GetResourceList($data = null)
     {
         require_once __DIR__ . '/entity/get_resource_list_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class DungeonsAndDragonsSDK
 
     private $_graph_ql = null;
 
-    // Idiomatic facade: $client->graph_ql()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias GraphQl() (PHP method
-    // names are case-insensitive).
-    public function graph_ql($data = null)
+    // Canonical facade: $client->GraphQl()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->graph_ql()
+    // resolves here too.
+    public function GraphQl($data = null)
     {
         require_once __DIR__ . '/entity/graph_ql_entity.php';
         if ($data === null) {

@@ -26,9 +26,9 @@ import { DungeonsAndDragonsSDK } from '@voxgig-sdk/dungeons-and-dragons'
 
 const client = new DungeonsAndDragonsSDK()
 
-// Load getapiroot data
-const getapiroot = await client.getapiroot.load({})
-console.log(getapiroot.data)
+// Load getapiroot data (returns a GetApiRoot)
+const getapiroot = await client.GetApiRoot().load()
+console.log(getapiroot)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -87,8 +87,8 @@ from dungeonsanddragons_sdk import DungeonsAndDragonsSDK
 client = DungeonsAndDragonsSDK()
 
 
-# Load a specific getapiroot
-getapiroot = client.getapiroot.load({"id": "example_id"})
+# Load a specific getapiroot (returns the record, raises on error)
+getapiroot = client.GetApiRoot().load({"id": "example_id"})
 print(getapiroot)
 ```
 
@@ -101,8 +101,8 @@ require_once 'dungeonsanddragons_sdk.php';
 $client = new DungeonsAndDragonsSDK();
 
 
-// Load a specific getapiroot
-$getapiroot = $client->getapiroot()->load(["id" => "example_id"]);
+// Load a specific getapiroot (returns the bare record; throws on error)
+$getapiroot = $client->GetApiRoot()->load(["id" => "example_id"]);
 print_r($getapiroot);
 ```
 
@@ -126,8 +126,8 @@ require_relative "DungeonsAndDragons_sdk"
 client = DungeonsAndDragonsSDK.new
 
 
-# Load a specific getapiroot
-getapiroot = client.getapiroot.load({ "id" => "example_id" })
+# Load a specific getapiroot (returns the bare record; raises on error)
+getapiroot = client.GetApiRoot.load({ "id" => "example_id" })
 puts getapiroot
 ```
 
@@ -140,7 +140,7 @@ local client = sdk.new()
 
 
 -- Load a specific getapiroot
-local getapiroot, err = client:getapiroot():load({ id = "example_id" })
+local getapiroot, err = client:GetApiRoot():load({ id = "example_id" })
 print(getapiroot)
 ```
 
@@ -153,22 +153,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = DungeonsAndDragonsSDK.test()
-const result = await client.getapiroot.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const getapiroot = await client.GetApiRoot().load({ id: 'test01' })
+// getapiroot is a bare GetApiRoot populated with mock data
+console.log(getapiroot)
 ```
 
 ### Python
 
 ```python
 client = DungeonsAndDragonsSDK.test()
-result = client.getapiroot.load({"id": "test01"})
+getapiroot = client.GetApiRoot().load({"id": "test01"})
+print(getapiroot)
 ```
 
 ### PHP
 
 ```php
-$client = DungeonsAndDragonsSDK::test();
-$result = $client->getapiroot()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = DungeonsAndDragonsSDK::test([
+    "entity" => ["getapiroot" => ["test01" => ["id" => "test01"]]],
+]);
+$getapiroot = $client->GetApiRoot()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -183,15 +188,18 @@ result, err := client.GetApiRoot(nil).Load(
 ### Ruby
 
 ```ruby
-client = DungeonsAndDragonsSDK.test
-result = client.getapiroot.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = DungeonsAndDragonsSDK.test({
+  "entity" => { "getapiroot" => { "test01" => { "id" => "test01" } } },
+})
+getapiroot = client.GetApiRoot.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:getapiroot():load({ id = "test01" })
+local result, err = client:GetApiRoot():load({ id = "test01" })
 ```
 
 ## How it works
@@ -239,6 +247,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

@@ -34,9 +34,9 @@ local client = sdk.new()
 ### 3. Load a getapiroot
 
 ```lua
-local result, err = client:getapiroot():load({ id = "example_id" })
+local getapiroot, err = client:GetApiRoot():load({ id = "example_id" })
 if err then error(err) end
-print(result)
+print(getapiroot)
 ```
 
 
@@ -82,8 +82,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:getapiroot():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:GetApiRoot():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -186,17 +186,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local get_api_root, err = client:GetApiRoot():load({ id = "example_id" })
+    if err then error(err) end
+    -- get_api_root is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -279,7 +284,7 @@ API path: `/graphql`
 
 ### GetApiRoot
 
-Create an instance: `const get_api_root = client.get_api_root`
+Create an instance: `local get_api_root = client:GetApiRoot(nil)`
 
 #### Operations
 
@@ -319,14 +324,14 @@ Create an instance: `const get_api_root = client.get_api_root`
 
 #### Example: Load
 
-```ts
-const get_api_root = await client.get_api_root.load({ id: 'get_api_root_id' })
+```lua
+local get_api_root, err = client:GetApiRoot():load({ id = "get_api_root_id" })
 ```
 
 
 ### GetResourceByIndex
 
-Create an instance: `const get_resource_by_index = client.get_resource_by_index`
+Create an instance: `local get_resource_by_index = client:GetResourceByIndex(nil)`
 
 #### Operations
 
@@ -344,14 +349,14 @@ Create an instance: `const get_resource_by_index = client.get_resource_by_index`
 
 #### Example: Load
 
-```ts
-const get_resource_by_index = await client.get_resource_by_index.load({ id: 'get_resource_by_index_id' })
+```lua
+local get_resource_by_index, err = client:GetResourceByIndex():load({ id = "get_resource_by_index_id" })
 ```
 
 
 ### GetResourceList
 
-Create an instance: `const get_resource_list = client.get_resource_list`
+Create an instance: `local get_resource_list = client:GetResourceList(nil)`
 
 #### Operations
 
@@ -369,14 +374,14 @@ Create an instance: `const get_resource_list = client.get_resource_list`
 
 #### Example: List
 
-```ts
-const get_resource_lists = await client.get_resource_list.list()
+```lua
+local get_resource_lists, err = client:GetResourceList():list()
 ```
 
 
 ### GraphQl
 
-Create an instance: `const graph_ql = client.graph_ql`
+Create an instance: `local graph_ql = client:GraphQl(nil)`
 
 #### Operations
 
@@ -396,9 +401,9 @@ Create an instance: `const graph_ql = client.graph_ql`
 
 #### Example: Create
 
-```ts
-const graph_ql = await client.graph_ql.create({
-  query: /* `$STRING` */,
+```lua
+local graph_ql, err = client:GraphQl():create({
+  query = nil, -- `$STRING`
 })
 ```
 
@@ -474,7 +479,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local getapiroot = client:getapiroot()
+local getapiroot = client:GetApiRoot()
 getapiroot:load({ id = "example_id" })
 
 -- getapiroot:data_get() now returns the loaded getapiroot data

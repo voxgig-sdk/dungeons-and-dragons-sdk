@@ -98,7 +98,7 @@ same parameters as `direct()`. Raises on error.
 ## GetApiRootEntity
 
 ```ruby
-get_api_root = client.get_api_root
+get_api_root = client.GetApiRoot
 ```
 
 ### Fields
@@ -138,7 +138,7 @@ get_api_root = client.get_api_root
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.get_api_root.load({ "id" => "get_api_root_id" })
+result = client.GetApiRoot.load({ "id" => "get_api_root_id" })
 ```
 
 ### Common Methods
@@ -174,7 +174,7 @@ Return the entity name.
 ## GetResourceByIndexEntity
 
 ```ruby
-get_resource_by_index = client.get_resource_by_index
+get_resource_by_index = client.GetResourceByIndex
 ```
 
 ### Fields
@@ -192,7 +192,7 @@ get_resource_by_index = client.get_resource_by_index
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.get_resource_by_index.load({ "id" => "get_resource_by_index_id" })
+result = client.GetResourceByIndex.load({ "id" => "get_resource_by_index_id" })
 ```
 
 ### Common Methods
@@ -228,7 +228,7 @@ Return the entity name.
 ## GetResourceListEntity
 
 ```ruby
-get_resource_list = client.get_resource_list
+get_resource_list = client.GetResourceList
 ```
 
 ### Fields
@@ -246,7 +246,7 @@ get_resource_list = client.get_resource_list
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.get_resource_list.list(nil)
+results = client.GetResourceList.list(nil)
 ```
 
 ### Common Methods
@@ -282,7 +282,7 @@ Return the entity name.
 ## GraphQlEntity
 
 ```ruby
-graph_ql = client.graph_ql
+graph_ql = client.GraphQl
 ```
 
 ### Fields
@@ -302,7 +302,7 @@ graph_ql = client.graph_ql
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.graph_ql.create({
+result = client.GraphQl.create({
   "query" => # `$STRING`,
 })
 ```

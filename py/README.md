@@ -33,10 +33,12 @@ client = DungeonsAndDragonsSDK()
 
 ### 3. Load a getapiroot
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.getapiroot.load({"id": "example_id"})
-    print(result)
+    getapiroot = client.GetApiRoot().load({"id": "example_id"})
+    print(getapiroot)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -84,8 +86,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = DungeonsAndDragonsSDK.test()
 
-result = client.getapiroot.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+getapiroot = client.GetApiRoot().load({"id": "test01"})
+# getapiroot contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -283,7 +286,7 @@ API path: `/graphql`
 
 ### GetApiRoot
 
-Create an instance: `const get_api_root = client.get_api_root`
+Create an instance: `get_api_root = client.GetApiRoot()`
 
 #### Operations
 
@@ -323,14 +326,14 @@ Create an instance: `const get_api_root = client.get_api_root`
 
 #### Example: Load
 
-```ts
-const get_api_root = await client.get_api_root.load({ id: 'get_api_root_id' })
+```python
+get_api_root = client.GetApiRoot().load({"id": "get_api_root_id"})
 ```
 
 
 ### GetResourceByIndex
 
-Create an instance: `const get_resource_by_index = client.get_resource_by_index`
+Create an instance: `get_resource_by_index = client.GetResourceByIndex()`
 
 #### Operations
 
@@ -348,14 +351,14 @@ Create an instance: `const get_resource_by_index = client.get_resource_by_index`
 
 #### Example: Load
 
-```ts
-const get_resource_by_index = await client.get_resource_by_index.load({ id: 'get_resource_by_index_id' })
+```python
+get_resource_by_index = client.GetResourceByIndex().load({"id": "get_resource_by_index_id"})
 ```
 
 
 ### GetResourceList
 
-Create an instance: `const get_resource_list = client.get_resource_list`
+Create an instance: `get_resource_list = client.GetResourceList()`
 
 #### Operations
 
@@ -373,14 +376,14 @@ Create an instance: `const get_resource_list = client.get_resource_list`
 
 #### Example: List
 
-```ts
-const get_resource_lists = await client.get_resource_list.list()
+```python
+get_resource_lists = client.GetResourceList().list({})
 ```
 
 
 ### GraphQl
 
-Create an instance: `const graph_ql = client.graph_ql`
+Create an instance: `graph_ql = client.GraphQl()`
 
 #### Operations
 
@@ -400,9 +403,9 @@ Create an instance: `const graph_ql = client.graph_ql`
 
 #### Example: Create
 
-```ts
-const graph_ql = await client.graph_ql.create({
-  query: /* `$STRING` */,
+```python
+graph_ql = client.GraphQl().create({
+    "query": ...,  # `$STRING`
 })
 ```
 
@@ -477,7 +480,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-getapiroot = client.getapiroot
+getapiroot = client.GetApiRoot()
 getapiroot.load({"id": "example_id"})
 
 # getapiroot.data_get() now returns the loaded getapiroot data

@@ -145,7 +145,7 @@ Alias for `DungeonsAndDragonsSDK.test()`.
 ## GetApiRootEntity
 
 ```ts
-const get_api_root = client.get_api_root
+const get_api_root = client.GetApiRoot()
 ```
 
 ### Fields
@@ -185,7 +185,7 @@ const get_api_root = client.get_api_root
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.get_api_root.load({ id: 'get_api_root_id' })
+const result = await client.GetApiRoot().load({ id: 'get_api_root_id' })
 ```
 
 ### Common Methods
@@ -219,7 +219,7 @@ Return a copy of the entity options.
 ## GetResourceByIndexEntity
 
 ```ts
-const get_resource_by_index = client.get_resource_by_index
+const get_resource_by_index = client.GetResourceByIndex()
 ```
 
 ### Fields
@@ -237,7 +237,7 @@ const get_resource_by_index = client.get_resource_by_index
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.get_resource_by_index.load({ id: 'get_resource_by_index_id' })
+const result = await client.GetResourceByIndex().load({ id: 'get_resource_by_index_id' })
 ```
 
 ### Common Methods
@@ -271,7 +271,7 @@ Return a copy of the entity options.
 ## GetResourceListEntity
 
 ```ts
-const get_resource_list = client.get_resource_list
+const get_resource_list = client.GetResourceList()
 ```
 
 ### Fields
@@ -289,7 +289,7 @@ const get_resource_list = client.get_resource_list
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.get_resource_list.list()
+const results = await client.GetResourceList().list()
 ```
 
 ### Common Methods
@@ -323,7 +323,7 @@ Return a copy of the entity options.
 ## GraphQlEntity
 
 ```ts
-const graph_ql = client.graph_ql
+const graph_ql = client.GraphQl()
 ```
 
 ### Fields
@@ -343,7 +343,7 @@ const graph_ql = client.graph_ql
 Create a new entity with the given data.
 
 ```ts
-const result = await client.graph_ql.create({
+const result = await client.GraphQl().create({
   query: /* `$STRING` */,
 })
 ```

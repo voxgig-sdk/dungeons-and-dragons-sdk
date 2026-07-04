@@ -92,7 +92,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## GetApiRootEntity
 
 ```python
-get_api_root = client.get_api_root
+get_api_root = client.GetApiRoot()
 ```
 
 ### Fields
@@ -132,7 +132,7 @@ get_api_root = client.get_api_root
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.get_api_root.load({"id": "get_api_root_id"})
+result = client.GetApiRoot().load({"id": "get_api_root_id"})
 ```
 
 ### Common Methods
@@ -167,7 +167,7 @@ Return the entity name.
 ## GetResourceByIndexEntity
 
 ```python
-get_resource_by_index = client.get_resource_by_index
+get_resource_by_index = client.GetResourceByIndex()
 ```
 
 ### Fields
@@ -185,7 +185,7 @@ get_resource_by_index = client.get_resource_by_index
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.get_resource_by_index.load({"id": "get_resource_by_index_id"})
+result = client.GetResourceByIndex().load({"id": "get_resource_by_index_id"})
 ```
 
 ### Common Methods
@@ -220,7 +220,7 @@ Return the entity name.
 ## GetResourceListEntity
 
 ```python
-get_resource_list = client.get_resource_list
+get_resource_list = client.GetResourceList()
 ```
 
 ### Fields
@@ -238,7 +238,9 @@ get_resource_list = client.get_resource_list
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.get_resource_list.list({})
+results = client.GetResourceList().list({})
+for get_resource_list in results:
+    print(get_resource_list)
 ```
 
 ### Common Methods
@@ -273,7 +275,7 @@ Return the entity name.
 ## GraphQlEntity
 
 ```python
-graph_ql = client.graph_ql
+graph_ql = client.GraphQl()
 ```
 
 ### Fields
@@ -293,8 +295,8 @@ graph_ql = client.graph_ql
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.graph_ql.create({
-    "query": # `$STRING`,
+result = client.GraphQl().create({
+    "query": ...,  # `$STRING`
 })
 ```
 

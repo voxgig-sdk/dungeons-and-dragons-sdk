@@ -4,108 +4,107 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class GetApiRoot:
-    ability_score: Optional[str] = None
-    alignment: Optional[str] = None
-    background: Optional[str] = None
-    condition: Optional[str] = None
-    damage_type: Optional[str] = None
-    equipment: Optional[str] = None
-    equipment_category: Optional[str] = None
-    feat: Optional[str] = None
-    feature: Optional[str] = None
-    key: Optional[str] = None
-    language: Optional[str] = None
-    magic_item: Optional[str] = None
-    magic_school: Optional[str] = None
-    monster: Optional[str] = None
-    proficiency: Optional[str] = None
-    race: Optional[str] = None
-    rule: Optional[str] = None
-    rule_section: Optional[str] = None
-    skill: Optional[str] = None
-    spell: Optional[str] = None
-    subclass: Optional[str] = None
-    subrace: Optional[str] = None
-    trait: Optional[str] = None
-    weapon_property: Optional[str] = None
+class GetApiRoot(TypedDict, total=False):
+    ability_score: str
+    alignment: str
+    background: str
+    condition: str
+    damage_type: str
+    equipment: str
+    equipment_category: str
+    feat: str
+    feature: str
+    key: str
+    language: str
+    magic_item: str
+    magic_school: str
+    monster: str
+    proficiency: str
+    race: str
+    rule: str
+    rule_section: str
+    skill: str
+    spell: str
+    subclass: str
+    subrace: str
+    trait: str
+    weapon_property: str
 
 
-@dataclass
-class GetApiRootLoadMatch:
-    ability_score: Optional[str] = None
-    alignment: Optional[str] = None
-    background: Optional[str] = None
-    condition: Optional[str] = None
-    damage_type: Optional[str] = None
-    equipment: Optional[str] = None
-    equipment_category: Optional[str] = None
-    feat: Optional[str] = None
-    feature: Optional[str] = None
-    key: Optional[str] = None
-    language: Optional[str] = None
-    magic_item: Optional[str] = None
-    magic_school: Optional[str] = None
-    monster: Optional[str] = None
-    proficiency: Optional[str] = None
-    race: Optional[str] = None
-    rule: Optional[str] = None
-    rule_section: Optional[str] = None
-    skill: Optional[str] = None
-    spell: Optional[str] = None
-    subclass: Optional[str] = None
-    subrace: Optional[str] = None
-    trait: Optional[str] = None
-    weapon_property: Optional[str] = None
+class GetApiRootLoadMatch(TypedDict, total=False):
+    ability_score: str
+    alignment: str
+    background: str
+    condition: str
+    damage_type: str
+    equipment: str
+    equipment_category: str
+    feat: str
+    feature: str
+    key: str
+    language: str
+    magic_item: str
+    magic_school: str
+    monster: str
+    proficiency: str
+    race: str
+    rule: str
+    rule_section: str
+    skill: str
+    spell: str
+    subclass: str
+    subrace: str
+    trait: str
+    weapon_property: str
 
 
-@dataclass
-class GetResourceByIndex:
-    index: Optional[str] = None
-    name: Optional[str] = None
-    url: Optional[str] = None
+class GetResourceByIndex(TypedDict, total=False):
+    index: str
+    name: str
+    url: str
 
 
-@dataclass
-class GetResourceByIndexLoadMatch:
+class GetResourceByIndexLoadMatch(TypedDict):
     index: str
     resource: str
 
 
-@dataclass
-class GetResourceList:
-    index: Optional[str] = None
-    name: Optional[str] = None
-    url: Optional[str] = None
+class GetResourceList(TypedDict, total=False):
+    index: str
+    name: str
+    url: str
 
 
-@dataclass
-class GetResourceListListMatch:
+class GetResourceListListMatch(TypedDict):
     id: str
 
 
-@dataclass
-class GraphQl:
+class GraphQlRequired(TypedDict):
     query: str
-    data: Optional[dict] = None
-    error: Optional[list] = None
-    operation_name: Optional[str] = None
-    variable: Optional[dict] = None
 
 
-@dataclass
-class GraphQlCreateData:
-    data: Optional[dict] = None
-    error: Optional[list] = None
-    operation_name: Optional[str] = None
-    query: Optional[str] = None
-    variable: Optional[dict] = None
+class GraphQl(GraphQlRequired, total=False):
+    data: dict
+    error: list
+    operation_name: str
+    variable: dict
 
+
+class GraphQlCreateData(TypedDict, total=False):
+    data: dict
+    error: list
+    operation_name: str
+    query: str
+    variable: dict

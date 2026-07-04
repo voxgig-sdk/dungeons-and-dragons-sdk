@@ -207,56 +207,28 @@ class DungeonsAndDragonsSDK {
 
 
 
-  _get_api_root?: GetApiRootEntity
-
-  // Idiomatic facade: `client.get_api_root.list()` / `client.get_api_root.load({ id })`.
-  get get_api_root(): GetApiRootEntity {
-    return (this._get_api_root ??= new GetApiRootEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.get_api_root` instead. */
+  // Entity access: `client.GetApiRoot().list()` / `client.GetApiRoot().load({ id })`.
   GetApiRoot(data?: any) {
     const self = this
     return new GetApiRootEntity(self,data)
   }
 
 
-  _get_resource_by_index?: GetResourceByIndexEntity
-
-  // Idiomatic facade: `client.get_resource_by_index.list()` / `client.get_resource_by_index.load({ id })`.
-  get get_resource_by_index(): GetResourceByIndexEntity {
-    return (this._get_resource_by_index ??= new GetResourceByIndexEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.get_resource_by_index` instead. */
+  // Entity access: `client.GetResourceByIndex().list()` / `client.GetResourceByIndex().load({ id })`.
   GetResourceByIndex(data?: any) {
     const self = this
     return new GetResourceByIndexEntity(self,data)
   }
 
 
-  _get_resource_list?: GetResourceListEntity
-
-  // Idiomatic facade: `client.get_resource_list.list()` / `client.get_resource_list.load({ id })`.
-  get get_resource_list(): GetResourceListEntity {
-    return (this._get_resource_list ??= new GetResourceListEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.get_resource_list` instead. */
+  // Entity access: `client.GetResourceList().list()` / `client.GetResourceList().load({ id })`.
   GetResourceList(data?: any) {
     const self = this
     return new GetResourceListEntity(self,data)
   }
 
 
-  _graph_ql?: GraphQlEntity
-
-  // Idiomatic facade: `client.graph_ql.list()` / `client.graph_ql.load({ id })`.
-  get graph_ql(): GraphQlEntity {
-    return (this._graph_ql ??= new GraphQlEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.graph_ql` instead. */
+  // Entity access: `client.GraphQl().list()` / `client.GraphQl().load({ id })`.
   GraphQl(data?: any) {
     const self = this
     return new GraphQlEntity(self,data)

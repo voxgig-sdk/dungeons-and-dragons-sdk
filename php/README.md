@@ -33,9 +33,10 @@ $client = new DungeonsAndDragonsSDK();
 
 ```php
 try {
-    $result = $client->getapiroot()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare GetApiRoot record (throws on error).
+    $getapiroot = $client->GetApiRoot()->load(["id" => "example_id"]);
+    print_r($getapiroot);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -81,13 +82,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = DungeonsAndDragonsSDK::test();
+$client = DungeonsAndDragonsSDK::test([
+    "entity" => ["getapiroot" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->getapiroot()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$getapiroot = $client->GetApiRoot()->load(["id" => "test01"]);
+print_r($getapiroot);
 ```
 
 ### Use a custom fetch function
@@ -288,7 +293,7 @@ API path: `/graphql`
 
 ### GetApiRoot
 
-Create an instance: `const get_api_root = client.get_api_root`
+Create an instance: `$get_api_root = $client->GetApiRoot();`
 
 #### Operations
 
@@ -328,14 +333,15 @@ Create an instance: `const get_api_root = client.get_api_root`
 
 #### Example: Load
 
-```ts
-const get_api_root = await client.get_api_root.load({ id: 'get_api_root_id' })
+```php
+// load() returns the bare GetApiRoot record (throws on error).
+$get_api_root = $client->GetApiRoot()->load(["id" => "get_api_root_id"]);
 ```
 
 
 ### GetResourceByIndex
 
-Create an instance: `const get_resource_by_index = client.get_resource_by_index`
+Create an instance: `$get_resource_by_index = $client->GetResourceByIndex();`
 
 #### Operations
 
@@ -353,14 +359,15 @@ Create an instance: `const get_resource_by_index = client.get_resource_by_index`
 
 #### Example: Load
 
-```ts
-const get_resource_by_index = await client.get_resource_by_index.load({ id: 'get_resource_by_index_id' })
+```php
+// load() returns the bare GetResourceByIndex record (throws on error).
+$get_resource_by_index = $client->GetResourceByIndex()->load(["id" => "get_resource_by_index_id"]);
 ```
 
 
 ### GetResourceList
 
-Create an instance: `const get_resource_list = client.get_resource_list`
+Create an instance: `$get_resource_list = $client->GetResourceList();`
 
 #### Operations
 
@@ -378,14 +385,15 @@ Create an instance: `const get_resource_list = client.get_resource_list`
 
 #### Example: List
 
-```ts
-const get_resource_lists = await client.get_resource_list.list()
+```php
+// list() returns an array of GetResourceList records (throws on error).
+$get_resource_lists = $client->GetResourceList()->list();
 ```
 
 
 ### GraphQl
 
-Create an instance: `const graph_ql = client.graph_ql`
+Create an instance: `$graph_ql = $client->GraphQl();`
 
 #### Operations
 
@@ -405,10 +413,10 @@ Create an instance: `const graph_ql = client.graph_ql`
 
 #### Example: Create
 
-```ts
-const graph_ql = await client.graph_ql.create({
-  query: /* `$STRING` */,
-})
+```php
+$graph_ql = $client->GraphQl()->create([
+    "query" => null, // `$STRING`
+]);
 ```
 
 
@@ -483,7 +491,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$getapiroot = $client->getapiroot();
+$getapiroot = $client->GetApiRoot();
 $getapiroot->load(["id" => "example_id"]);
 
 // $getapiroot->dataGet() now returns the loaded getapiroot data
