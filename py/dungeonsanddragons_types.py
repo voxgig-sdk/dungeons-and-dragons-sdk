@@ -102,9 +102,12 @@ class GraphQl(GraphQlRequired, total=False):
     variable: dict
 
 
-class GraphQlCreateData(TypedDict, total=False):
+class GraphQlCreateDataRequired(TypedDict):
+    query: str
+
+
+class GraphQlCreateData(GraphQlCreateDataRequired, total=False):
     data: dict
     error: list
     operation_name: str
-    query: str
     variable: dict

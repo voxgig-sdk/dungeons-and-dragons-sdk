@@ -33,7 +33,33 @@ export interface GetApiRoot {
   weapon_property?: string
 }
 
-export type GetApiRootLoadMatch = Partial<GetApiRoot>
+export interface GetApiRootLoadMatch {
+  ability_score?: string
+  alignment?: string
+  background?: string
+  class?: string
+  condition?: string
+  damage_type?: string
+  equipment?: string
+  equipment_category?: string
+  feat?: string
+  feature?: string
+  key?: string
+  language?: string
+  magic_item?: string
+  magic_school?: string
+  monster?: string
+  proficiency?: string
+  race?: string
+  rule?: string
+  rule_section?: string
+  skill?: string
+  spell?: string
+  subclass?: string
+  subrace?: string
+  trait?: string
+  weapon_property?: string
+}
 
 export interface GetResourceByIndex {
   index?: string
@@ -64,5 +90,11 @@ export interface GraphQl {
   variable?: Record<string, any>
 }
 
-export type GraphQlCreateData = Partial<GraphQl>
+export interface GraphQlCreateData {
+  data?: Record<string, any>
+  error?: any[]
+  operation_name?: string
+  query: string
+  variable?: Record<string, any>
+}
 

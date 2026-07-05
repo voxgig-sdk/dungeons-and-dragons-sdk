@@ -8,7 +8,7 @@ Complete API reference for the DungeonsAndDragons Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'dungeons-and-dragons_sdk'
+require_relative 'DungeonsAndDragons_sdk'
 
 client = DungeonsAndDragonsSDK.new(options)
 ```
@@ -105,31 +105,31 @@ get_api_root = client.GetApiRoot
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ability_score` | ``$STRING`` | No |  |
-| `alignment` | ``$STRING`` | No |  |
-| `background` | ``$STRING`` | No |  |
-| `class` | ``$STRING`` | No |  |
-| `condition` | ``$STRING`` | No |  |
-| `damage_type` | ``$STRING`` | No |  |
-| `equipment` | ``$STRING`` | No |  |
-| `equipment_category` | ``$STRING`` | No |  |
-| `feat` | ``$STRING`` | No |  |
-| `feature` | ``$STRING`` | No |  |
-| `key` | ``$STRING`` | No |  |
-| `language` | ``$STRING`` | No |  |
-| `magic_item` | ``$STRING`` | No |  |
-| `magic_school` | ``$STRING`` | No |  |
-| `monster` | ``$STRING`` | No |  |
-| `proficiency` | ``$STRING`` | No |  |
-| `race` | ``$STRING`` | No |  |
-| `rule` | ``$STRING`` | No |  |
-| `rule_section` | ``$STRING`` | No |  |
-| `skill` | ``$STRING`` | No |  |
-| `spell` | ``$STRING`` | No |  |
-| `subclass` | ``$STRING`` | No |  |
-| `subrace` | ``$STRING`` | No |  |
-| `trait` | ``$STRING`` | No |  |
-| `weapon_property` | ``$STRING`` | No |  |
+| `ability_score` | `String` | No |  |
+| `alignment` | `String` | No |  |
+| `background` | `String` | No |  |
+| `class` | `String` | No |  |
+| `condition` | `String` | No |  |
+| `damage_type` | `String` | No |  |
+| `equipment` | `String` | No |  |
+| `equipment_category` | `String` | No |  |
+| `feat` | `String` | No |  |
+| `feature` | `String` | No |  |
+| `key` | `String` | No |  |
+| `language` | `String` | No |  |
+| `magic_item` | `String` | No |  |
+| `magic_school` | `String` | No |  |
+| `monster` | `String` | No |  |
+| `proficiency` | `String` | No |  |
+| `race` | `String` | No |  |
+| `rule` | `String` | No |  |
+| `rule_section` | `String` | No |  |
+| `skill` | `String` | No |  |
+| `spell` | `String` | No |  |
+| `subclass` | `String` | No |  |
+| `subrace` | `String` | No |  |
+| `trait` | `String` | No |  |
+| `weapon_property` | `String` | No |  |
 
 ### Operations
 
@@ -138,7 +138,7 @@ get_api_root = client.GetApiRoot
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.GetApiRoot.load({ "id" => "get_api_root_id" })
+result = client.GetApiRoot.load()
 ```
 
 ### Common Methods
@@ -181,9 +181,9 @@ get_resource_by_index = client.GetResourceByIndex
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `index` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `index` | `String` | No |  |
+| `name` | `String` | No |  |
+| `url` | `String` | No |  |
 
 ### Operations
 
@@ -192,7 +192,7 @@ get_resource_by_index = client.GetResourceByIndex
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.GetResourceByIndex.load({ "id" => "get_resource_by_index_id" })
+result = client.GetResourceByIndex.load()
 ```
 
 ### Common Methods
@@ -235,18 +235,18 @@ get_resource_list = client.GetResourceList
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `index` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `index` | `String` | No |  |
+| `name` | `String` | No |  |
+| `url` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.GetResourceList.list(nil)
+results = client.GetResourceList.list
 ```
 
 ### Common Methods
@@ -289,11 +289,11 @@ graph_ql = client.GraphQl
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `error` | ``$ARRAY`` | No |  |
-| `operation_name` | ``$STRING`` | No |  |
-| `query` | ``$STRING`` | Yes |  |
-| `variable` | ``$OBJECT`` | No |  |
+| `data` | `Hash` | No |  |
+| `error` | `Array` | No |  |
+| `operation_name` | `String` | No |  |
+| `query` | `String` | Yes |  |
+| `variable` | `Hash` | No |  |
 
 ### Operations
 
@@ -303,7 +303,7 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.GraphQl.create({
-  "query" => # `$STRING`,
+  "query" => "example", # String
 })
 ```
 

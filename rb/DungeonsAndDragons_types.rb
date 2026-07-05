@@ -113,7 +113,7 @@ GetApiRoot = Struct.new(
   keyword_init: true
 )
 
-# Match filter for GetApiRoot#load (any subset of GetApiRoot fields).
+# Request payload for GetApiRoot#load.
 #
 # @!attribute [rw] ability_score
 #   @return [String, nil]
@@ -299,7 +299,7 @@ GraphQl = Struct.new(
   keyword_init: true
 )
 
-# Match filter for GraphQl#create (any subset of GraphQl fields).
+# Request payload for GraphQl#create.
 #
 # @!attribute [rw] data
 #   @return [Hash, nil]
@@ -311,7 +311,7 @@ GraphQl = Struct.new(
 #   @return [String, nil]
 #
 # @!attribute [rw] query
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] variable
 #   @return [Hash, nil]

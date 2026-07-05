@@ -102,31 +102,31 @@ local get_api_root = client:GetApiRoot(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ability_score` | ``$STRING`` | No |  |
-| `alignment` | ``$STRING`` | No |  |
-| `background` | ``$STRING`` | No |  |
-| `class` | ``$STRING`` | No |  |
-| `condition` | ``$STRING`` | No |  |
-| `damage_type` | ``$STRING`` | No |  |
-| `equipment` | ``$STRING`` | No |  |
-| `equipment_category` | ``$STRING`` | No |  |
-| `feat` | ``$STRING`` | No |  |
-| `feature` | ``$STRING`` | No |  |
-| `key` | ``$STRING`` | No |  |
-| `language` | ``$STRING`` | No |  |
-| `magic_item` | ``$STRING`` | No |  |
-| `magic_school` | ``$STRING`` | No |  |
-| `monster` | ``$STRING`` | No |  |
-| `proficiency` | ``$STRING`` | No |  |
-| `race` | ``$STRING`` | No |  |
-| `rule` | ``$STRING`` | No |  |
-| `rule_section` | ``$STRING`` | No |  |
-| `skill` | ``$STRING`` | No |  |
-| `spell` | ``$STRING`` | No |  |
-| `subclass` | ``$STRING`` | No |  |
-| `subrace` | ``$STRING`` | No |  |
-| `trait` | ``$STRING`` | No |  |
-| `weapon_property` | ``$STRING`` | No |  |
+| `ability_score` | `string` | No |  |
+| `alignment` | `string` | No |  |
+| `background` | `string` | No |  |
+| `class` | `string` | No |  |
+| `condition` | `string` | No |  |
+| `damage_type` | `string` | No |  |
+| `equipment` | `string` | No |  |
+| `equipment_category` | `string` | No |  |
+| `feat` | `string` | No |  |
+| `feature` | `string` | No |  |
+| `key` | `string` | No |  |
+| `language` | `string` | No |  |
+| `magic_item` | `string` | No |  |
+| `magic_school` | `string` | No |  |
+| `monster` | `string` | No |  |
+| `proficiency` | `string` | No |  |
+| `race` | `string` | No |  |
+| `rule` | `string` | No |  |
+| `rule_section` | `string` | No |  |
+| `skill` | `string` | No |  |
+| `spell` | `string` | No |  |
+| `subclass` | `string` | No |  |
+| `subrace` | `string` | No |  |
+| `trait` | `string` | No |  |
+| `weapon_property` | `string` | No |  |
 
 ### Operations
 
@@ -135,7 +135,7 @@ local get_api_root = client:GetApiRoot(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GetApiRoot():load({ id = "get_api_root_id" })
+local result, err = client:GetApiRoot():load()
 ```
 
 ### Common Methods
@@ -178,9 +178,9 @@ local get_resource_by_index = client:GetResourceByIndex(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `index` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `index` | `string` | No |  |
+| `name` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -189,7 +189,7 @@ local get_resource_by_index = client:GetResourceByIndex(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GetResourceByIndex():load({ id = "get_resource_by_index_id" })
+local result, err = client:GetResourceByIndex():load()
 ```
 
 ### Common Methods
@@ -232,9 +232,9 @@ local get_resource_list = client:GetResourceList(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `index` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `index` | `string` | No |  |
+| `name` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -286,11 +286,11 @@ local graph_ql = client:GraphQl(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `error` | ``$ARRAY`` | No |  |
-| `operation_name` | ``$STRING`` | No |  |
-| `query` | ``$STRING`` | Yes |  |
-| `variable` | ``$OBJECT`` | No |  |
+| `data` | `table` | No |  |
+| `error` | `table` | No |  |
+| `operation_name` | `string` | No |  |
+| `query` | `string` | Yes |  |
+| `variable` | `table` | No |  |
 
 ### Operations
 
@@ -300,7 +300,7 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:GraphQl():create({
-  query = --[[ `$STRING` ]],
+  query = --[[ string ]],
 })
 ```
 

@@ -8,7 +8,7 @@ Complete API reference for the DungeonsAndDragons Python SDK.
 ### Constructor
 
 ```python
-from dungeons-and-dragons_sdk import DungeonsAndDragonsSDK
+from dungeonsanddragons_sdk import DungeonsAndDragonsSDK
 
 client = DungeonsAndDragonsSDK(options)
 ```
@@ -99,31 +99,31 @@ get_api_root = client.GetApiRoot()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ability_score` | ``$STRING`` | No |  |
-| `alignment` | ``$STRING`` | No |  |
-| `background` | ``$STRING`` | No |  |
-| `class` | ``$STRING`` | No |  |
-| `condition` | ``$STRING`` | No |  |
-| `damage_type` | ``$STRING`` | No |  |
-| `equipment` | ``$STRING`` | No |  |
-| `equipment_category` | ``$STRING`` | No |  |
-| `feat` | ``$STRING`` | No |  |
-| `feature` | ``$STRING`` | No |  |
-| `key` | ``$STRING`` | No |  |
-| `language` | ``$STRING`` | No |  |
-| `magic_item` | ``$STRING`` | No |  |
-| `magic_school` | ``$STRING`` | No |  |
-| `monster` | ``$STRING`` | No |  |
-| `proficiency` | ``$STRING`` | No |  |
-| `race` | ``$STRING`` | No |  |
-| `rule` | ``$STRING`` | No |  |
-| `rule_section` | ``$STRING`` | No |  |
-| `skill` | ``$STRING`` | No |  |
-| `spell` | ``$STRING`` | No |  |
-| `subclass` | ``$STRING`` | No |  |
-| `subrace` | ``$STRING`` | No |  |
-| `trait` | ``$STRING`` | No |  |
-| `weapon_property` | ``$STRING`` | No |  |
+| `ability_score` | `str` | No |  |
+| `alignment` | `str` | No |  |
+| `background` | `str` | No |  |
+| `class` | `str` | No |  |
+| `condition` | `str` | No |  |
+| `damage_type` | `str` | No |  |
+| `equipment` | `str` | No |  |
+| `equipment_category` | `str` | No |  |
+| `feat` | `str` | No |  |
+| `feature` | `str` | No |  |
+| `key` | `str` | No |  |
+| `language` | `str` | No |  |
+| `magic_item` | `str` | No |  |
+| `magic_school` | `str` | No |  |
+| `monster` | `str` | No |  |
+| `proficiency` | `str` | No |  |
+| `race` | `str` | No |  |
+| `rule` | `str` | No |  |
+| `rule_section` | `str` | No |  |
+| `skill` | `str` | No |  |
+| `spell` | `str` | No |  |
+| `subclass` | `str` | No |  |
+| `subrace` | `str` | No |  |
+| `trait` | `str` | No |  |
+| `weapon_property` | `str` | No |  |
 
 ### Operations
 
@@ -132,7 +132,7 @@ get_api_root = client.GetApiRoot()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.GetApiRoot().load({"id": "get_api_root_id"})
+result = client.GetApiRoot().load()
 ```
 
 ### Common Methods
@@ -174,9 +174,9 @@ get_resource_by_index = client.GetResourceByIndex()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `index` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `index` | `str` | No |  |
+| `name` | `str` | No |  |
+| `url` | `str` | No |  |
 
 ### Operations
 
@@ -185,7 +185,7 @@ get_resource_by_index = client.GetResourceByIndex()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.GetResourceByIndex().load({"id": "get_resource_by_index_id"})
+result = client.GetResourceByIndex().load()
 ```
 
 ### Common Methods
@@ -227,18 +227,18 @@ get_resource_list = client.GetResourceList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `index` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `index` | `str` | No |  |
+| `name` | `str` | No |  |
+| `url` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.GetResourceList().list({})
+results = client.GetResourceList().list()
 for get_resource_list in results:
     print(get_resource_list)
 ```
@@ -282,11 +282,11 @@ graph_ql = client.GraphQl()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `error` | ``$ARRAY`` | No |  |
-| `operation_name` | ``$STRING`` | No |  |
-| `query` | ``$STRING`` | Yes |  |
-| `variable` | ``$OBJECT`` | No |  |
+| `data` | `dict` | No |  |
+| `error` | `list` | No |  |
+| `operation_name` | `str` | No |  |
+| `query` | `str` | Yes |  |
+| `variable` | `dict` | No |  |
 
 ### Operations
 
@@ -296,7 +296,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.GraphQl().create({
-    "query": ...,  # `$STRING`
+    "query": "example",  # str
 })
 ```
 

@@ -221,25 +221,25 @@ class DungeonsAndDragonsSDK:
 
 
     def GetApiRoot(self, data=None) -> "GetApiRootEntity":
-        """Entity factory: client.GetApiRoot().list({}) / client.GetApiRoot().load({"id": ...})."""
+        """Entity factory: client.GetApiRoot().list() / client.GetApiRoot().load({"id": ...})."""
         from entity.get_api_root_entity import GetApiRootEntity
         return GetApiRootEntity(self, data)
 
 
     def GetResourceByIndex(self, data=None) -> "GetResourceByIndexEntity":
-        """Entity factory: client.GetResourceByIndex().list({}) / client.GetResourceByIndex().load({"id": ...})."""
+        """Entity factory: client.GetResourceByIndex().list() / client.GetResourceByIndex().load({"id": ...})."""
         from entity.get_resource_by_index_entity import GetResourceByIndexEntity
         return GetResourceByIndexEntity(self, data)
 
 
     def GetResourceList(self, data=None) -> "GetResourceListEntity":
-        """Entity factory: client.GetResourceList().list({}) / client.GetResourceList().load({"id": ...})."""
+        """Entity factory: client.GetResourceList().list() / client.GetResourceList().load({"id": ...})."""
         from entity.get_resource_list_entity import GetResourceListEntity
         return GetResourceListEntity(self, data)
 
 
     def GraphQl(self, data=None) -> "GraphQlEntity":
-        """Entity factory: client.GraphQl().list({}) / client.GraphQl().load({"id": ...})."""
+        """Entity factory: client.GraphQl().list() / client.GraphQl().load({"id": ...})."""
         from entity.graph_ql_entity import GraphQlEntity
         return GraphQlEntity(self, data)
 

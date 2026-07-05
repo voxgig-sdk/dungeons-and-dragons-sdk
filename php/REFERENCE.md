@@ -8,7 +8,7 @@ Complete API reference for the DungeonsAndDragons PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/dungeons-and-dragons_sdk.php';
+require_once __DIR__ . '/dungeonsanddragons_sdk.php';
 
 $client = new DungeonsAndDragonsSDK($options);
 ```
@@ -57,11 +57,11 @@ Create a new `GetResourceListEntity` instance. Pass `null` for no initial data.
 
 Create a new `GraphQlEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): DungeonsAndDragonsUtility`
 
 Return a copy of the SDK utility object.
 
@@ -104,31 +104,31 @@ $get_api_root = $client->GetApiRoot();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ability_score` | ``$STRING`` | No |  |
-| `alignment` | ``$STRING`` | No |  |
-| `background` | ``$STRING`` | No |  |
-| `class` | ``$STRING`` | No |  |
-| `condition` | ``$STRING`` | No |  |
-| `damage_type` | ``$STRING`` | No |  |
-| `equipment` | ``$STRING`` | No |  |
-| `equipment_category` | ``$STRING`` | No |  |
-| `feat` | ``$STRING`` | No |  |
-| `feature` | ``$STRING`` | No |  |
-| `key` | ``$STRING`` | No |  |
-| `language` | ``$STRING`` | No |  |
-| `magic_item` | ``$STRING`` | No |  |
-| `magic_school` | ``$STRING`` | No |  |
-| `monster` | ``$STRING`` | No |  |
-| `proficiency` | ``$STRING`` | No |  |
-| `race` | ``$STRING`` | No |  |
-| `rule` | ``$STRING`` | No |  |
-| `rule_section` | ``$STRING`` | No |  |
-| `skill` | ``$STRING`` | No |  |
-| `spell` | ``$STRING`` | No |  |
-| `subclass` | ``$STRING`` | No |  |
-| `subrace` | ``$STRING`` | No |  |
-| `trait` | ``$STRING`` | No |  |
-| `weapon_property` | ``$STRING`` | No |  |
+| `ability_score` | `string` | No |  |
+| `alignment` | `string` | No |  |
+| `background` | `string` | No |  |
+| `class` | `string` | No |  |
+| `condition` | `string` | No |  |
+| `damage_type` | `string` | No |  |
+| `equipment` | `string` | No |  |
+| `equipment_category` | `string` | No |  |
+| `feat` | `string` | No |  |
+| `feature` | `string` | No |  |
+| `key` | `string` | No |  |
+| `language` | `string` | No |  |
+| `magic_item` | `string` | No |  |
+| `magic_school` | `string` | No |  |
+| `monster` | `string` | No |  |
+| `proficiency` | `string` | No |  |
+| `race` | `string` | No |  |
+| `rule` | `string` | No |  |
+| `rule_section` | `string` | No |  |
+| `skill` | `string` | No |  |
+| `spell` | `string` | No |  |
+| `subclass` | `string` | No |  |
+| `subrace` | `string` | No |  |
+| `trait` | `string` | No |  |
+| `weapon_property` | `string` | No |  |
 
 ### Operations
 
@@ -137,24 +137,24 @@ $get_api_root = $client->GetApiRoot();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->GetApiRoot()->load(["id" => "get_api_root_id"]);
+$result = $client->GetApiRoot()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -163,7 +163,7 @@ Set the entity match criteria.
 Create a new `GetApiRootEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -180,9 +180,9 @@ $get_resource_by_index = $client->GetResourceByIndex();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `index` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `index` | `string` | No |  |
+| `name` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -191,24 +191,24 @@ $get_resource_by_index = $client->GetResourceByIndex();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->GetResourceByIndex()->load(["id" => "get_resource_by_index_id"]);
+$result = $client->GetResourceByIndex()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -217,7 +217,7 @@ Set the entity match criteria.
 Create a new `GetResourceByIndexEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -234,35 +234,35 @@ $get_resource_list = $client->GetResourceList();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `index` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `index` | `string` | No |  |
+| `name` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->GetResourceList()->list([]);
+$results = $client->GetResourceList()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -271,7 +271,7 @@ Set the entity match criteria.
 Create a new `GetResourceListEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -288,11 +288,11 @@ $graph_ql = $client->GraphQl();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `error` | ``$ARRAY`` | No |  |
-| `operation_name` | ``$STRING`` | No |  |
-| `query` | ``$STRING`` | Yes |  |
-| `variable` | ``$OBJECT`` | No |  |
+| `data` | `array` | No |  |
+| `error` | `array` | No |  |
+| `operation_name` | `string` | No |  |
+| `query` | `string` | Yes |  |
+| `variable` | `array` | No |  |
 
 ### Operations
 
@@ -302,25 +302,25 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->GraphQl()->create([
-  "query" => /* `$STRING` */,
+  "query" => null, // string
 ]);
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -329,7 +329,7 @@ Set the entity match criteria.
 Create a new `GraphQlEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

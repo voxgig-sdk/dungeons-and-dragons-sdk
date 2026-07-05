@@ -37,8 +37,7 @@ type GetApiRoot struct {
 	WeaponProperty *string `json:"weapon_property,omitempty"`
 }
 
-// GetApiRootLoadMatch mirrors the get_api_root fields as an all-optional match
-// filter (Go analog of Partial<GetApiRoot>).
+// GetApiRootLoadMatch is the typed request payload for GetApiRoot.LoadTyped.
 type GetApiRootLoadMatch struct {
 	AbilityScore *string `json:"ability_score,omitempty"`
 	Alignment *string `json:"alignment,omitempty"`
@@ -101,13 +100,12 @@ type GraphQl struct {
 	Variable *map[string]any `json:"variable,omitempty"`
 }
 
-// GraphQlCreateData mirrors the graph_ql fields as an all-optional match
-// filter (Go analog of Partial<GraphQl>).
+// GraphQlCreateData is the typed request payload for GraphQl.CreateTyped.
 type GraphQlCreateData struct {
 	Data *map[string]any `json:"data,omitempty"`
 	Error *[]any `json:"error,omitempty"`
 	OperationName *string `json:"operation_name,omitempty"`
-	Query *string `json:"query,omitempty"`
+	Query string `json:"query"`
 	Variable *map[string]any `json:"variable,omitempty"`
 }
 
