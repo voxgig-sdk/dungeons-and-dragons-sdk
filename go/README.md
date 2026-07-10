@@ -50,12 +50,12 @@ import (
 func main() {
     client := sdk.New()
 
-    // Load a single getapiroot — the value is the loaded record.
-    getapiroot, err := client.GetApiRoot(nil).Load(nil, nil)
+    // Load a single getApiRoot — the value is the loaded record.
+    getApiRoot, err := client.GetApiRoot(nil).Load(nil, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(getapiroot)
+    fmt.Println(getApiRoot)
 }
 ```
 
@@ -135,13 +135,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-getapiroot, err := client.GetApiRoot(nil).Load(
+getApiRoot, err := client.GetApiRoot(nil).Load(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(getapiroot) // the returned mock data
+fmt.Println(getApiRoot) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -251,9 +251,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    getapiroot, err := client.GetApiRoot(nil).Load(nil, nil)
+    getApiRoot, err := client.GetApiRoot(nil).Load(nil, nil)
     if err != nil { /* handle */ }
-    // getapiroot is the returned record
+    // getApiRoot is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -339,7 +339,7 @@ API path: `/graphql`
 
 ### GetApiRoot
 
-Create an instance: `get_api_root := client.GetApiRoot(nil)`
+Create an instance: `getApiRoot := client.GetApiRoot(nil)`
 
 #### Operations
 
@@ -380,17 +380,17 @@ Create an instance: `get_api_root := client.GetApiRoot(nil)`
 #### Example: Load
 
 ```go
-get_api_root, err := client.GetApiRoot(nil).Load(nil, nil)
+getApiRoot, err := client.GetApiRoot(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(get_api_root) // the loaded record
+fmt.Println(getApiRoot) // the loaded record
 ```
 
 
 ### GetResourceByIndex
 
-Create an instance: `get_resource_by_index := client.GetResourceByIndex(nil)`
+Create an instance: `getResourceByIndex := client.GetResourceByIndex(nil)`
 
 #### Operations
 
@@ -409,17 +409,17 @@ Create an instance: `get_resource_by_index := client.GetResourceByIndex(nil)`
 #### Example: Load
 
 ```go
-get_resource_by_index, err := client.GetResourceByIndex(nil).Load(nil, nil)
+getResourceByIndex, err := client.GetResourceByIndex(nil).Load(map[string]any{"index": "index", "resource": "resource"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(get_resource_by_index) // the loaded record
+fmt.Println(getResourceByIndex) // the loaded record
 ```
 
 
 ### GetResourceList
 
-Create an instance: `get_resource_list := client.GetResourceList(nil)`
+Create an instance: `getResourceList := client.GetResourceList(nil)`
 
 #### Operations
 
@@ -438,17 +438,17 @@ Create an instance: `get_resource_list := client.GetResourceList(nil)`
 #### Example: List
 
 ```go
-get_resource_lists, err := client.GetResourceList(nil).List(nil, nil)
+getResourceLists, err := client.GetResourceList(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(get_resource_lists) // the array of records
+fmt.Println(getResourceLists) // the array of records
 ```
 
 
 ### GraphQl
 
-Create an instance: `graph_ql := client.GraphQl(nil)`
+Create an instance: `graphQl := client.GraphQl(nil)`
 
 #### Operations
 
@@ -470,8 +470,12 @@ Create an instance: `graph_ql := client.GraphQl(nil)`
 
 ```go
 result, err := client.GraphQl(nil).Create(map[string]any{
-    "query": /* string */,
+    "query": "example_query",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 

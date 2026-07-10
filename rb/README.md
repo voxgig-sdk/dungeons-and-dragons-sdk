@@ -382,7 +382,7 @@ Create an instance: `get_resource_by_index = client.GetResourceByIndex`
 
 ```ruby
 # load returns the bare GetResourceByIndex record (raises on error).
-get_resource_by_index = client.GetResourceByIndex.load()
+get_resource_by_index = client.GetResourceByIndex.load({ "index" => "index", "resource" => "resource" })
 ```
 
 
@@ -436,7 +436,7 @@ Create an instance: `graph_ql = client.GraphQl`
 
 ```ruby
 graph_ql = client.GraphQl.create({
-  "query" => "example", # String
+  "query" => "example_query", # String
 })
 ```
 

@@ -392,7 +392,7 @@ Create an instance: `$get_resource_by_index = $client->GetResourceByIndex();`
 
 ```php
 // load() returns the bare GetResourceByIndex record (throws on error).
-$get_resource_by_index = $client->GetResourceByIndex()->load();
+$get_resource_by_index = $client->GetResourceByIndex()->load(["index" => "index", "resource" => "resource"]);
 ```
 
 

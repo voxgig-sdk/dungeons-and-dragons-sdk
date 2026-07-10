@@ -1,0 +1,6 @@
+# Flows
+
+@"BasicGetApiRootFlow.aontu"
+@"BasicGetResourceByIndexFlow.aontu"
+@"BasicGetResourceListFlow.aontu"
+@"BasicGraphQlFlow.aontu"

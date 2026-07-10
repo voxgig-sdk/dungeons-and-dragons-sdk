@@ -1,0 +1,6 @@
+# Entity Models
+
+@"get_api_root.aontu"
+@"get_resource_by_index.aontu"
+@"get_resource_list.aontu"
+@"graph_ql.aontu"

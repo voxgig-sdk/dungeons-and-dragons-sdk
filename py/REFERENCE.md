@@ -185,7 +185,7 @@ get_resource_by_index = client.GetResourceByIndex()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.GetResourceByIndex().load()
+result = client.GetResourceByIndex().load({"index": "index", "resource": "resource"})
 ```
 
 ### Common Methods
@@ -296,7 +296,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.GraphQl().create({
-    "query": "example",  # str
+    "query": "example_query",  # str
 })
 ```
 

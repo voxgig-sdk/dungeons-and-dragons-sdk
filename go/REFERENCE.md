@@ -102,7 +102,8 @@ same parameters as `Direct()`.
 ## GetApiRootEntity
 
 ```go
-get_api_root := client.GetApiRoot(nil)
+getApiRoot := client.GetApiRoot(nil)
+fmt.Println(getApiRoot.GetName()) // "get_api_root"
 ```
 
 ### Fields
@@ -143,6 +144,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.GetApiRoot(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -172,7 +177,8 @@ Return the entity name.
 ## GetResourceByIndexEntity
 
 ```go
-get_resource_by_index := client.GetResourceByIndex(nil)
+getResourceByIndex := client.GetResourceByIndex(nil)
+fmt.Println(getResourceByIndex.GetName()) // "get_resource_by_index"
 ```
 
 ### Fields
@@ -190,7 +196,11 @@ get_resource_by_index := client.GetResourceByIndex(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.GetResourceByIndex(nil).Load(nil, nil)
+result, err := client.GetResourceByIndex(nil).Load(map[string]any{"index": "index", "resource": "resource"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -220,7 +230,8 @@ Return the entity name.
 ## GetResourceListEntity
 
 ```go
-get_resource_list := client.GetResourceList(nil)
+getResourceList := client.GetResourceList(nil)
+fmt.Println(getResourceList.GetName()) // "get_resource_list"
 ```
 
 ### Fields
@@ -239,6 +250,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.GetResourceList(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -268,7 +283,8 @@ Return the entity name.
 ## GraphQlEntity
 
 ```go
-graph_ql := client.GraphQl(nil)
+graphQl := client.GraphQl(nil)
+fmt.Println(graphQl.GetName()) // "graph_ql"
 ```
 
 ### Fields
@@ -289,8 +305,12 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.GraphQl(nil).Create(map[string]any{
-    "query": /* string */,
+    "query": "example_query",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

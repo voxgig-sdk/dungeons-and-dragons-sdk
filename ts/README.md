@@ -432,7 +432,7 @@ Create an instance: `const get_resource_by_index = client.GetResourceByIndex()`
 #### Example: Load
 
 ```ts
-const get_resource_by_index = await client.GetResourceByIndex().load()
+const get_resource_by_index = await client.GetResourceByIndex().load({ index: 'index', resource: 'resource' })
 ```
 
 
@@ -485,7 +485,7 @@ Create an instance: `const graph_ql = client.GraphQl()`
 
 ```ts
 const graph_ql = await client.GraphQl().create({
-  query: /* string */,
+  query: 'example_query',
 })
 ```
 

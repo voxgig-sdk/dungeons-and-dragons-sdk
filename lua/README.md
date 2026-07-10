@@ -372,7 +372,7 @@ Create an instance: `local get_resource_by_index = client:GetResourceByIndex(nil
 #### Example: Load
 
 ```lua
-local get_resource_by_index, err = client:GetResourceByIndex():load()
+local get_resource_by_index, err = client:GetResourceByIndex():load({ index = "index", resource = "resource" })
 ```
 
 
@@ -425,7 +425,7 @@ Create an instance: `local graph_ql = client:GraphQl(nil)`
 
 ```lua
 local graph_ql, err = client:GraphQl():create({
-  query = nil, -- string
+  query = "example_query", -- string
 })
 ```
 

@@ -189,7 +189,7 @@ local get_resource_by_index = client:GetResourceByIndex(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GetResourceByIndex():load()
+local result, err = client:GetResourceByIndex():load({ index = "index", resource = "resource" })
 ```
 
 ### Common Methods

@@ -1,6 +1,0 @@
-# Entity Models
-
-@"get_api_root.jsonic"
-@"get_resource_by_index.jsonic"
-@"get_resource_list.jsonic"
-@"graph_ql.jsonic"

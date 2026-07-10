@@ -386,7 +386,7 @@ Create an instance: `get_resource_by_index = client.GetResourceByIndex()`
 #### Example: Load
 
 ```python
-get_resource_by_index = client.GetResourceByIndex().load()
+get_resource_by_index = client.GetResourceByIndex().load({"index": "index", "resource": "resource"})
 ```
 
 
@@ -439,7 +439,7 @@ Create an instance: `graph_ql = client.GraphQl()`
 
 ```python
 graph_ql = client.GraphQl().create({
-    "query": "example",  # str
+    "query": "example_query",  # str
 })
 ```
 

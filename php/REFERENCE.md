@@ -191,7 +191,7 @@ $get_resource_by_index = $client->GetResourceByIndex();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->GetResourceByIndex()->load();
+$result = $client->GetResourceByIndex()->load(["index" => "index", "resource" => "resource"]);
 ```
 
 ### Common Methods

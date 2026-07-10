@@ -192,7 +192,7 @@ get_resource_by_index = client.GetResourceByIndex
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.GetResourceByIndex.load()
+result = client.GetResourceByIndex.load({ "index" => "index", "resource" => "resource" })
 ```
 
 ### Common Methods
@@ -303,7 +303,7 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.GraphQl.create({
-  "query" => "example", # String
+  "query" => "example_query", # String
 })
 ```
 

@@ -237,7 +237,7 @@ const get_resource_by_index = client.GetResourceByIndex()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.GetResourceByIndex().load()
+const result = await client.GetResourceByIndex().load({ index: 'index', resource: 'resource' })
 ```
 
 ### Common Methods
@@ -344,7 +344,7 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.GraphQl().create({
-  query: /* string */,
+  query: 'example_query',
 })
 ```
 

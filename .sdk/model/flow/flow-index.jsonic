@@ -1,6 +1,0 @@
-# Flows
-
-@"BasicGetApiRootFlow.jsonic"
-@"BasicGetResourceByIndexFlow.jsonic"
-@"BasicGetResourceListFlow.jsonic"
-@"BasicGraphQlFlow.jsonic"
