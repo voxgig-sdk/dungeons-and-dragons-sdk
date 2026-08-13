@@ -35,7 +35,7 @@ $client = new DungeonsAndDragonsSDK();
 
 ```php
 try {
-    // load() returns the bare GetApiRoot record (throws on error).
+    // load() returns the ENTITY — call data_get() for the GetApiRoot record (throws on error).
     $getapiroot = $client->GetApiRoot()->load();
     print_r($getapiroot);
 } catch (\Throwable $err) {
@@ -51,7 +51,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $getapiroot = $client->GetApiRoot()->load();
+    $getresourcelists = $client->GetResourceList()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -123,9 +123,10 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = DungeonsAndDragonsSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$getapiroot = $client->GetApiRoot()->load();
-print_r($getapiroot);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$getresourcelist = $client->GetResourceList()->list();
+print_r($getresourcelist);
 ```
 
 ### Use a custom fetch function
@@ -227,7 +228,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -249,31 +250,31 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `ability_score` |  |
-| `alignment` |  |
-| `background` |  |
-| `class` |  |
-| `condition` |  |
-| `damage_type` |  |
+| `abilityscores` |  |
+| `alignments` |  |
+| `backgrounds` |  |
+| `classes` |  |
+| `conditions` |  |
+| `damagetypes` |  |
 | `equipment` |  |
-| `equipment_category` |  |
-| `feat` |  |
-| `feature` |  |
+| `equipmentcategories` |  |
+| `feats` |  |
+| `features` |  |
 | `key` |  |
-| `language` |  |
-| `magic_item` |  |
-| `magic_school` |  |
-| `monster` |  |
-| `proficiency` |  |
-| `race` |  |
-| `rule` |  |
-| `rule_section` |  |
-| `skill` |  |
-| `spell` |  |
-| `subclass` |  |
-| `subrace` |  |
-| `trait` |  |
-| `weapon_property` |  |
+| `languages` |  |
+| `magicitems` |  |
+| `magicschools` |  |
+| `monsters` |  |
+| `proficiencies` |  |
+| `races` |  |
+| `rules` |  |
+| `rulesections` |  |
+| `skills` |  |
+| `spells` |  |
+| `subclasses` |  |
+| `subraces` |  |
+| `traits` |  |
+| `weaponproperties` |  |
 
 Operations: Load.
 
@@ -308,10 +309,10 @@ API path: `/{resource}`
 | Field | Description |
 | --- | --- |
 | `data` |  |
-| `error` |  |
-| `operation_name` |  |
+| `errors` |  |
+| `operationName` |  |
 | `query` |  |
-| `variable` |  |
+| `variables` |  |
 
 Operations: Create.
 
@@ -336,36 +337,36 @@ Create an instance: `$get_api_root = $client->GetApiRoot();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ability_score` | `string` |  |
-| `alignment` | `string` |  |
-| `background` | `string` |  |
-| `class` | `string` |  |
-| `condition` | `string` |  |
-| `damage_type` | `string` |  |
+| `abilityscores` | `string` |  |
+| `alignments` | `string` |  |
+| `backgrounds` | `string` |  |
+| `classes` | `string` |  |
+| `conditions` | `string` |  |
+| `damagetypes` | `string` |  |
 | `equipment` | `string` |  |
-| `equipment_category` | `string` |  |
-| `feat` | `string` |  |
-| `feature` | `string` |  |
+| `equipmentcategories` | `string` |  |
+| `feats` | `string` |  |
+| `features` | `string` |  |
 | `key` | `string` |  |
-| `language` | `string` |  |
-| `magic_item` | `string` |  |
-| `magic_school` | `string` |  |
-| `monster` | `string` |  |
-| `proficiency` | `string` |  |
-| `race` | `string` |  |
-| `rule` | `string` |  |
-| `rule_section` | `string` |  |
-| `skill` | `string` |  |
-| `spell` | `string` |  |
-| `subclass` | `string` |  |
-| `subrace` | `string` |  |
-| `trait` | `string` |  |
-| `weapon_property` | `string` |  |
+| `languages` | `string` |  |
+| `magicitems` | `string` |  |
+| `magicschools` | `string` |  |
+| `monsters` | `string` |  |
+| `proficiencies` | `string` |  |
+| `races` | `string` |  |
+| `rules` | `string` |  |
+| `rulesections` | `string` |  |
+| `skills` | `string` |  |
+| `spells` | `string` |  |
+| `subclasses` | `string` |  |
+| `subraces` | `string` |  |
+| `traits` | `string` |  |
+| `weaponproperties` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare GetApiRoot record (throws on error).
+// load() returns the ENTITY — call data_get() for the GetApiRoot record (throws on error).
 $get_api_root = $client->GetApiRoot()->load();
 ```
 
@@ -391,7 +392,7 @@ Create an instance: `$get_resource_by_index = $client->GetResourceByIndex();`
 #### Example: Load
 
 ```php
-// load() returns the bare GetResourceByIndex record (throws on error).
+// load() returns the ENTITY — call data_get() for the GetResourceByIndex record (throws on error).
 $get_resource_by_index = $client->GetResourceByIndex()->load(["index" => "index", "resource" => "resource"]);
 ```
 
@@ -424,7 +425,7 @@ $get_resource_lists = $client->GetResourceList()->list();
 
 ### GraphQl
 
-Create an instance: `$graph_ql = $client->GraphQl();`
+Create an instance: `$graph_ql = $client->GraphQl_();`
 
 #### Operations
 
@@ -437,15 +438,15 @@ Create an instance: `$graph_ql = $client->GraphQl();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `data` | `array` |  |
-| `error` | `array` |  |
-| `operation_name` | `string` |  |
+| `errors` | `array` |  |
+| `operationName` | `string` |  |
 | `query` | `string` |  |
-| `variable` | `array` |  |
+| `variables` | `array` |  |
 
 #### Example: Create
 
 ```php
-$graph_ql = $client->GraphQl()->create([
+$graph_ql = $client->GraphQl_()->create([
     "query" => null, // string
 ]);
 ```
@@ -523,15 +524,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$getapiroot = $client->GetApiRoot();
-$getapiroot->load();
+$getresourcelist = $client->GetResourceList();
+$getresourcelist->list();
 
-// $getapiroot->data_get() now returns the getapiroot data from the last load
-// $getapiroot->match_get() returns the last match criteria
+// $getresourcelist->data_get() now returns the getresourcelist data from the last list
+// $getresourcelist->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

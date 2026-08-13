@@ -21,6 +21,7 @@ guide: {
     path: "/{resource}": {
       rename: param: "resource": *"id"
       op: list: method: *GET
+      op: list: transform: res: *("`body.results`")|top
     }
   }
 

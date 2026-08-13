@@ -105,31 +105,31 @@ get_api_root = client.GetApiRoot
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ability_score` | `String` | No |  |
-| `alignment` | `String` | No |  |
-| `background` | `String` | No |  |
-| `class` | `String` | No |  |
-| `condition` | `String` | No |  |
-| `damage_type` | `String` | No |  |
+| `abilityscores` | `String` | No |  |
+| `alignments` | `String` | No |  |
+| `backgrounds` | `String` | No |  |
+| `classes` | `String` | No |  |
+| `conditions` | `String` | No |  |
+| `damagetypes` | `String` | No |  |
 | `equipment` | `String` | No |  |
-| `equipment_category` | `String` | No |  |
-| `feat` | `String` | No |  |
-| `feature` | `String` | No |  |
+| `equipmentcategories` | `String` | No |  |
+| `feats` | `String` | No |  |
+| `features` | `String` | No |  |
 | `key` | `String` | No |  |
-| `language` | `String` | No |  |
-| `magic_item` | `String` | No |  |
-| `magic_school` | `String` | No |  |
-| `monster` | `String` | No |  |
-| `proficiency` | `String` | No |  |
-| `race` | `String` | No |  |
-| `rule` | `String` | No |  |
-| `rule_section` | `String` | No |  |
-| `skill` | `String` | No |  |
-| `spell` | `String` | No |  |
-| `subclass` | `String` | No |  |
-| `subrace` | `String` | No |  |
-| `trait` | `String` | No |  |
-| `weapon_property` | `String` | No |  |
+| `languages` | `String` | No |  |
+| `magicitems` | `String` | No |  |
+| `magicschools` | `String` | No |  |
+| `monsters` | `String` | No |  |
+| `proficiencies` | `String` | No |  |
+| `races` | `String` | No |  |
+| `rules` | `String` | No |  |
+| `rulesections` | `String` | No |  |
+| `skills` | `String` | No |  |
+| `spells` | `String` | No |  |
+| `subclasses` | `String` | No |  |
+| `subraces` | `String` | No |  |
+| `traits` | `String` | No |  |
+| `weaponproperties` | `String` | No |  |
 
 ### Operations
 
@@ -290,10 +290,10 @@ graph_ql = client.GraphQl
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `Hash` | No |  |
-| `error` | `Array` | No |  |
-| `operation_name` | `String` | No |  |
+| `errors` | `Array` | No |  |
+| `operationName` | `String` | No |  |
 | `query` | `String` | Yes |  |
-| `variable` | `Hash` | No |  |
+| `variables` | `Hash` | No |  |
 
 ### Operations
 

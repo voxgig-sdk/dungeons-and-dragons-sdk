@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from dungeonsanddragons_sdk.utility.voxgig_struct import voxgig_struct as vs
 from dungeonsanddragons_sdk import DungeonsAndDragonsSDK
-from core import helpers
+from dungeonsanddragons_sdk.core import helpers
 from test import runner
 
 
@@ -56,11 +56,11 @@ def _get_api_root_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "DUNGEONSANDDRAGONS_TEST_GET_API_ROOT_ENTID": {},
-        "DUNGEONSANDDRAGONS_TEST_LIVE": "FALSE",
+        "DUNGEONS_AND_DRAGONS_TEST_GET_API_ROOT_ENTID": {},
+        "DUNGEONS_AND_DRAGONS_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("DUNGEONSANDDRAGONS_TEST_LIVE") == "TRUE"
+    live = env.get("DUNGEONS_AND_DRAGONS_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

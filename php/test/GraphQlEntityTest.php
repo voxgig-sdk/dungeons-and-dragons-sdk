@@ -14,7 +14,7 @@ class GraphQlEntityTest extends TestCase
     public function test_create_instance(): void
     {
         $testsdk = DungeonsAndDragonsSDK::test(null, null);
-        $ent = $testsdk->GraphQl(null);
+        $ent = $testsdk->GraphQl_(null);
         $this->assertNotNull($ent);
     }
 
@@ -33,18 +33,18 @@ class GraphQlEntityTest extends TestCase
         // The basic flow consumes synthetic IDs from the fixture. In live mode
         // without an *_ENTID env override, those IDs hit the live API and 4xx.
         if (!empty($setup["synthetic_only"])) {
-            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set DUNGEONSANDDRAGONS_TEST_GRAPH_QL_ENTID JSON to run live");
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set DUNGEONS_AND_DRAGONS_TEST_GRAPH_QL_ENTID JSON to run live");
             return;
         }
         $client = $setup["client"];
 
         // CREATE
-        $graph_ql_ref01_ent = $client->GraphQl(null);
+        $graph_ql_ref01_ent = $client->GraphQl_(null);
         $graph_ql_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.graph_ql"), "graph_ql_ref01"));
 
         $graph_ql_ref01_data_result = $graph_ql_ref01_ent->create($graph_ql_ref01_data, null);
-        $graph_ql_ref01_data = Helpers::to_map($graph_ql_ref01_data_result);
+        $graph_ql_ref01_data = Helpers::to_map(is_object($graph_ql_ref01_data_result) && method_exists($graph_ql_ref01_data_result, 'data_get') ? $graph_ql_ref01_data_result->data_get() : $graph_ql_ref01_data_result);
         $this->assertNotNull($graph_ql_ref01_data);
 
     }
@@ -72,22 +72,22 @@ function graph_ql_basic_setup($extra)
     // Detect ENTID env override before envOverride consumes it. When live
     // mode is on without a real override, the basic test runs against synthetic
     // IDs from the fixture and 4xx's. Surface this so the test can skip.
-    $entid_env_raw = getenv("DUNGEONSANDDRAGONS_TEST_GRAPH_QL_ENTID");
+    $entid_env_raw = getenv("DUNGEONS_AND_DRAGONS_TEST_GRAPH_QL_ENTID");
     $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
 
     $env = Runner::env_override([
-        "DUNGEONSANDDRAGONS_TEST_GRAPH_QL_ENTID" => $idmap,
-        "DUNGEONSANDDRAGONS_TEST_LIVE" => "FALSE",
-        "DUNGEONSANDDRAGONS_TEST_EXPLAIN" => "FALSE",
+        "DUNGEONS_AND_DRAGONS_TEST_GRAPH_QL_ENTID" => $idmap,
+        "DUNGEONS_AND_DRAGONS_TEST_LIVE" => "FALSE",
+        "DUNGEONS_AND_DRAGONS_TEST_EXPLAIN" => "FALSE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
-        $env["DUNGEONSANDDRAGONS_TEST_GRAPH_QL_ENTID"]);
+        $env["DUNGEONS_AND_DRAGONS_TEST_GRAPH_QL_ENTID"]);
     if ($idmap_resolved === null) {
         $idmap_resolved = Helpers::to_map($idmap);
     }
 
-    if ($env["DUNGEONSANDDRAGONS_TEST_LIVE"] === "TRUE") {
+    if ($env["DUNGEONS_AND_DRAGONS_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
             ],
@@ -96,13 +96,13 @@ function graph_ql_basic_setup($extra)
         $client = new DungeonsAndDragonsSDK(Helpers::to_map($merged_opts));
     }
 
-    $live = $env["DUNGEONSANDDRAGONS_TEST_LIVE"] === "TRUE";
+    $live = $env["DUNGEONS_AND_DRAGONS_TEST_LIVE"] === "TRUE";
     return [
         "client" => $client,
         "data" => $entity_data,
         "idmap" => $idmap_resolved,
         "env" => $env,
-        "explain" => $env["DUNGEONSANDDRAGONS_TEST_EXPLAIN"] === "TRUE",
+        "explain" => $env["DUNGEONS_AND_DRAGONS_TEST_EXPLAIN"] === "TRUE",
         "live" => $live,
         "synthetic_only" => $live && !$idmap_overridden,
         "now" => (int)(microtime(true) * 1000),

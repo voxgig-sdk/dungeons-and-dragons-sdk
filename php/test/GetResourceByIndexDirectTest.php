@@ -76,11 +76,11 @@ function get_resource_by_index_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "DUNGEONSANDDRAGONS_TEST_GET_RESOURCE_BY_INDEX_ENTID" => [],
-        "DUNGEONSANDDRAGONS_TEST_LIVE" => "FALSE",
+        "DUNGEONS_AND_DRAGONS_TEST_GET_RESOURCE_BY_INDEX_ENTID" => [],
+        "DUNGEONS_AND_DRAGONS_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["DUNGEONSANDDRAGONS_TEST_LIVE"] === "TRUE";
+    $live = $env["DUNGEONS_AND_DRAGONS_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

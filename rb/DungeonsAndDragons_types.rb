@@ -10,211 +10,211 @@
 
 # GetApiRoot entity data model.
 #
-# @!attribute [rw] ability_score
+# @!attribute [rw] abilityscores
 #   @return [String, nil]
 #
-# @!attribute [rw] alignment
+# @!attribute [rw] alignments
 #   @return [String, nil]
 #
-# @!attribute [rw] background
+# @!attribute [rw] backgrounds
 #   @return [String, nil]
 #
-# @!attribute [rw] class
+# @!attribute [rw] classes
 #   @return [String, nil]
 #
-# @!attribute [rw] condition
+# @!attribute [rw] conditions
 #   @return [String, nil]
 #
-# @!attribute [rw] damage_type
+# @!attribute [rw] damagetypes
 #   @return [String, nil]
 #
 # @!attribute [rw] equipment
 #   @return [String, nil]
 #
-# @!attribute [rw] equipment_category
+# @!attribute [rw] equipmentcategories
 #   @return [String, nil]
 #
-# @!attribute [rw] feat
+# @!attribute [rw] feats
 #   @return [String, nil]
 #
-# @!attribute [rw] feature
+# @!attribute [rw] features
 #   @return [String, nil]
 #
 # @!attribute [rw] key
 #   @return [String, nil]
 #
-# @!attribute [rw] language
+# @!attribute [rw] languages
 #   @return [String, nil]
 #
-# @!attribute [rw] magic_item
+# @!attribute [rw] magicitems
 #   @return [String, nil]
 #
-# @!attribute [rw] magic_school
+# @!attribute [rw] magicschools
 #   @return [String, nil]
 #
-# @!attribute [rw] monster
+# @!attribute [rw] monsters
 #   @return [String, nil]
 #
-# @!attribute [rw] proficiency
+# @!attribute [rw] proficiencies
 #   @return [String, nil]
 #
-# @!attribute [rw] race
+# @!attribute [rw] races
 #   @return [String, nil]
 #
-# @!attribute [rw] rule
+# @!attribute [rw] rules
 #   @return [String, nil]
 #
-# @!attribute [rw] rule_section
+# @!attribute [rw] rulesections
 #   @return [String, nil]
 #
-# @!attribute [rw] skill
+# @!attribute [rw] skills
 #   @return [String, nil]
 #
-# @!attribute [rw] spell
+# @!attribute [rw] spells
 #   @return [String, nil]
 #
-# @!attribute [rw] subclass
+# @!attribute [rw] subclasses
 #   @return [String, nil]
 #
-# @!attribute [rw] subrace
+# @!attribute [rw] subraces
 #   @return [String, nil]
 #
-# @!attribute [rw] trait
+# @!attribute [rw] traits
 #   @return [String, nil]
 #
-# @!attribute [rw] weapon_property
+# @!attribute [rw] weaponproperties
 #   @return [String, nil]
 GetApiRoot = Struct.new(
-  :ability_score,
-  :alignment,
-  :background,
-  :class,
-  :condition,
-  :damage_type,
+  :abilityscores,
+  :alignments,
+  :backgrounds,
+  :classes,
+  :conditions,
+  :damagetypes,
   :equipment,
-  :equipment_category,
-  :feat,
-  :feature,
+  :equipmentcategories,
+  :feats,
+  :features,
   :key,
-  :language,
-  :magic_item,
-  :magic_school,
-  :monster,
-  :proficiency,
-  :race,
-  :rule,
-  :rule_section,
-  :skill,
-  :spell,
-  :subclass,
-  :subrace,
-  :trait,
-  :weapon_property,
+  :languages,
+  :magicitems,
+  :magicschools,
+  :monsters,
+  :proficiencies,
+  :races,
+  :rules,
+  :rulesections,
+  :skills,
+  :spells,
+  :subclasses,
+  :subraces,
+  :traits,
+  :weaponproperties,
   keyword_init: true
 )
 
 # Request payload for GetApiRoot#load.
 #
-# @!attribute [rw] ability_score
+# @!attribute [rw] abilityscores
 #   @return [String, nil]
 #
-# @!attribute [rw] alignment
+# @!attribute [rw] alignments
 #   @return [String, nil]
 #
-# @!attribute [rw] background
+# @!attribute [rw] backgrounds
 #   @return [String, nil]
 #
-# @!attribute [rw] class
+# @!attribute [rw] classes
 #   @return [String, nil]
 #
-# @!attribute [rw] condition
+# @!attribute [rw] conditions
 #   @return [String, nil]
 #
-# @!attribute [rw] damage_type
+# @!attribute [rw] damagetypes
 #   @return [String, nil]
 #
 # @!attribute [rw] equipment
 #   @return [String, nil]
 #
-# @!attribute [rw] equipment_category
+# @!attribute [rw] equipmentcategories
 #   @return [String, nil]
 #
-# @!attribute [rw] feat
+# @!attribute [rw] feats
 #   @return [String, nil]
 #
-# @!attribute [rw] feature
+# @!attribute [rw] features
 #   @return [String, nil]
 #
 # @!attribute [rw] key
 #   @return [String, nil]
 #
-# @!attribute [rw] language
+# @!attribute [rw] languages
 #   @return [String, nil]
 #
-# @!attribute [rw] magic_item
+# @!attribute [rw] magicitems
 #   @return [String, nil]
 #
-# @!attribute [rw] magic_school
+# @!attribute [rw] magicschools
 #   @return [String, nil]
 #
-# @!attribute [rw] monster
+# @!attribute [rw] monsters
 #   @return [String, nil]
 #
-# @!attribute [rw] proficiency
+# @!attribute [rw] proficiencies
 #   @return [String, nil]
 #
-# @!attribute [rw] race
+# @!attribute [rw] races
 #   @return [String, nil]
 #
-# @!attribute [rw] rule
+# @!attribute [rw] rules
 #   @return [String, nil]
 #
-# @!attribute [rw] rule_section
+# @!attribute [rw] rulesections
 #   @return [String, nil]
 #
-# @!attribute [rw] skill
+# @!attribute [rw] skills
 #   @return [String, nil]
 #
-# @!attribute [rw] spell
+# @!attribute [rw] spells
 #   @return [String, nil]
 #
-# @!attribute [rw] subclass
+# @!attribute [rw] subclasses
 #   @return [String, nil]
 #
-# @!attribute [rw] subrace
+# @!attribute [rw] subraces
 #   @return [String, nil]
 #
-# @!attribute [rw] trait
+# @!attribute [rw] traits
 #   @return [String, nil]
 #
-# @!attribute [rw] weapon_property
+# @!attribute [rw] weaponproperties
 #   @return [String, nil]
 GetApiRootLoadMatch = Struct.new(
-  :ability_score,
-  :alignment,
-  :background,
-  :class,
-  :condition,
-  :damage_type,
+  :abilityscores,
+  :alignments,
+  :backgrounds,
+  :classes,
+  :conditions,
+  :damagetypes,
   :equipment,
-  :equipment_category,
-  :feat,
-  :feature,
+  :equipmentcategories,
+  :feats,
+  :features,
   :key,
-  :language,
-  :magic_item,
-  :magic_school,
-  :monster,
-  :proficiency,
-  :race,
-  :rule,
-  :rule_section,
-  :skill,
-  :spell,
-  :subclass,
-  :subrace,
-  :trait,
-  :weapon_property,
+  :languages,
+  :magicitems,
+  :magicschools,
+  :monsters,
+  :proficiencies,
+  :races,
+  :rules,
+  :rulesections,
+  :skills,
+  :spells,
+  :subclasses,
+  :subraces,
+  :traits,
+  :weaponproperties,
   keyword_init: true
 )
 
@@ -279,23 +279,23 @@ GetResourceListListMatch = Struct.new(
 # @!attribute [rw] data
 #   @return [Hash, nil]
 #
-# @!attribute [rw] error
+# @!attribute [rw] errors
 #   @return [Array, nil]
 #
-# @!attribute [rw] operation_name
+# @!attribute [rw] operationName
 #   @return [String, nil]
 #
 # @!attribute [rw] query
 #   @return [String]
 #
-# @!attribute [rw] variable
+# @!attribute [rw] variables
 #   @return [Hash, nil]
 GraphQl = Struct.new(
   :data,
-  :error,
-  :operation_name,
+  :errors,
+  :operationName,
   :query,
-  :variable,
+  :variables,
   keyword_init: true
 )
 
@@ -304,23 +304,23 @@ GraphQl = Struct.new(
 # @!attribute [rw] data
 #   @return [Hash, nil]
 #
-# @!attribute [rw] error
+# @!attribute [rw] errors
 #   @return [Array, nil]
 #
-# @!attribute [rw] operation_name
+# @!attribute [rw] operationName
 #   @return [String, nil]
 #
 # @!attribute [rw] query
 #   @return [String]
 #
-# @!attribute [rw] variable
+# @!attribute [rw] variables
 #   @return [Hash, nil]
 GraphQlCreateData = Struct.new(
   :data,
-  :error,
-  :operation_name,
+  :errors,
+  :operationName,
   :query,
-  :variable,
+  :variables,
   keyword_init: true
 )
 

@@ -6,64 +6,68 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/voxgig-sdk/dungeons-and-dragons-sdk/go/core"
+)
 
 // GetApiRoot is the typed data model for the get_api_root entity.
 type GetApiRoot struct {
-	AbilityScore *string `json:"ability_score,omitempty"`
-	Alignment *string `json:"alignment,omitempty"`
-	Background *string `json:"background,omitempty"`
-	Class *string `json:"class,omitempty"`
-	Condition *string `json:"condition,omitempty"`
-	DamageType *string `json:"damage_type,omitempty"`
+	Abilityscores *string `json:"abilityscores,omitempty"`
+	Alignments *string `json:"alignments,omitempty"`
+	Backgrounds *string `json:"backgrounds,omitempty"`
+	Classes *string `json:"classes,omitempty"`
+	Conditions *string `json:"conditions,omitempty"`
+	Damagetypes *string `json:"damagetypes,omitempty"`
 	Equipment *string `json:"equipment,omitempty"`
-	EquipmentCategory *string `json:"equipment_category,omitempty"`
-	Feat *string `json:"feat,omitempty"`
-	Feature *string `json:"feature,omitempty"`
+	Equipmentcategories *string `json:"equipmentcategories,omitempty"`
+	Feats *string `json:"feats,omitempty"`
+	Features *string `json:"features,omitempty"`
 	Key *string `json:"key,omitempty"`
-	Language *string `json:"language,omitempty"`
-	MagicItem *string `json:"magic_item,omitempty"`
-	MagicSchool *string `json:"magic_school,omitempty"`
-	Monster *string `json:"monster,omitempty"`
-	Proficiency *string `json:"proficiency,omitempty"`
-	Race *string `json:"race,omitempty"`
-	Rule *string `json:"rule,omitempty"`
-	RuleSection *string `json:"rule_section,omitempty"`
-	Skill *string `json:"skill,omitempty"`
-	Spell *string `json:"spell,omitempty"`
-	Subclass *string `json:"subclass,omitempty"`
-	Subrace *string `json:"subrace,omitempty"`
-	Trait *string `json:"trait,omitempty"`
-	WeaponProperty *string `json:"weapon_property,omitempty"`
+	Languages *string `json:"languages,omitempty"`
+	Magicitems *string `json:"magicitems,omitempty"`
+	Magicschools *string `json:"magicschools,omitempty"`
+	Monsters *string `json:"monsters,omitempty"`
+	Proficiencies *string `json:"proficiencies,omitempty"`
+	Races *string `json:"races,omitempty"`
+	Rules *string `json:"rules,omitempty"`
+	Rulesections *string `json:"rulesections,omitempty"`
+	Skills *string `json:"skills,omitempty"`
+	Spells *string `json:"spells,omitempty"`
+	Subclasses *string `json:"subclasses,omitempty"`
+	Subraces *string `json:"subraces,omitempty"`
+	Traits *string `json:"traits,omitempty"`
+	Weaponproperties *string `json:"weaponproperties,omitempty"`
 }
 
 // GetApiRootLoadMatch is the typed request payload for GetApiRoot.LoadTyped.
 type GetApiRootLoadMatch struct {
-	AbilityScore *string `json:"ability_score,omitempty"`
-	Alignment *string `json:"alignment,omitempty"`
-	Background *string `json:"background,omitempty"`
-	Class *string `json:"class,omitempty"`
-	Condition *string `json:"condition,omitempty"`
-	DamageType *string `json:"damage_type,omitempty"`
+	Abilityscores *string `json:"abilityscores,omitempty"`
+	Alignments *string `json:"alignments,omitempty"`
+	Backgrounds *string `json:"backgrounds,omitempty"`
+	Classes *string `json:"classes,omitempty"`
+	Conditions *string `json:"conditions,omitempty"`
+	Damagetypes *string `json:"damagetypes,omitempty"`
 	Equipment *string `json:"equipment,omitempty"`
-	EquipmentCategory *string `json:"equipment_category,omitempty"`
-	Feat *string `json:"feat,omitempty"`
-	Feature *string `json:"feature,omitempty"`
+	Equipmentcategories *string `json:"equipmentcategories,omitempty"`
+	Feats *string `json:"feats,omitempty"`
+	Features *string `json:"features,omitempty"`
 	Key *string `json:"key,omitempty"`
-	Language *string `json:"language,omitempty"`
-	MagicItem *string `json:"magic_item,omitempty"`
-	MagicSchool *string `json:"magic_school,omitempty"`
-	Monster *string `json:"monster,omitempty"`
-	Proficiency *string `json:"proficiency,omitempty"`
-	Race *string `json:"race,omitempty"`
-	Rule *string `json:"rule,omitempty"`
-	RuleSection *string `json:"rule_section,omitempty"`
-	Skill *string `json:"skill,omitempty"`
-	Spell *string `json:"spell,omitempty"`
-	Subclass *string `json:"subclass,omitempty"`
-	Subrace *string `json:"subrace,omitempty"`
-	Trait *string `json:"trait,omitempty"`
-	WeaponProperty *string `json:"weapon_property,omitempty"`
+	Languages *string `json:"languages,omitempty"`
+	Magicitems *string `json:"magicitems,omitempty"`
+	Magicschools *string `json:"magicschools,omitempty"`
+	Monsters *string `json:"monsters,omitempty"`
+	Proficiencies *string `json:"proficiencies,omitempty"`
+	Races *string `json:"races,omitempty"`
+	Rules *string `json:"rules,omitempty"`
+	Rulesections *string `json:"rulesections,omitempty"`
+	Skills *string `json:"skills,omitempty"`
+	Spells *string `json:"spells,omitempty"`
+	Subclasses *string `json:"subclasses,omitempty"`
+	Subraces *string `json:"subraces,omitempty"`
+	Traits *string `json:"traits,omitempty"`
+	Weaponproperties *string `json:"weaponproperties,omitempty"`
 }
 
 // GetResourceByIndex is the typed data model for the get_resource_by_index entity.
@@ -94,19 +98,19 @@ type GetResourceListListMatch struct {
 // GraphQl is the typed data model for the graph_ql entity.
 type GraphQl struct {
 	Data *map[string]any `json:"data,omitempty"`
-	Error *[]any `json:"error,omitempty"`
-	OperationName *string `json:"operation_name,omitempty"`
+	Errors *[]any `json:"errors,omitempty"`
+	OperationName *string `json:"operationName,omitempty"`
 	Query string `json:"query"`
-	Variable *map[string]any `json:"variable,omitempty"`
+	Variables *map[string]any `json:"variables,omitempty"`
 }
 
 // GraphQlCreateData is the typed request payload for GraphQl.CreateTyped.
 type GraphQlCreateData struct {
 	Data *map[string]any `json:"data,omitempty"`
-	Error *[]any `json:"error,omitempty"`
-	OperationName *string `json:"operation_name,omitempty"`
+	Errors *[]any `json:"errors,omitempty"`
+	OperationName *string `json:"operationName,omitempty"`
 	Query string `json:"query"`
-	Variable *map[string]any `json:"variable,omitempty"`
+	Variables *map[string]any `json:"variables,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the
@@ -121,12 +125,26 @@ func asMap(v any) map[string]any {
 	return out
 }
 
-// typedFrom decodes a runtime value (a map[string]any produced by the op
-// pipeline) into a typed model T via a JSON round-trip. On any error it
-// returns the zero value of T; the op's own (value, error) tuple carries the
-// real error.
+// entityData unwraps an entity to its data map.
+//
+// Operations resolve to the ENTITY, not the raw data (see AGENTS.md), and an
+// entity's fields are UNEXPORTED — marshalling one directly yields `{}`, so
+// every typed accessor would silently hand back a zero-valued struct. The
+// typed boundary therefore takes the data hop first.
+func entityData(v any) any {
+	if ent, ok := v.(core.Entity); ok {
+		return ent.Data()
+	}
+	return v
+}
+
+// typedFrom decodes a runtime value (an entity, or the map[string]any the op
+// pipeline produced) into a typed model T via a JSON round-trip. On any error
+// it returns the zero value of T; the op's own (value, error) tuple carries
+// the real error.
 func typedFrom[T any](v any) T {
 	var out T
+	v = entityData(v)
 	if v == nil {
 		return out
 	}
@@ -138,12 +156,20 @@ func typedFrom[T any](v any) T {
 	return out
 }
 
-// typedSliceFrom decodes a runtime list value ([]any of maps) into a typed
-// slice []T via a JSON round-trip, for list ops.
+// typedSliceFrom decodes a runtime list value into a typed slice []T via a
+// JSON round-trip, for list ops. `list` resolves to a slice of ENTITY
+// instances, so each element takes the data hop.
 func typedSliceFrom[T any](v any) []T {
 	var out []T
 	if v == nil {
 		return out
+	}
+	if list, ok := v.([]any); ok {
+		unwrapped := make([]any, 0, len(list))
+		for _, item := range list {
+			unwrapped = append(unwrapped, entityData(item))
+		}
+		v = unwrapped
 	}
 	b, err := json.Marshal(v)
 	if err != nil {

@@ -71,11 +71,11 @@ function get_resource_by_index_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["DUNGEONSANDDRAGONS_TEST_GET_RESOURCE_BY_INDEX_ENTID"] = {},
-    ["DUNGEONSANDDRAGONS_TEST_LIVE"] = "FALSE",
+    ["DUNGEONS_AND_DRAGONS_TEST_GET_RESOURCE_BY_INDEX_ENTID"] = {},
+    ["DUNGEONS_AND_DRAGONS_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["DUNGEONSANDDRAGONS_TEST_LIVE"] == "TRUE"
+  local live = env["DUNGEONS_AND_DRAGONS_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

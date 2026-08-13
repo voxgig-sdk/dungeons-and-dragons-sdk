@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ DungeonsAndDragonsUtility.registrar = ->(u) {
   u.prepare_params = DungeonsAndDragonsUtilities::PrepareParams
   u.prepare_path = DungeonsAndDragonsUtilities::PreparePath
   u.prepare_query = DungeonsAndDragonsUtilities::PrepareQuery
+  u.graphql_body = DungeonsAndDragonsUtilities::GraphqlBody
+  u.graphql_errors = DungeonsAndDragonsUtilities::GraphqlErrors
   u.result_basic = DungeonsAndDragonsUtilities::ResultBasic
   u.result_body = DungeonsAndDragonsUtilities::ResultBody
   u.result_headers = DungeonsAndDragonsUtilities::ResultHeaders

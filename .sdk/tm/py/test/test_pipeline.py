@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import DungeonsAndDragonsSDK
-from core.error import DungeonsAndDragonsError
-from core.result import DungeonsAndDragonsResult
-from core.response import DungeonsAndDragonsResponse
-from core.spec import DungeonsAndDragonsSpec
-from feature.base_feature import DungeonsAndDragonsBaseFeature
+from projectname_sdk.core.error import DungeonsAndDragonsError
+from projectname_sdk.core.result import DungeonsAndDragonsResult
+from projectname_sdk.core.response import DungeonsAndDragonsResponse
+from projectname_sdk.core.spec import DungeonsAndDragonsSpec
+from projectname_sdk.feature.base_feature import DungeonsAndDragonsBaseFeature
 
 
 def _client():

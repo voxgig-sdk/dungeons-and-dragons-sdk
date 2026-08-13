@@ -7,58 +7,58 @@
 -- edit by hand.
 
 ---@class GetApiRoot
----@field ability_score? string
----@field alignment? string
----@field background? string
----@field class? string
----@field condition? string
----@field damage_type? string
+---@field abilityscores? string
+---@field alignments? string
+---@field backgrounds? string
+---@field classes? string
+---@field conditions? string
+---@field damagetypes? string
 ---@field equipment? string
----@field equipment_category? string
----@field feat? string
----@field feature? string
+---@field equipmentcategories? string
+---@field feats? string
+---@field features? string
 ---@field key? string
----@field language? string
----@field magic_item? string
----@field magic_school? string
----@field monster? string
----@field proficiency? string
----@field race? string
----@field rule? string
----@field rule_section? string
----@field skill? string
----@field spell? string
----@field subclass? string
----@field subrace? string
----@field trait? string
----@field weapon_property? string
+---@field languages? string
+---@field magicitems? string
+---@field magicschools? string
+---@field monsters? string
+---@field proficiencies? string
+---@field races? string
+---@field rules? string
+---@field rulesections? string
+---@field skills? string
+---@field spells? string
+---@field subclasses? string
+---@field subraces? string
+---@field traits? string
+---@field weaponproperties? string
 
 ---@class GetApiRootLoadMatch
----@field ability_score? string
----@field alignment? string
----@field background? string
----@field class? string
----@field condition? string
----@field damage_type? string
+---@field abilityscores? string
+---@field alignments? string
+---@field backgrounds? string
+---@field classes? string
+---@field conditions? string
+---@field damagetypes? string
 ---@field equipment? string
----@field equipment_category? string
----@field feat? string
----@field feature? string
+---@field equipmentcategories? string
+---@field feats? string
+---@field features? string
 ---@field key? string
----@field language? string
----@field magic_item? string
----@field magic_school? string
----@field monster? string
----@field proficiency? string
----@field race? string
----@field rule? string
----@field rule_section? string
----@field skill? string
----@field spell? string
----@field subclass? string
----@field subrace? string
----@field trait? string
----@field weapon_property? string
+---@field languages? string
+---@field magicitems? string
+---@field magicschools? string
+---@field monsters? string
+---@field proficiencies? string
+---@field races? string
+---@field rules? string
+---@field rulesections? string
+---@field skills? string
+---@field spells? string
+---@field subclasses? string
+---@field subraces? string
+---@field traits? string
+---@field weaponproperties? string
 
 ---@class GetResourceByIndex
 ---@field index? string
@@ -79,17 +79,17 @@
 
 ---@class GraphQl
 ---@field data? table
----@field error? table
----@field operation_name? string
+---@field errors? table
+---@field operationName? string
 ---@field query string
----@field variable? table
+---@field variables? table
 
 ---@class GraphQlCreateData
 ---@field data? table
----@field error? table
----@field operation_name? string
+---@field errors? table
+---@field operationName? string
 ---@field query string
----@field variable? table
+---@field variables? table
 
 local M = {}
 

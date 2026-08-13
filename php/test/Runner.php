@@ -43,8 +43,8 @@ class DungeonsAndDragonsTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('DUNGEONSANDDRAGONS_TEST_LIVE');
-        $override = self::getenv('DUNGEONSANDDRAGONS_TEST_OVERRIDE');
+        $live = self::getenv('DUNGEONS_AND_DRAGONS_TEST_LIVE');
+        $override = self::getenv('DUNGEONS_AND_DRAGONS_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class DungeonsAndDragonsTestRunner
             }
         }
 
-        $explain = self::getenv('DUNGEONSANDDRAGONS_TEST_EXPLAIN');
+        $explain = self::getenv('DUNGEONS_AND_DRAGONS_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['DUNGEONSANDDRAGONS_TEST_EXPLAIN'] = $explain;
+            $m['DUNGEONS_AND_DRAGONS_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

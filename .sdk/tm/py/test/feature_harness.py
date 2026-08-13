@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import DungeonsAndDragonsControl
-from core.error import DungeonsAndDragonsError
-from core.result import DungeonsAndDragonsResult
-from core.spec import DungeonsAndDragonsSpec
+from projectname_sdk.config import make_config
+from projectname_sdk.features import _make_feature
+from projectname_sdk.core.control import DungeonsAndDragonsControl
+from projectname_sdk.core.error import DungeonsAndDragonsError
+from projectname_sdk.core.result import DungeonsAndDragonsResult
+from projectname_sdk.core.spec import DungeonsAndDragonsSpec
 
 
 # True when this SDK was generated with the named feature.

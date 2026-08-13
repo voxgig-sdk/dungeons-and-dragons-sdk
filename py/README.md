@@ -38,7 +38,7 @@ client = DungeonsAndDragonsSDK()
 
 ### 3. Load a getapiroot
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -55,10 +55,10 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    getapiroot = client.GetApiRoot().load()
-    print(getapiroot)
+    getresourcelists = client.GetResourceList().list()
+    print(getresourcelists)
 except Exception as err:
-    print(f"load failed: {err}")
+    print(f"list failed: {err}")
 ```
 
 `direct()` does **not** raise — it returns the result envelope. Branch
@@ -122,9 +122,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = DungeonsAndDragonsSDK.test()
 
-# Entity ops return the bare record and raise on error.
-getapiroot = client.GetApiRoot().load()
-# getapiroot contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+getresourcelist = client.GetResourceList().list()
+# getresourcelist contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -223,7 +224,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -245,31 +246,31 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `ability_score` |  |
-| `alignment` |  |
-| `background` |  |
-| `class` |  |
-| `condition` |  |
-| `damage_type` |  |
+| `abilityscores` |  |
+| `alignments` |  |
+| `backgrounds` |  |
+| `classes` |  |
+| `conditions` |  |
+| `damagetypes` |  |
 | `equipment` |  |
-| `equipment_category` |  |
-| `feat` |  |
-| `feature` |  |
+| `equipmentcategories` |  |
+| `feats` |  |
+| `features` |  |
 | `key` |  |
-| `language` |  |
-| `magic_item` |  |
-| `magic_school` |  |
-| `monster` |  |
-| `proficiency` |  |
-| `race` |  |
-| `rule` |  |
-| `rule_section` |  |
-| `skill` |  |
-| `spell` |  |
-| `subclass` |  |
-| `subrace` |  |
-| `trait` |  |
-| `weapon_property` |  |
+| `languages` |  |
+| `magicitems` |  |
+| `magicschools` |  |
+| `monsters` |  |
+| `proficiencies` |  |
+| `races` |  |
+| `rules` |  |
+| `rulesections` |  |
+| `skills` |  |
+| `spells` |  |
+| `subclasses` |  |
+| `subraces` |  |
+| `traits` |  |
+| `weaponproperties` |  |
 
 Operations: Load.
 
@@ -304,10 +305,10 @@ API path: `/{resource}`
 | Field | Description |
 | --- | --- |
 | `data` |  |
-| `error` |  |
-| `operation_name` |  |
+| `errors` |  |
+| `operationName` |  |
 | `query` |  |
-| `variable` |  |
+| `variables` |  |
 
 Operations: Create.
 
@@ -332,31 +333,31 @@ Create an instance: `get_api_root = client.GetApiRoot()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ability_score` | `str` |  |
-| `alignment` | `str` |  |
-| `background` | `str` |  |
-| `class` | `str` |  |
-| `condition` | `str` |  |
-| `damage_type` | `str` |  |
+| `abilityscores` | `str` |  |
+| `alignments` | `str` |  |
+| `backgrounds` | `str` |  |
+| `classes` | `str` |  |
+| `conditions` | `str` |  |
+| `damagetypes` | `str` |  |
 | `equipment` | `str` |  |
-| `equipment_category` | `str` |  |
-| `feat` | `str` |  |
-| `feature` | `str` |  |
+| `equipmentcategories` | `str` |  |
+| `feats` | `str` |  |
+| `features` | `str` |  |
 | `key` | `str` |  |
-| `language` | `str` |  |
-| `magic_item` | `str` |  |
-| `magic_school` | `str` |  |
-| `monster` | `str` |  |
-| `proficiency` | `str` |  |
-| `race` | `str` |  |
-| `rule` | `str` |  |
-| `rule_section` | `str` |  |
-| `skill` | `str` |  |
-| `spell` | `str` |  |
-| `subclass` | `str` |  |
-| `subrace` | `str` |  |
-| `trait` | `str` |  |
-| `weapon_property` | `str` |  |
+| `languages` | `str` |  |
+| `magicitems` | `str` |  |
+| `magicschools` | `str` |  |
+| `monsters` | `str` |  |
+| `proficiencies` | `str` |  |
+| `races` | `str` |  |
+| `rules` | `str` |  |
+| `rulesections` | `str` |  |
+| `skills` | `str` |  |
+| `spells` | `str` |  |
+| `subclasses` | `str` |  |
+| `subraces` | `str` |  |
+| `traits` | `str` |  |
+| `weaponproperties` | `str` |  |
 
 #### Example: Load
 
@@ -411,7 +412,7 @@ Create an instance: `get_resource_list = client.GetResourceList()`
 #### Example: List
 
 ```python
-get_resource_lists = client.GetResourceList().list()
+get_resource_lists = client.GetResourceList().list({"id": "example"})
 ```
 
 
@@ -430,10 +431,10 @@ Create an instance: `graph_ql = client.GraphQl()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `data` | `dict` |  |
-| `error` | `list` |  |
-| `operation_name` | `str` |  |
+| `errors` | `list` |  |
+| `operationName` | `str` |  |
 | `query` | `str` |  |
-| `variable` | `dict` |  |
+| `variables` | `dict` |  |
 
 #### Example: Create
 
@@ -515,15 +516,15 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-getapiroot = client.GetApiRoot()
-getapiroot.load()
+getresourcelist = client.GetResourceList()
+getresourcelist.list()
 
-# getapiroot.data_get() now returns the getapiroot data from the last load
-# getapiroot.match_get() returns the last match criteria
+# getresourcelist.data_get() now returns the getresourcelist data from the last list
+# getresourcelist.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

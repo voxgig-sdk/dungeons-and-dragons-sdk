@@ -6,59 +6,59 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface GetApiRoot {
-  ability_score?: string
-  alignment?: string
-  background?: string
-  class?: string
-  condition?: string
-  damage_type?: string
+  abilityscores?: string
+  alignments?: string
+  backgrounds?: string
+  classes?: string
+  conditions?: string
+  damagetypes?: string
   equipment?: string
-  equipment_category?: string
-  feat?: string
-  feature?: string
+  equipmentcategories?: string
+  feats?: string
+  features?: string
   key?: string
-  language?: string
-  magic_item?: string
-  magic_school?: string
-  monster?: string
-  proficiency?: string
-  race?: string
-  rule?: string
-  rule_section?: string
-  skill?: string
-  spell?: string
-  subclass?: string
-  subrace?: string
-  trait?: string
-  weapon_property?: string
+  languages?: string
+  magicitems?: string
+  magicschools?: string
+  monsters?: string
+  proficiencies?: string
+  races?: string
+  rules?: string
+  rulesections?: string
+  skills?: string
+  spells?: string
+  subclasses?: string
+  subraces?: string
+  traits?: string
+  weaponproperties?: string
 }
 
 export interface GetApiRootLoadMatch {
-  ability_score?: string
-  alignment?: string
-  background?: string
-  class?: string
-  condition?: string
-  damage_type?: string
+  abilityscores?: string
+  alignments?: string
+  backgrounds?: string
+  classes?: string
+  conditions?: string
+  damagetypes?: string
   equipment?: string
-  equipment_category?: string
-  feat?: string
-  feature?: string
+  equipmentcategories?: string
+  feats?: string
+  features?: string
   key?: string
-  language?: string
-  magic_item?: string
-  magic_school?: string
-  monster?: string
-  proficiency?: string
-  race?: string
-  rule?: string
-  rule_section?: string
-  skill?: string
-  spell?: string
-  subclass?: string
-  subrace?: string
-  trait?: string
-  weapon_property?: string
+  languages?: string
+  magicitems?: string
+  magicschools?: string
+  monsters?: string
+  proficiencies?: string
+  races?: string
+  rules?: string
+  rulesections?: string
+  skills?: string
+  spells?: string
+  subclasses?: string
+  subraces?: string
+  traits?: string
+  weaponproperties?: string
 }
 
 export interface GetResourceByIndex {
@@ -84,17 +84,17 @@ export interface GetResourceListListMatch {
 
 export interface GraphQl {
   data?: Record<string, any>
-  error?: any[]
-  operation_name?: string
+  errors?: any[]
+  operationName?: string
   query: string
-  variable?: Record<string, any>
+  variables?: Record<string, any>
 }
 
 export interface GraphQlCreateData {
   data?: Record<string, any>
-  error?: any[]
-  operation_name?: string
+  errors?: any[]
+  operationName?: string
   query: string
-  variable?: Record<string, any>
+  variables?: Record<string, any>
 }
 

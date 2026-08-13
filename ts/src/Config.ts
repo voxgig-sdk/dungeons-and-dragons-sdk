@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'DungeonsAndDragons',
   }
 
 
@@ -65,42 +65,42 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "ability_score",
+          "name": "abilityscores",
           "req": false,
           "type": "`$STRING`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "alignment",
+          "name": "alignments",
           "req": false,
           "type": "`$STRING`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "background",
+          "name": "backgrounds",
           "req": false,
           "type": "`$STRING`",
           "index$": 2
         },
         {
           "active": true,
-          "name": "class",
+          "name": "classes",
           "req": false,
           "type": "`$STRING`",
           "index$": 3
         },
         {
           "active": true,
-          "name": "condition",
+          "name": "conditions",
           "req": false,
           "type": "`$STRING`",
           "index$": 4
         },
         {
           "active": true,
-          "name": "damage_type",
+          "name": "damagetypes",
           "req": false,
           "type": "`$STRING`",
           "index$": 5
@@ -114,21 +114,21 @@ class Config {
         },
         {
           "active": true,
-          "name": "equipment_category",
+          "name": "equipmentcategories",
           "req": false,
           "type": "`$STRING`",
           "index$": 7
         },
         {
           "active": true,
-          "name": "feat",
+          "name": "feats",
           "req": false,
           "type": "`$STRING`",
           "index$": 8
         },
         {
           "active": true,
-          "name": "feature",
+          "name": "features",
           "req": false,
           "type": "`$STRING`",
           "index$": 9
@@ -142,98 +142,98 @@ class Config {
         },
         {
           "active": true,
-          "name": "language",
+          "name": "languages",
           "req": false,
           "type": "`$STRING`",
           "index$": 11
         },
         {
           "active": true,
-          "name": "magic_item",
+          "name": "magicitems",
           "req": false,
           "type": "`$STRING`",
           "index$": 12
         },
         {
           "active": true,
-          "name": "magic_school",
+          "name": "magicschools",
           "req": false,
           "type": "`$STRING`",
           "index$": 13
         },
         {
           "active": true,
-          "name": "monster",
+          "name": "monsters",
           "req": false,
           "type": "`$STRING`",
           "index$": 14
         },
         {
           "active": true,
-          "name": "proficiency",
+          "name": "proficiencies",
           "req": false,
           "type": "`$STRING`",
           "index$": 15
         },
         {
           "active": true,
-          "name": "race",
+          "name": "races",
           "req": false,
           "type": "`$STRING`",
           "index$": 16
         },
         {
           "active": true,
-          "name": "rule",
+          "name": "rules",
           "req": false,
           "type": "`$STRING`",
           "index$": 17
         },
         {
           "active": true,
-          "name": "rule_section",
+          "name": "rulesections",
           "req": false,
           "type": "`$STRING`",
           "index$": 18
         },
         {
           "active": true,
-          "name": "skill",
+          "name": "skills",
           "req": false,
           "type": "`$STRING`",
           "index$": 19
         },
         {
           "active": true,
-          "name": "spell",
+          "name": "spells",
           "req": false,
           "type": "`$STRING`",
           "index$": 20
         },
         {
           "active": true,
-          "name": "subclass",
+          "name": "subclasses",
           "req": false,
           "type": "`$STRING`",
           "index$": 21
         },
         {
           "active": true,
-          "name": "subrace",
+          "name": "subraces",
           "req": false,
           "type": "`$STRING`",
           "index$": 22
         },
         {
           "active": true,
-          "name": "trait",
+          "name": "traits",
           "req": false,
           "type": "`$STRING`",
           "index$": 23
         },
         {
           "active": true,
-          "name": "weapon_property",
+          "name": "weaponproperties",
           "req": false,
           "type": "`$STRING`",
           "index$": 24
@@ -248,6 +248,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/",
               "parts": [],
@@ -320,6 +321,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/{resource}/{index}",
               "parts": [
@@ -391,6 +393,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/{resource}",
               "parts": [
@@ -408,7 +411,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.results`"
               },
               "index$": 0
             }
@@ -431,14 +434,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "error",
+          "name": "errors",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "operation_name",
+          "name": "operationName",
           "req": false,
           "type": "`$STRING`",
           "index$": 2
@@ -452,7 +455,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "variable",
+          "name": "variables",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 4
@@ -467,6 +470,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/graphql",
               "parts": [

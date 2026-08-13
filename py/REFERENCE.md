@@ -99,31 +99,31 @@ get_api_root = client.GetApiRoot()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ability_score` | `str` | No |  |
-| `alignment` | `str` | No |  |
-| `background` | `str` | No |  |
-| `class` | `str` | No |  |
-| `condition` | `str` | No |  |
-| `damage_type` | `str` | No |  |
+| `abilityscores` | `str` | No |  |
+| `alignments` | `str` | No |  |
+| `backgrounds` | `str` | No |  |
+| `classes` | `str` | No |  |
+| `conditions` | `str` | No |  |
+| `damagetypes` | `str` | No |  |
 | `equipment` | `str` | No |  |
-| `equipment_category` | `str` | No |  |
-| `feat` | `str` | No |  |
-| `feature` | `str` | No |  |
+| `equipmentcategories` | `str` | No |  |
+| `feats` | `str` | No |  |
+| `features` | `str` | No |  |
 | `key` | `str` | No |  |
-| `language` | `str` | No |  |
-| `magic_item` | `str` | No |  |
-| `magic_school` | `str` | No |  |
-| `monster` | `str` | No |  |
-| `proficiency` | `str` | No |  |
-| `race` | `str` | No |  |
-| `rule` | `str` | No |  |
-| `rule_section` | `str` | No |  |
-| `skill` | `str` | No |  |
-| `spell` | `str` | No |  |
-| `subclass` | `str` | No |  |
-| `subrace` | `str` | No |  |
-| `trait` | `str` | No |  |
-| `weapon_property` | `str` | No |  |
+| `languages` | `str` | No |  |
+| `magicitems` | `str` | No |  |
+| `magicschools` | `str` | No |  |
+| `monsters` | `str` | No |  |
+| `proficiencies` | `str` | No |  |
+| `races` | `str` | No |  |
+| `rules` | `str` | No |  |
+| `rulesections` | `str` | No |  |
+| `skills` | `str` | No |  |
+| `spells` | `str` | No |  |
+| `subclasses` | `str` | No |  |
+| `subraces` | `str` | No |  |
+| `traits` | `str` | No |  |
+| `weaponproperties` | `str` | No |  |
 
 ### Operations
 
@@ -238,7 +238,7 @@ get_resource_list = client.GetResourceList()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.GetResourceList().list()
+results = client.GetResourceList().list({"id": "example"})
 for get_resource_list in results:
     print(get_resource_list)
 ```
@@ -283,10 +283,10 @@ graph_ql = client.GraphQl()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `dict` | No |  |
-| `error` | `list` | No |  |
-| `operation_name` | `str` | No |  |
+| `errors` | `list` | No |  |
+| `operationName` | `str` | No |  |
 | `query` | `str` | Yes |  |
-| `variable` | `dict` | No |  |
+| `variables` | `dict` | No |  |
 
 ### Operations
 

@@ -48,7 +48,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local getapiroot, err = client:GetApiRoot():load()
+local getresourcelists, err = client:GetResourceList():list()
 if err then error(err) end
 ```
 
@@ -106,7 +106,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:GetApiRoot():load()
+local result, err = client:GetResourceList():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -231,31 +231,31 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `ability_score` |  |
-| `alignment` |  |
-| `background` |  |
-| `class` |  |
-| `condition` |  |
-| `damage_type` |  |
+| `abilityscores` |  |
+| `alignments` |  |
+| `backgrounds` |  |
+| `classes` |  |
+| `conditions` |  |
+| `damagetypes` |  |
 | `equipment` |  |
-| `equipment_category` |  |
-| `feat` |  |
-| `feature` |  |
+| `equipmentcategories` |  |
+| `feats` |  |
+| `features` |  |
 | `key` |  |
-| `language` |  |
-| `magic_item` |  |
-| `magic_school` |  |
-| `monster` |  |
-| `proficiency` |  |
-| `race` |  |
-| `rule` |  |
-| `rule_section` |  |
-| `skill` |  |
-| `spell` |  |
-| `subclass` |  |
-| `subrace` |  |
-| `trait` |  |
-| `weapon_property` |  |
+| `languages` |  |
+| `magicitems` |  |
+| `magicschools` |  |
+| `monsters` |  |
+| `proficiencies` |  |
+| `races` |  |
+| `rules` |  |
+| `rulesections` |  |
+| `skills` |  |
+| `spells` |  |
+| `subclasses` |  |
+| `subraces` |  |
+| `traits` |  |
+| `weaponproperties` |  |
 
 Operations: Load.
 
@@ -290,10 +290,10 @@ API path: `/{resource}`
 | Field | Description |
 | --- | --- |
 | `data` |  |
-| `error` |  |
-| `operation_name` |  |
+| `errors` |  |
+| `operationName` |  |
 | `query` |  |
-| `variable` |  |
+| `variables` |  |
 
 Operations: Create.
 
@@ -318,31 +318,31 @@ Create an instance: `local get_api_root = client:GetApiRoot(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ability_score` | `string` |  |
-| `alignment` | `string` |  |
-| `background` | `string` |  |
-| `class` | `string` |  |
-| `condition` | `string` |  |
-| `damage_type` | `string` |  |
+| `abilityscores` | `string` |  |
+| `alignments` | `string` |  |
+| `backgrounds` | `string` |  |
+| `classes` | `string` |  |
+| `conditions` | `string` |  |
+| `damagetypes` | `string` |  |
 | `equipment` | `string` |  |
-| `equipment_category` | `string` |  |
-| `feat` | `string` |  |
-| `feature` | `string` |  |
+| `equipmentcategories` | `string` |  |
+| `feats` | `string` |  |
+| `features` | `string` |  |
 | `key` | `string` |  |
-| `language` | `string` |  |
-| `magic_item` | `string` |  |
-| `magic_school` | `string` |  |
-| `monster` | `string` |  |
-| `proficiency` | `string` |  |
-| `race` | `string` |  |
-| `rule` | `string` |  |
-| `rule_section` | `string` |  |
-| `skill` | `string` |  |
-| `spell` | `string` |  |
-| `subclass` | `string` |  |
-| `subrace` | `string` |  |
-| `trait` | `string` |  |
-| `weapon_property` | `string` |  |
+| `languages` | `string` |  |
+| `magicitems` | `string` |  |
+| `magicschools` | `string` |  |
+| `monsters` | `string` |  |
+| `proficiencies` | `string` |  |
+| `races` | `string` |  |
+| `rules` | `string` |  |
+| `rulesections` | `string` |  |
+| `skills` | `string` |  |
+| `spells` | `string` |  |
+| `subclasses` | `string` |  |
+| `subraces` | `string` |  |
+| `traits` | `string` |  |
+| `weaponproperties` | `string` |  |
 
 #### Example: Load
 
@@ -416,10 +416,10 @@ Create an instance: `local graph_ql = client:GraphQl(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `data` | `table` |  |
-| `error` | `table` |  |
-| `operation_name` | `string` |  |
+| `errors` | `table` |  |
+| `operationName` | `string` |  |
 | `query` | `string` |  |
-| `variable` | `table` |  |
+| `variables` | `table` |  |
 
 #### Example: Create
 
@@ -502,15 +502,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local getapiroot = client:GetApiRoot()
-getapiroot:load()
+local getresourcelist = client:GetResourceList()
+getresourcelist:list()
 
--- getapiroot:data_get() now returns the getapiroot data from the last load
--- getapiroot:match_get() returns the last match criteria
+-- getresourcelist:data_get() now returns the getresourcelist data from the last list
+-- getresourcelist:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

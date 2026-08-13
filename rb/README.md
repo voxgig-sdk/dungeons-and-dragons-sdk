@@ -34,7 +34,7 @@ client = DungeonsAndDragonsSDK.new
 
 ```ruby
 begin
-  # load returns the bare GetApiRoot record (raises on error).
+  # load returns the ENTITY — call data_get for the GetApiRoot record (raises on error).
   getapiroot = client.GetApiRoot.load()
   puts getapiroot
 rescue => err
@@ -49,9 +49,9 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  getapiroot = client.GetApiRoot.load()
+  getresourcelists = client.GetResourceList.list()
 rescue => err
-  warn "load failed: #{err}"
+  warn "list failed: #{err}"
 end
 ```
 
@@ -117,9 +117,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = DungeonsAndDragonsSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-getapiroot = client.GetApiRoot.load()
-puts getapiroot
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+getresourcelist = client.GetResourceList.list()
+puts getresourcelist
 ```
 
 ### Use a custom fetch function
@@ -239,31 +240,31 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `ability_score` |  |
-| `alignment` |  |
-| `background` |  |
-| `class` |  |
-| `condition` |  |
-| `damage_type` |  |
+| `abilityscores` |  |
+| `alignments` |  |
+| `backgrounds` |  |
+| `classes` |  |
+| `conditions` |  |
+| `damagetypes` |  |
 | `equipment` |  |
-| `equipment_category` |  |
-| `feat` |  |
-| `feature` |  |
+| `equipmentcategories` |  |
+| `feats` |  |
+| `features` |  |
 | `key` |  |
-| `language` |  |
-| `magic_item` |  |
-| `magic_school` |  |
-| `monster` |  |
-| `proficiency` |  |
-| `race` |  |
-| `rule` |  |
-| `rule_section` |  |
-| `skill` |  |
-| `spell` |  |
-| `subclass` |  |
-| `subrace` |  |
-| `trait` |  |
-| `weapon_property` |  |
+| `languages` |  |
+| `magicitems` |  |
+| `magicschools` |  |
+| `monsters` |  |
+| `proficiencies` |  |
+| `races` |  |
+| `rules` |  |
+| `rulesections` |  |
+| `skills` |  |
+| `spells` |  |
+| `subclasses` |  |
+| `subraces` |  |
+| `traits` |  |
+| `weaponproperties` |  |
 
 Operations: Load.
 
@@ -298,10 +299,10 @@ API path: `/{resource}`
 | Field | Description |
 | --- | --- |
 | `data` |  |
-| `error` |  |
-| `operation_name` |  |
+| `errors` |  |
+| `operationName` |  |
 | `query` |  |
-| `variable` |  |
+| `variables` |  |
 
 Operations: Create.
 
@@ -326,36 +327,36 @@ Create an instance: `get_api_root = client.GetApiRoot`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ability_score` | `String` |  |
-| `alignment` | `String` |  |
-| `background` | `String` |  |
-| `class` | `String` |  |
-| `condition` | `String` |  |
-| `damage_type` | `String` |  |
+| `abilityscores` | `String` |  |
+| `alignments` | `String` |  |
+| `backgrounds` | `String` |  |
+| `classes` | `String` |  |
+| `conditions` | `String` |  |
+| `damagetypes` | `String` |  |
 | `equipment` | `String` |  |
-| `equipment_category` | `String` |  |
-| `feat` | `String` |  |
-| `feature` | `String` |  |
+| `equipmentcategories` | `String` |  |
+| `feats` | `String` |  |
+| `features` | `String` |  |
 | `key` | `String` |  |
-| `language` | `String` |  |
-| `magic_item` | `String` |  |
-| `magic_school` | `String` |  |
-| `monster` | `String` |  |
-| `proficiency` | `String` |  |
-| `race` | `String` |  |
-| `rule` | `String` |  |
-| `rule_section` | `String` |  |
-| `skill` | `String` |  |
-| `spell` | `String` |  |
-| `subclass` | `String` |  |
-| `subrace` | `String` |  |
-| `trait` | `String` |  |
-| `weapon_property` | `String` |  |
+| `languages` | `String` |  |
+| `magicitems` | `String` |  |
+| `magicschools` | `String` |  |
+| `monsters` | `String` |  |
+| `proficiencies` | `String` |  |
+| `races` | `String` |  |
+| `rules` | `String` |  |
+| `rulesections` | `String` |  |
+| `skills` | `String` |  |
+| `spells` | `String` |  |
+| `subclasses` | `String` |  |
+| `subraces` | `String` |  |
+| `traits` | `String` |  |
+| `weaponproperties` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare GetApiRoot record (raises on error).
+# load returns the ENTITY — call data_get for the GetApiRoot record (raises on error).
 get_api_root = client.GetApiRoot.load()
 ```
 
@@ -381,7 +382,7 @@ Create an instance: `get_resource_by_index = client.GetResourceByIndex`
 #### Example: Load
 
 ```ruby
-# load returns the bare GetResourceByIndex record (raises on error).
+# load returns the ENTITY — call data_get for the GetResourceByIndex record (raises on error).
 get_resource_by_index = client.GetResourceByIndex.load({ "index" => "index", "resource" => "resource" })
 ```
 
@@ -427,10 +428,10 @@ Create an instance: `graph_ql = client.GraphQl`
 | Field | Type | Description |
 | --- | --- | --- |
 | `data` | `Hash` |  |
-| `error` | `Array` |  |
-| `operation_name` | `String` |  |
+| `errors` | `Array` |  |
+| `operationName` | `String` |  |
 | `query` | `String` |  |
-| `variable` | `Hash` |  |
+| `variables` | `Hash` |  |
 
 #### Example: Create
 
@@ -513,15 +514,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-getapiroot = client.GetApiRoot
-getapiroot.load()
+getresourcelist = client.GetResourceList
+getresourcelist.list()
 
-# getapiroot.data_get now returns the getapiroot data from the last load
-# getapiroot.match_get returns the last match criteria
+# getresourcelist.data_get now returns the getresourcelist data from the last list
+# getresourcelist.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

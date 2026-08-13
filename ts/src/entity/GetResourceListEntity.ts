@@ -37,7 +37,7 @@ class GetResourceListEntity extends DungeonsAndDragonsEntityBase<GetResourceList
 
 
 
-  async list(this: any, reqmatch?: GetResourceListListMatch, ctrl?: Control): Promise<GetResourceList[]> {
+  async list(this: any, reqmatch?: GetResourceListListMatch, ctrl?: Control): Promise<GetResourceListEntity[]> {
 
     const utility = this._utility
 

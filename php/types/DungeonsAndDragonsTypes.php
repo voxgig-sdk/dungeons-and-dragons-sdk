@@ -15,61 +15,61 @@ declare(strict_types=1);
 /** GetApiRoot entity data model. */
 class GetApiRoot
 {
-    public ?string $ability_score = null;
-    public ?string $alignment = null;
-    public ?string $background = null;
-    public ?string $class = null;
-    public ?string $condition = null;
-    public ?string $damage_type = null;
+    public ?string $abilityscores = null;
+    public ?string $alignments = null;
+    public ?string $backgrounds = null;
+    public ?string $classes = null;
+    public ?string $conditions = null;
+    public ?string $damagetypes = null;
     public ?string $equipment = null;
-    public ?string $equipment_category = null;
-    public ?string $feat = null;
-    public ?string $feature = null;
+    public ?string $equipmentcategories = null;
+    public ?string $feats = null;
+    public ?string $features = null;
     public ?string $key = null;
-    public ?string $language = null;
-    public ?string $magic_item = null;
-    public ?string $magic_school = null;
-    public ?string $monster = null;
-    public ?string $proficiency = null;
-    public ?string $race = null;
-    public ?string $rule = null;
-    public ?string $rule_section = null;
-    public ?string $skill = null;
-    public ?string $spell = null;
-    public ?string $subclass = null;
-    public ?string $subrace = null;
-    public ?string $trait = null;
-    public ?string $weapon_property = null;
+    public ?string $languages = null;
+    public ?string $magicitems = null;
+    public ?string $magicschools = null;
+    public ?string $monsters = null;
+    public ?string $proficiencies = null;
+    public ?string $races = null;
+    public ?string $rules = null;
+    public ?string $rulesections = null;
+    public ?string $skills = null;
+    public ?string $spells = null;
+    public ?string $subclasses = null;
+    public ?string $subraces = null;
+    public ?string $traits = null;
+    public ?string $weaponproperties = null;
 }
 
 /** Request payload for GetApiRoot#load. */
 class GetApiRootLoadMatch
 {
-    public ?string $ability_score = null;
-    public ?string $alignment = null;
-    public ?string $background = null;
-    public ?string $class = null;
-    public ?string $condition = null;
-    public ?string $damage_type = null;
+    public ?string $abilityscores = null;
+    public ?string $alignments = null;
+    public ?string $backgrounds = null;
+    public ?string $classes = null;
+    public ?string $conditions = null;
+    public ?string $damagetypes = null;
     public ?string $equipment = null;
-    public ?string $equipment_category = null;
-    public ?string $feat = null;
-    public ?string $feature = null;
+    public ?string $equipmentcategories = null;
+    public ?string $feats = null;
+    public ?string $features = null;
     public ?string $key = null;
-    public ?string $language = null;
-    public ?string $magic_item = null;
-    public ?string $magic_school = null;
-    public ?string $monster = null;
-    public ?string $proficiency = null;
-    public ?string $race = null;
-    public ?string $rule = null;
-    public ?string $rule_section = null;
-    public ?string $skill = null;
-    public ?string $spell = null;
-    public ?string $subclass = null;
-    public ?string $subrace = null;
-    public ?string $trait = null;
-    public ?string $weapon_property = null;
+    public ?string $languages = null;
+    public ?string $magicitems = null;
+    public ?string $magicschools = null;
+    public ?string $monsters = null;
+    public ?string $proficiencies = null;
+    public ?string $races = null;
+    public ?string $rules = null;
+    public ?string $rulesections = null;
+    public ?string $skills = null;
+    public ?string $spells = null;
+    public ?string $subclasses = null;
+    public ?string $subraces = null;
+    public ?string $traits = null;
+    public ?string $weaponproperties = null;
 }
 
 /** GetResourceByIndex entity data model. */
@@ -105,19 +105,19 @@ class GetResourceListListMatch
 class GraphQl
 {
     public ?array $data = null;
-    public ?array $error = null;
-    public ?string $operation_name = null;
+    public ?array $errors = null;
+    public ?string $operationName = null;
     public string $query;
-    public ?array $variable = null;
+    public ?array $variables = null;
 }
 
 /** Request payload for GraphQl#create. */
 class GraphQlCreateData
 {
     public ?array $data = null;
-    public ?array $error = null;
-    public ?string $operation_name = null;
+    public ?array $errors = null;
+    public ?string $operationName = null;
     public string $query;
-    public ?array $variable = null;
+    public ?array $variables = null;
 }
 

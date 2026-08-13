@@ -104,31 +104,31 @@ $get_api_root = $client->GetApiRoot();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ability_score` | `string` | No |  |
-| `alignment` | `string` | No |  |
-| `background` | `string` | No |  |
-| `class` | `string` | No |  |
-| `condition` | `string` | No |  |
-| `damage_type` | `string` | No |  |
+| `abilityscores` | `string` | No |  |
+| `alignments` | `string` | No |  |
+| `backgrounds` | `string` | No |  |
+| `classes` | `string` | No |  |
+| `conditions` | `string` | No |  |
+| `damagetypes` | `string` | No |  |
 | `equipment` | `string` | No |  |
-| `equipment_category` | `string` | No |  |
-| `feat` | `string` | No |  |
-| `feature` | `string` | No |  |
+| `equipmentcategories` | `string` | No |  |
+| `feats` | `string` | No |  |
+| `features` | `string` | No |  |
 | `key` | `string` | No |  |
-| `language` | `string` | No |  |
-| `magic_item` | `string` | No |  |
-| `magic_school` | `string` | No |  |
-| `monster` | `string` | No |  |
-| `proficiency` | `string` | No |  |
-| `race` | `string` | No |  |
-| `rule` | `string` | No |  |
-| `rule_section` | `string` | No |  |
-| `skill` | `string` | No |  |
-| `spell` | `string` | No |  |
-| `subclass` | `string` | No |  |
-| `subrace` | `string` | No |  |
-| `trait` | `string` | No |  |
-| `weapon_property` | `string` | No |  |
+| `languages` | `string` | No |  |
+| `magicitems` | `string` | No |  |
+| `magicschools` | `string` | No |  |
+| `monsters` | `string` | No |  |
+| `proficiencies` | `string` | No |  |
+| `races` | `string` | No |  |
+| `rules` | `string` | No |  |
+| `rulesections` | `string` | No |  |
+| `skills` | `string` | No |  |
+| `spells` | `string` | No |  |
+| `subclasses` | `string` | No |  |
+| `subraces` | `string` | No |  |
+| `traits` | `string` | No |  |
+| `weaponproperties` | `string` | No |  |
 
 ### Operations
 
@@ -281,7 +281,7 @@ Return the entity name.
 ## GraphQlEntity
 
 ```php
-$graph_ql = $client->GraphQl();
+$graph_ql = $client->GraphQl_();
 ```
 
 ### Fields
@@ -289,10 +289,10 @@ $graph_ql = $client->GraphQl();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `array` | No |  |
-| `error` | `array` | No |  |
-| `operation_name` | `string` | No |  |
+| `errors` | `array` | No |  |
+| `operationName` | `string` | No |  |
 | `query` | `string` | Yes |  |
-| `variable` | `array` | No |  |
+| `variables` | `array` | No |  |
 
 ### Operations
 
@@ -301,7 +301,7 @@ $graph_ql = $client->GraphQl();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->GraphQl()->create([
+$result = $client->GraphQl_()->create([
   "query" => null, // string
 ]);
 ```

@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = DungeonsAndDragonsSDK.test()
-const getapiroot = await client.GetApiRoot().load()
-// getapiroot is a bare GetApiRoot populated with mock data
-console.log(getapiroot)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = DungeonsAndDragonsSDK.test({
+  entity: {
+    get_resource_list: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const getresourcelists = await client.GetResourceList().list()
+// getresourcelists is an array of GetResourceList entities, populated with mock data
+// — call getresourcelists[0].data() for the record itself
+console.log(getresourcelists)
 ```
 
 ### Python
 
 ```python
 client = DungeonsAndDragonsSDK.test()
-getapiroot = client.GetApiRoot().load()
-print(getapiroot)
+getresourcelists = client.GetResourceList().list()
+print(getresourcelists)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(getapiroot)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = DungeonsAndDragonsSDK::test([
-    "entity" => ["getapiroot" => ["test01" => []]],
+    "entity" => ["getresourcelist" => ["test01" => []]],
 ]);
-$getapiroot = $client->GetApiRoot()->load();
+$getresourcelists = $client->GetResourceList()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.GetApiRoot(nil).Load(
+result, err := client.GetResourceList(nil).List(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.GetApiRoot(nil).Load(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = DungeonsAndDragonsSDK.test({
-  "entity" => { "getapiroot" => { "test01" => {} } },
+  "entity" => { "getresourcelist" => { "test01" => {} } },
 })
-getapiroot = client.GetApiRoot.load()
+getresourcelists = client.GetResourceList.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:GetApiRoot():load()
+local results, err = client:GetResourceList():list()
 ```
 
 ## Packages
@@ -185,7 +194,7 @@ require_once 'dungeonsanddragons_sdk.php';
 $client = new DungeonsAndDragonsSDK();
 
 
-// Load a specific getapiroot (returns the bare record; throws on error)
+// Load a specific getapiroot (returns the ENTITY; call data_get() for the record; throws on error)
 $getapiroot = $client->GetApiRoot()->load();
 print_r($getapiroot);
 ```
@@ -213,7 +222,7 @@ require_relative "DungeonsAndDragons_sdk"
 client = DungeonsAndDragonsSDK.new
 
 
-# Load a specific getapiroot (returns the bare record; raises on error)
+# Load a specific getapiroot (returns the ENTITY; call data_get for the record)
 getapiroot = client.GetApiRoot.load()
 puts getapiroot
 ```
@@ -347,6 +356,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://discord.gg/TQuYTv7](https://discord.gg/TQuYTv7)
 

@@ -26,8 +26,8 @@ import {
 describe('GetResourceByIndexEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when DUNGEONSANDDRAGONS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('DUNGEONSANDDRAGONS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when DUNGEONS_AND_DRAGONS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('DUNGEONS_AND_DRAGONS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = DungeonsAndDragonsSDK.test()

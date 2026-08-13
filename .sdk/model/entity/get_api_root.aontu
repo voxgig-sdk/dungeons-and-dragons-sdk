@@ -6,32 +6,32 @@ main: kit: entity: get_api_root: {
 
   fields: [
     {
-      name: "ability_score"
+      name: "abilityscores"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "alignment"
+      name: "alignments"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "background"
+      name: "backgrounds"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "class"
+      name: "classes"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "condition"
+      name: "conditions"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "damage_type"
+      name: "damagetypes"
       req: false
       type: "`$STRING`"
     }
@@ -41,17 +41,17 @@ main: kit: entity: get_api_root: {
       type: "`$STRING`"
     }
     {
-      name: "equipment_category"
+      name: "equipmentcategories"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "feat"
+      name: "feats"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "feature"
+      name: "features"
       req: false
       type: "`$STRING`"
     }
@@ -61,72 +61,72 @@ main: kit: entity: get_api_root: {
       type: "`$STRING`"
     }
     {
-      name: "language"
+      name: "languages"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "magic_item"
+      name: "magicitems"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "magic_school"
+      name: "magicschools"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "monster"
+      name: "monsters"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "proficiency"
+      name: "proficiencies"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "race"
+      name: "races"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "rule"
+      name: "rules"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "rule_section"
+      name: "rulesections"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "skill"
+      name: "skills"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "spell"
+      name: "spells"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "subclass"
+      name: "subclasses"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "subrace"
+      name: "subraces"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "trait"
+      name: "traits"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "weapon_property"
+      name: "weaponproperties"
       req: false
       type: "`$STRING`"
     }

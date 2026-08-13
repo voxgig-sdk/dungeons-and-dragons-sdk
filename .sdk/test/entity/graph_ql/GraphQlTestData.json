@@ -3,26 +3,26 @@
     "graph_ql": {
       "GRAPH_QL00": {
         "data": {},
-        "error": [],
-        "operation_name": "s34",
+        "errors": [],
+        "operationName": "s34",
         "query": "s35",
-        "variable": {},
+        "variables": {},
         "id": "GRAPH_QL00"
       },
       "GRAPH_QL01": {
         "data": {},
-        "error": [],
-        "operation_name": "s66",
+        "errors": [],
+        "operationName": "s66",
         "query": "s67",
-        "variable": {},
+        "variables": {},
         "id": "GRAPH_QL01"
       },
       "GRAPH_QL02": {
         "data": {},
-        "error": [],
-        "operation_name": "s98",
+        "errors": [],
+        "operationName": "s98",
         "query": "s99",
-        "variable": {},
+        "variables": {},
         "id": "GRAPH_QL02"
       }
     }
@@ -31,10 +31,10 @@
     "graph_ql": {
       "graph_ql_ref01": {
         "data": {},
-        "error": [],
-        "operation_name": "sca",
+        "errors": [],
+        "operationName": "sca",
         "query": "scb",
-        "variable": {}
+        "variables": {}
       }
     }
   }

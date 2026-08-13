@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# DungeonsAndDragons SDK exists test
 
 import pytest
 from dungeonsanddragons_sdk import DungeonsAndDragonsSDK

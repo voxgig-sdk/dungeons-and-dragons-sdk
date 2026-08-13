@@ -53,10 +53,10 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const getapiroot = await client.GetApiRoot().load()
-  console.log(getapiroot)
+  const getresourcelists = await client.GetResourceList().list()
+  console.log(getresourcelists)
 } catch (err) {
-  console.error('load failed:', err)
+  console.error('list failed:', err)
 }
 ```
 
@@ -120,9 +120,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = DungeonsAndDragonsSDK.test()
 
-const getapiroot = await client.GetApiRoot().load()
-// getapiroot is a bare entity populated with mock response data
-console.log(getapiroot)
+const getresourcelist = await client.GetResourceList().list()
+// getresourcelist is the entity, populated with mock response data
+// — call getresourcelist.data() for the record itself
+console.log(getresourcelist)
 ```
 
 You can also use the instance method:
@@ -137,10 +138,10 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.GetApiRoot()
+const entity = client.GetResourceList()
 
 // First call runs the operation and stores its result
-await entity.load()
+await entity.list()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -291,31 +292,31 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `ability_score` |  |
-| `alignment` |  |
-| `background` |  |
-| `class` |  |
-| `condition` |  |
-| `damage_type` |  |
+| `abilityscores` |  |
+| `alignments` |  |
+| `backgrounds` |  |
+| `classes` |  |
+| `conditions` |  |
+| `damagetypes` |  |
 | `equipment` |  |
-| `equipment_category` |  |
-| `feat` |  |
-| `feature` |  |
+| `equipmentcategories` |  |
+| `feats` |  |
+| `features` |  |
 | `key` |  |
-| `language` |  |
-| `magic_item` |  |
-| `magic_school` |  |
-| `monster` |  |
-| `proficiency` |  |
-| `race` |  |
-| `rule` |  |
-| `rule_section` |  |
-| `skill` |  |
-| `spell` |  |
-| `subclass` |  |
-| `subrace` |  |
-| `trait` |  |
-| `weapon_property` |  |
+| `languages` |  |
+| `magicitems` |  |
+| `magicschools` |  |
+| `monsters` |  |
+| `proficiencies` |  |
+| `races` |  |
+| `rules` |  |
+| `rulesections` |  |
+| `skills` |  |
+| `spells` |  |
+| `subclasses` |  |
+| `subraces` |  |
+| `traits` |  |
+| `weaponproperties` |  |
 
 Operations: load.
 
@@ -350,10 +351,10 @@ API path: `/{resource}`
 | Field | Description |
 | --- | --- |
 | `data` |  |
-| `error` |  |
-| `operation_name` |  |
+| `errors` |  |
+| `operationName` |  |
 | `query` |  |
-| `variable` |  |
+| `variables` |  |
 
 Operations: create.
 
@@ -378,31 +379,31 @@ Create an instance: `const get_api_root = client.GetApiRoot()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ability_score` | `string` |  |
-| `alignment` | `string` |  |
-| `background` | `string` |  |
-| `class` | `string` |  |
-| `condition` | `string` |  |
-| `damage_type` | `string` |  |
+| `abilityscores` | `string` |  |
+| `alignments` | `string` |  |
+| `backgrounds` | `string` |  |
+| `classes` | `string` |  |
+| `conditions` | `string` |  |
+| `damagetypes` | `string` |  |
 | `equipment` | `string` |  |
-| `equipment_category` | `string` |  |
-| `feat` | `string` |  |
-| `feature` | `string` |  |
+| `equipmentcategories` | `string` |  |
+| `feats` | `string` |  |
+| `features` | `string` |  |
 | `key` | `string` |  |
-| `language` | `string` |  |
-| `magic_item` | `string` |  |
-| `magic_school` | `string` |  |
-| `monster` | `string` |  |
-| `proficiency` | `string` |  |
-| `race` | `string` |  |
-| `rule` | `string` |  |
-| `rule_section` | `string` |  |
-| `skill` | `string` |  |
-| `spell` | `string` |  |
-| `subclass` | `string` |  |
-| `subrace` | `string` |  |
-| `trait` | `string` |  |
-| `weapon_property` | `string` |  |
+| `languages` | `string` |  |
+| `magicitems` | `string` |  |
+| `magicschools` | `string` |  |
+| `monsters` | `string` |  |
+| `proficiencies` | `string` |  |
+| `races` | `string` |  |
+| `rules` | `string` |  |
+| `rulesections` | `string` |  |
+| `skills` | `string` |  |
+| `spells` | `string` |  |
+| `subclasses` | `string` |  |
+| `subraces` | `string` |  |
+| `traits` | `string` |  |
+| `weaponproperties` | `string` |  |
 
 #### Example: Load
 
@@ -457,7 +458,7 @@ Create an instance: `const get_resource_list = client.GetResourceList()`
 #### Example: List
 
 ```ts
-const get_resource_lists = await client.GetResourceList().list()
+const get_resource_lists = await client.GetResourceList().list({ id: "example" })
 ```
 
 
@@ -476,10 +477,10 @@ Create an instance: `const graph_ql = client.GraphQl()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `data` | `Record<string, any>` |  |
-| `error` | `any[]` |  |
-| `operation_name` | `string` |  |
+| `errors` | `any[]` |  |
+| `operationName` | `string` |  |
 | `query` | `string` |  |
-| `variable` | `Record<string, any>` |  |
+| `variables` | `Record<string, any>` |  |
 
 #### Example: Create
 
@@ -554,16 +555,16 @@ import { DungeonsAndDragonsSDK } from '@voxgig-sdk/dungeons-and-dragons'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const getapiroot = client.GetApiRoot()
-await getapiroot.load()
+const getresourcelist = client.GetResourceList()
+await getresourcelist.list()
 
-// getapiroot.data() now returns the getapiroot data from the last `load`
-// getapiroot.match() returns the last match criteria
+// getresourcelist.data() now returns the getresourcelist data from the last `list`
+// getresourcelist.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

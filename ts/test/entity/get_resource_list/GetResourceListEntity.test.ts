@@ -26,8 +26,8 @@ import {
 describe('GetResourceListEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when DUNGEONSANDDRAGONS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('DUNGEONSANDDRAGONS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when DUNGEONS_AND_DRAGONS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('DUNGEONS_AND_DRAGONS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = DungeonsAndDragonsSDK.test()
@@ -64,7 +64,7 @@ describe('GetResourceListEntity', async () => {
     const get_resource_list_ref01_match: any = {}
     get_resource_list_ref01_match['resource'] = setup.idmap['resource01']
 
-    const get_resource_list_ref01_list = await get_resource_list_ref01_ent.list(get_resource_list_ref01_match)
+    const get_resource_list_ref01_list = (await get_resource_list_ref01_ent.list(get_resource_list_ref01_match)).map((e: any) => e.data())
 
 
   })

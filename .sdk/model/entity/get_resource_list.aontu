@@ -56,7 +56,7 @@ main: kit: entity: get_resource_list: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.results`"
           }
         }
       ]

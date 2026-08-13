@@ -66,12 +66,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-getapiroot, err := client.GetApiRoot(nil).Load(nil, nil)
+getresourcelists, err := client.GetResourceList(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = getapiroot
+_ = getresourcelists
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -135,13 +135,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-getApiRoot, err := client.GetApiRoot(nil).Load(
+getResourceList, err := client.GetResourceList(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(getApiRoot) // the returned mock data
+fmt.Println(getResourceList) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -264,31 +264,31 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"ability_score"` |  |
-| `"alignment"` |  |
-| `"background"` |  |
-| `"class"` |  |
-| `"condition"` |  |
-| `"damage_type"` |  |
+| `"abilityscores"` |  |
+| `"alignments"` |  |
+| `"backgrounds"` |  |
+| `"classes"` |  |
+| `"conditions"` |  |
+| `"damagetypes"` |  |
 | `"equipment"` |  |
-| `"equipment_category"` |  |
-| `"feat"` |  |
-| `"feature"` |  |
+| `"equipmentcategories"` |  |
+| `"feats"` |  |
+| `"features"` |  |
 | `"key"` |  |
-| `"language"` |  |
-| `"magic_item"` |  |
-| `"magic_school"` |  |
-| `"monster"` |  |
-| `"proficiency"` |  |
-| `"race"` |  |
-| `"rule"` |  |
-| `"rule_section"` |  |
-| `"skill"` |  |
-| `"spell"` |  |
-| `"subclass"` |  |
-| `"subrace"` |  |
-| `"trait"` |  |
-| `"weapon_property"` |  |
+| `"languages"` |  |
+| `"magicitems"` |  |
+| `"magicschools"` |  |
+| `"monsters"` |  |
+| `"proficiencies"` |  |
+| `"races"` |  |
+| `"rules"` |  |
+| `"rulesections"` |  |
+| `"skills"` |  |
+| `"spells"` |  |
+| `"subclasses"` |  |
+| `"subraces"` |  |
+| `"traits"` |  |
+| `"weaponproperties"` |  |
 
 Operations: Load.
 
@@ -323,10 +323,10 @@ API path: `/{resource}`
 | Field | Description |
 | --- | --- |
 | `"data"` |  |
-| `"error"` |  |
-| `"operation_name"` |  |
+| `"errors"` |  |
+| `"operationName"` |  |
 | `"query"` |  |
-| `"variable"` |  |
+| `"variables"` |  |
 
 Operations: Create.
 
@@ -351,31 +351,31 @@ Create an instance: `getApiRoot := client.GetApiRoot(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ability_score` | `string` |  |
-| `alignment` | `string` |  |
-| `background` | `string` |  |
-| `class` | `string` |  |
-| `condition` | `string` |  |
-| `damage_type` | `string` |  |
+| `abilityscores` | `string` |  |
+| `alignments` | `string` |  |
+| `backgrounds` | `string` |  |
+| `classes` | `string` |  |
+| `conditions` | `string` |  |
+| `damagetypes` | `string` |  |
 | `equipment` | `string` |  |
-| `equipment_category` | `string` |  |
-| `feat` | `string` |  |
-| `feature` | `string` |  |
+| `equipmentcategories` | `string` |  |
+| `feats` | `string` |  |
+| `features` | `string` |  |
 | `key` | `string` |  |
-| `language` | `string` |  |
-| `magic_item` | `string` |  |
-| `magic_school` | `string` |  |
-| `monster` | `string` |  |
-| `proficiency` | `string` |  |
-| `race` | `string` |  |
-| `rule` | `string` |  |
-| `rule_section` | `string` |  |
-| `skill` | `string` |  |
-| `spell` | `string` |  |
-| `subclass` | `string` |  |
-| `subrace` | `string` |  |
-| `trait` | `string` |  |
-| `weapon_property` | `string` |  |
+| `languages` | `string` |  |
+| `magicitems` | `string` |  |
+| `magicschools` | `string` |  |
+| `monsters` | `string` |  |
+| `proficiencies` | `string` |  |
+| `races` | `string` |  |
+| `rules` | `string` |  |
+| `rulesections` | `string` |  |
+| `skills` | `string` |  |
+| `spells` | `string` |  |
+| `subclasses` | `string` |  |
+| `subraces` | `string` |  |
+| `traits` | `string` |  |
+| `weaponproperties` | `string` |  |
 
 #### Example: Load
 
@@ -461,10 +461,10 @@ Create an instance: `graphQl := client.GraphQl(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `data` | `map[string]any` |  |
-| `error` | `[]any` |  |
-| `operation_name` | `string` |  |
+| `errors` | `[]any` |  |
+| `operationName` | `string` |  |
 | `query` | `string` |  |
-| `variable` | `map[string]any` |  |
+| `variables` | `map[string]any` |  |
 
 #### Example: Create
 
@@ -548,15 +548,15 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `Load`, the entity
+Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-getapiroot := client.GetApiRoot(nil)
-getapiroot.Load(nil, nil)
+getresourcelist := client.GetResourceList(nil)
+getresourcelist.List(nil, nil)
 
-// getapiroot.Data() now returns the getapiroot data from the last load
-// getapiroot.Match() returns the last match criteria
+// getresourcelist.Data() now returns the getresourcelist data from the last list
+// getresourcelist.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

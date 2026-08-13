@@ -6,9 +6,9 @@ import time
 
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from dungeonsanddragons_sdk.utility.voxgig_struct import voxgig_struct as vs
 from dungeonsanddragons_sdk import DungeonsAndDragonsSDK
-from core import helpers
+from dungeonsanddragons_sdk.core import helpers
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
@@ -36,7 +36,7 @@ class TestGetResourceByIndexEntity:
         # without an *_ENTID env override, those IDs hit the live API and 4xx.
         if setup.get("synthetic_only"):
             pytest.skip("live entity test uses synthetic IDs from fixture — "
-                        "set DUNGEONSANDDRAGONS_TEST_GET_RESOURCE_BY_INDEX_ENTID JSON to run live")
+                        "set DUNGEONS_AND_DRAGONS_TEST_GET_RESOURCE_BY_INDEX_ENTID JSON to run live")
         client = setup["client"]
 
         # Bootstrap entity data from existing test data.
@@ -83,21 +83,21 @@ def _get_resource_by_index_basic_setup(extra):
     # mode is on without a real override, the basic test runs against synthetic
     # IDs from the fixture and 4xx's. We surface this so the test can skip.
     _entid_env_raw = os.environ.get(
-        "DUNGEONSANDDRAGONS_TEST_GET_RESOURCE_BY_INDEX_ENTID")
+        "DUNGEONS_AND_DRAGONS_TEST_GET_RESOURCE_BY_INDEX_ENTID")
     _idmap_overridden = _entid_env_raw is not None and _entid_env_raw.strip().startswith("{")
 
     env = runner.env_override({
-        "DUNGEONSANDDRAGONS_TEST_GET_RESOURCE_BY_INDEX_ENTID": idmap,
-        "DUNGEONSANDDRAGONS_TEST_LIVE": "FALSE",
-        "DUNGEONSANDDRAGONS_TEST_EXPLAIN": "FALSE",
+        "DUNGEONS_AND_DRAGONS_TEST_GET_RESOURCE_BY_INDEX_ENTID": idmap,
+        "DUNGEONS_AND_DRAGONS_TEST_LIVE": "FALSE",
+        "DUNGEONS_AND_DRAGONS_TEST_EXPLAIN": "FALSE",
     })
 
     idmap_resolved = helpers.to_map(
-        env.get("DUNGEONSANDDRAGONS_TEST_GET_RESOURCE_BY_INDEX_ENTID"))
+        env.get("DUNGEONS_AND_DRAGONS_TEST_GET_RESOURCE_BY_INDEX_ENTID"))
     if idmap_resolved is None:
         idmap_resolved = helpers.to_map(idmap)
 
-    if env.get("DUNGEONSANDDRAGONS_TEST_LIVE") == "TRUE":
+    if env.get("DUNGEONS_AND_DRAGONS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
             },
@@ -105,13 +105,13 @@ def _get_resource_by_index_basic_setup(extra):
         ])
         client = DungeonsAndDragonsSDK(helpers.to_map(merged_opts))
 
-    _live = env.get("DUNGEONSANDDRAGONS_TEST_LIVE") == "TRUE"
+    _live = env.get("DUNGEONS_AND_DRAGONS_TEST_LIVE") == "TRUE"
     return {
         "client": client,
         "data": entity_data,
         "idmap": idmap_resolved,
         "env": env,
-        "explain": env.get("DUNGEONSANDDRAGONS_TEST_EXPLAIN") == "TRUE",
+        "explain": env.get("DUNGEONS_AND_DRAGONS_TEST_EXPLAIN") == "TRUE",
         "live": _live,
         "synthetic_only": _live and not _idmap_overridden,
         "now": int(time.time() * 1000),
