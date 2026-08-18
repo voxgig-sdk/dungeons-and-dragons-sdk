@@ -28,7 +28,7 @@ class DungeonsAndDragonsSDK
     utility = DungeonsAndDragonsUtility.new
     @_utility = utility
 
-    config = DungeonsAndDragonsConfig.make_config
+    config = DungeonsAndDragonsConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

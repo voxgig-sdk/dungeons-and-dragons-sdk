@@ -33,7 +33,7 @@ class GetResourceListEntityTest < Minitest::Test
     assert_equal 3, seen.length
 
     # Inbound: streaming active -> yields each item from the feature.
-    cfg = DungeonsAndDragonsConfig.make_config
+    cfg = DungeonsAndDragonsConfig.shared_config
     if cfg["feature"].is_a?(Hash) && cfg["feature"].key?("streaming")
       sdk = DungeonsAndDragonsSDK.test(seed, { "feature" => { "streaming" => { "active" => true } } })
       got = []

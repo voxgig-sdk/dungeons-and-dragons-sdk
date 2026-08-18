@@ -15,7 +15,7 @@ require_relative "../DungeonsAndDragons_sdk"
 module DungeonsAndDragonsFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = DungeonsAndDragonsConfig.make_config["feature"]
+    f = DungeonsAndDragonsConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

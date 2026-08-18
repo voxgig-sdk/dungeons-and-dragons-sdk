@@ -23,6 +23,7 @@ build = {
   modules = {
     ["dungeons-and-dragons_sdk"] = "dungeons-and-dragons_sdk.lua",
     ["config"] = "config.lua",
+    ["config_shared"] = "config_shared.lua",
     ["features"] = "features.lua",
   }
 }

@@ -40,7 +40,7 @@ class DungeonsAndDragonsSDK
         $utility = new DungeonsAndDragonsUtility();
         $this->_utility = $utility;
 
-        $config = DungeonsAndDragonsConfig::make_config();
+        $config = DungeonsAndDragonsConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,
