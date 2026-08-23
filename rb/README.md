@@ -286,9 +286,9 @@ API path: `/{resource}/{index}`
 
 | Field | Description |
 | --- | --- |
-| `index` |  |
-| `name` |  |
-| `url` |  |
+| `index` | Resource index for URL purposes |
+| `name` | Name of the resource |
+| `url` | URL of the resource |
 
 Operations: List.
 
@@ -298,11 +298,11 @@ API path: `/{resource}`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `errors` |  |
-| `operationName` |  |
-| `query` |  |
-| `variables` |  |
+| `data` | Query results |
+| `errors` | Any errors that occurred |
+| `operationName` | Optional operation name if multiple operations in query |
+| `query` | GraphQL query string |
+| `variables` | Optional variables for the query |
 
 Operations: Create.
 
@@ -401,9 +401,9 @@ Create an instance: `get_resource_list = client.GetResourceList`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `index` | `String` |  |
-| `name` | `String` |  |
-| `url` | `String` |  |
+| `index` | `String` | Resource index for URL purposes |
+| `name` | `String` | Name of the resource |
+| `url` | `String` | URL of the resource |
 
 #### Example: List
 
@@ -427,11 +427,11 @@ Create an instance: `graph_ql = client.GraphQl`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Hash` |  |
-| `errors` | `Array` |  |
-| `operationName` | `String` |  |
-| `query` | `String` |  |
-| `variables` | `Hash` |  |
+| `data` | `Hash` | Query results |
+| `errors` | `Array` | Any errors that occurred |
+| `operationName` | `String` | Optional operation name if multiple operations in query |
+| `query` | `String` | GraphQL query string |
+| `variables` | `Hash` | Optional variables for the query |
 
 #### Example: Create
 

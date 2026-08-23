@@ -278,9 +278,9 @@ const get_resource_list = client.GetResourceList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `index` | `string` | No |  |
-| `name` | `string` | No |  |
-| `url` | `string` | No |  |
+| `index` | `string` | No | Resource index for URL purposes |
+| `name` | `string` | No | Name of the resource |
+| `url` | `string` | No | URL of the resource |
 
 ### Operations
 
@@ -330,11 +330,11 @@ const graph_ql = client.GraphQl()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Record<string, any>` | No |  |
-| `errors` | `any[]` | No |  |
-| `operationName` | `string` | No |  |
-| `query` | `string` | Yes |  |
-| `variables` | `Record<string, any>` | No |  |
+| `data` | `Record<string, any>` | No | Query results |
+| `errors` | `any[]` | No | Any errors that occurred |
+| `operationName` | `string` | No | Optional operation name if multiple operations in query |
+| `query` | `string` | Yes | GraphQL query string |
+| `variables` | `Record<string, any>` | No | Optional variables for the query |
 
 ### Operations
 

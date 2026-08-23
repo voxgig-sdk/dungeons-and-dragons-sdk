@@ -234,9 +234,9 @@ $get_resource_list = $client->GetResourceList();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `index` | `string` | No |  |
-| `name` | `string` | No |  |
-| `url` | `string` | No |  |
+| `index` | `string` | No | Resource index for URL purposes |
+| `name` | `string` | No | Name of the resource |
+| `url` | `string` | No | URL of the resource |
 
 ### Operations
 
@@ -288,11 +288,11 @@ $graph_ql = $client->GraphQl_();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `array` | No |  |
-| `errors` | `array` | No |  |
-| `operationName` | `string` | No |  |
-| `query` | `string` | Yes |  |
-| `variables` | `array` | No |  |
+| `data` | `array` | No | Query results |
+| `errors` | `array` | No | Any errors that occurred |
+| `operationName` | `string` | No | Optional operation name if multiple operations in query |
+| `query` | `string` | Yes | GraphQL query string |
+| `variables` | `array` | No | Optional variables for the query |
 
 ### Operations
 

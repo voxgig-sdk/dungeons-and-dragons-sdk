@@ -8,16 +8,19 @@ main: kit: entity: get_resource_list: {
     {
       name: "index"
       req: false
+      short: "Resource index for URL purposes"
       type: "`$STRING`"
     }
     {
       name: "name"
       req: false
+      short: "Name of the resource"
       type: "`$STRING`"
     }
     {
       name: "url"
       req: false
+      short: "URL of the resource"
       type: "`$STRING`"
     }
   ]

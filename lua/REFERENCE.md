@@ -232,9 +232,9 @@ local get_resource_list = client:GetResourceList(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `index` | `string` | No |  |
-| `name` | `string` | No |  |
-| `url` | `string` | No |  |
+| `index` | `string` | No | Resource index for URL purposes |
+| `name` | `string` | No | Name of the resource |
+| `url` | `string` | No | URL of the resource |
 
 ### Operations
 
@@ -286,11 +286,11 @@ local graph_ql = client:GraphQl(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `table` | No |  |
-| `errors` | `table` | No |  |
-| `operationName` | `string` | No |  |
-| `query` | `string` | Yes |  |
-| `variables` | `table` | No |  |
+| `data` | `table` | No | Query results |
+| `errors` | `table` | No | Any errors that occurred |
+| `operationName` | `string` | No | Optional operation name if multiple operations in query |
+| `query` | `string` | Yes | GraphQL query string |
+| `variables` | `table` | No | Optional variables for the query |
 
 ### Operations
 

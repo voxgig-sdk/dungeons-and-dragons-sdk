@@ -235,9 +235,9 @@ get_resource_list = client.GetResourceList
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `index` | `String` | No |  |
-| `name` | `String` | No |  |
-| `url` | `String` | No |  |
+| `index` | `String` | No | Resource index for URL purposes |
+| `name` | `String` | No | Name of the resource |
+| `url` | `String` | No | URL of the resource |
 
 ### Operations
 
@@ -289,11 +289,11 @@ graph_ql = client.GraphQl
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Hash` | No |  |
-| `errors` | `Array` | No |  |
-| `operationName` | `String` | No |  |
-| `query` | `String` | Yes |  |
-| `variables` | `Hash` | No |  |
+| `data` | `Hash` | No | Query results |
+| `errors` | `Array` | No | Any errors that occurred |
+| `operationName` | `String` | No | Optional operation name if multiple operations in query |
+| `query` | `String` | Yes | GraphQL query string |
+| `variables` | `Hash` | No | Optional variables for the query |
 
 ### Operations
 

@@ -277,9 +277,9 @@ API path: `/{resource}/{index}`
 
 | Field | Description |
 | --- | --- |
-| `index` |  |
-| `name` |  |
-| `url` |  |
+| `index` | Resource index for URL purposes |
+| `name` | Name of the resource |
+| `url` | URL of the resource |
 
 Operations: List.
 
@@ -289,11 +289,11 @@ API path: `/{resource}`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `errors` |  |
-| `operationName` |  |
-| `query` |  |
-| `variables` |  |
+| `data` | Query results |
+| `errors` | Any errors that occurred |
+| `operationName` | Optional operation name if multiple operations in query |
+| `query` | GraphQL query string |
+| `variables` | Optional variables for the query |
 
 Operations: Create.
 
@@ -390,9 +390,9 @@ Create an instance: `local get_resource_list = client:GetResourceList(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `index` | `string` |  |
-| `name` | `string` |  |
-| `url` | `string` |  |
+| `index` | `string` | Resource index for URL purposes |
+| `name` | `string` | Name of the resource |
+| `url` | `string` | URL of the resource |
 
 #### Example: List
 
@@ -415,11 +415,11 @@ Create an instance: `local graph_ql = client:GraphQl(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `table` |  |
-| `errors` | `table` |  |
-| `operationName` | `string` |  |
-| `query` | `string` |  |
-| `variables` | `table` |  |
+| `data` | `table` | Query results |
+| `errors` | `table` | Any errors that occurred |
+| `operationName` | `string` | Optional operation name if multiple operations in query |
+| `query` | `string` | GraphQL query string |
+| `variables` | `table` | Optional variables for the query |
 
 #### Example: Create
 

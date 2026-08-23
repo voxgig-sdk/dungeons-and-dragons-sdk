@@ -297,18 +297,21 @@
               "active": true,
               "name": "index",
               "req": false,
+              "short": "Resource index for URL purposes",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Name of the resource",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "url",
               "req": false,
+              "short": "URL of the resource",
               "type": "`$STRING`"
             }
           ],
@@ -370,30 +373,35 @@
               "active": true,
               "name": "data",
               "req": false,
+              "short": "Query results",
               "type": "`$OBJECT`"
             },
             {
               "active": true,
               "name": "errors",
               "req": false,
+              "short": "Any errors that occurred",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "operationName",
               "req": false,
+              "short": "Optional operation name if multiple operations in query",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "query",
               "req": true,
+              "short": "GraphQL query string",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "variables",
               "req": false,
+              "short": "Optional variables for the query",
               "type": "`$OBJECT`"
             }
           ],

@@ -227,9 +227,9 @@ get_resource_list = client.GetResourceList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `index` | `str` | No |  |
-| `name` | `str` | No |  |
-| `url` | `str` | No |  |
+| `index` | `str` | No | Resource index for URL purposes |
+| `name` | `str` | No | Name of the resource |
+| `url` | `str` | No | URL of the resource |
 
 ### Operations
 
@@ -282,11 +282,11 @@ graph_ql = client.GraphQl()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `dict` | No |  |
-| `errors` | `list` | No |  |
-| `operationName` | `str` | No |  |
-| `query` | `str` | Yes |  |
-| `variables` | `dict` | No |  |
+| `data` | `dict` | No | Query results |
+| `errors` | `list` | No | Any errors that occurred |
+| `operationName` | `str` | No | Optional operation name if multiple operations in query |
+| `query` | `str` | Yes | GraphQL query string |
+| `variables` | `dict` | No | Optional variables for the query |
 
 ### Operations
 

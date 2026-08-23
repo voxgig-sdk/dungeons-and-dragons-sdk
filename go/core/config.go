@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "DungeonsAndDragons",
+			"slug": "dungeons-and-dragons",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -229,14 +232,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "index",
+						"short": "Resource index for URL purposes",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Name of the resource",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "url",
+						"short": "URL of the resource",
 						"type": "`$STRING`",
 					},
 				},
@@ -290,23 +296,28 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "data",
+						"short": "Query results",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "errors",
+						"short": "Any errors that occurred",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "operationName",
+						"short": "Optional operation name if multiple operations in query",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "query",
 						"req": true,
+						"short": "GraphQL query string",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "variables",
+						"short": "Optional variables for the query",
 						"type": "`$OBJECT`",
 					},
 				},

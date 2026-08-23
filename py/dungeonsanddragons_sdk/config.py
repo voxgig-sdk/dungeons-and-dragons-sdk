@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "DungeonsAndDragons",
+            "slug": "dungeons-and-dragons",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -246,14 +249,17 @@ def make_config():
         "fields": [
           {
             "name": "index",
+            "short": "Resource index for URL purposes",
             "type": "`$STRING`",
           },
           {
             "name": "name",
+            "short": "Name of the resource",
             "type": "`$STRING`",
           },
           {
             "name": "url",
+            "short": "URL of the resource",
             "type": "`$STRING`",
           },
         ],
@@ -307,23 +313,28 @@ def make_config():
         "fields": [
           {
             "name": "data",
+            "short": "Query results",
             "type": "`$OBJECT`",
           },
           {
             "name": "errors",
+            "short": "Any errors that occurred",
             "type": "`$ARRAY`",
           },
           {
             "name": "operationName",
+            "short": "Optional operation name if multiple operations in query",
             "type": "`$STRING`",
           },
           {
             "name": "query",
             "req": True,
+            "short": "GraphQL query string",
             "type": "`$STRING`",
           },
           {
             "name": "variables",
+            "short": "Optional variables for the query",
             "type": "`$OBJECT`",
           },
         ],

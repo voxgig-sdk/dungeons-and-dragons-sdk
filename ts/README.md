@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -338,9 +338,9 @@ API path: `/{resource}/{index}`
 
 | Field | Description |
 | --- | --- |
-| `index` |  |
-| `name` |  |
-| `url` |  |
+| `index` | Resource index for URL purposes |
+| `name` | Name of the resource |
+| `url` | URL of the resource |
 
 Operations: list.
 
@@ -350,11 +350,11 @@ API path: `/{resource}`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `errors` |  |
-| `operationName` |  |
-| `query` |  |
-| `variables` |  |
+| `data` | Query results |
+| `errors` | Any errors that occurred |
+| `operationName` | Optional operation name if multiple operations in query |
+| `query` | GraphQL query string |
+| `variables` | Optional variables for the query |
 
 Operations: create.
 
@@ -451,9 +451,9 @@ Create an instance: `const get_resource_list = client.GetResourceList()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `index` | `string` |  |
-| `name` | `string` |  |
-| `url` | `string` |  |
+| `index` | `string` | Resource index for URL purposes |
+| `name` | `string` | Name of the resource |
+| `url` | `string` | URL of the resource |
 
 #### Example: List
 
@@ -476,11 +476,11 @@ Create an instance: `const graph_ql = client.GraphQl()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Record<string, any>` |  |
-| `errors` | `any[]` |  |
-| `operationName` | `string` |  |
-| `query` | `string` |  |
-| `variables` | `Record<string, any>` |  |
+| `data` | `Record<string, any>` | Query results |
+| `errors` | `any[]` | Any errors that occurred |
+| `operationName` | `string` | Optional operation name if multiple operations in query |
+| `query` | `string` | GraphQL query string |
+| `variables` | `Record<string, any>` | Optional variables for the query |
 
 #### Example: Create
 

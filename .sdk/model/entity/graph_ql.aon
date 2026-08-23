@@ -8,26 +8,31 @@ main: kit: entity: graph_ql: {
     {
       name: "data"
       req: false
+      short: "Query results"
       type: "`$OBJECT`"
     }
     {
       name: "errors"
       req: false
+      short: "Any errors that occurred"
       type: "`$ARRAY`"
     }
     {
       name: "operationName"
       req: false
+      short: "Optional operation name if multiple operations in query"
       type: "`$STRING`"
     }
     {
       name: "query"
       req: true
+      short: "GraphQL query string"
       type: "`$STRING`"
     }
     {
       name: "variables"
       req: false
+      short: "Optional variables for the query"
       type: "`$OBJECT`"
     }
   ]
