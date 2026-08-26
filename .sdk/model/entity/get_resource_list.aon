@@ -6,6 +6,11 @@ main: kit: entity: get_resource_list: {
 
   fields: [
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "index"
       req: false
       short: "Resource index for URL purposes"
@@ -24,6 +29,11 @@ main: kit: entity: get_resource_list: {
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "get_resource_list"
   op: {

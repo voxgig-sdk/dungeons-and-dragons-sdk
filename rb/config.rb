@@ -28,6 +28,7 @@ module DungeonsAndDragonsConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
@@ -238,6 +239,10 @@ module DungeonsAndDragonsConfig
         },
         "get_resource_list" => {
           "fields" => [
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
             {
               "name" => "index",
               "short" => "Resource index for URL purposes",

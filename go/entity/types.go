@@ -85,6 +85,7 @@ type GetResourceByIndexLoadMatch struct {
 
 // GetResourceList is the typed data model for the get_resource_list entity.
 type GetResourceList struct {
+	Id *string `json:"id,omitempty"`
 	Index *string `json:"index,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Url *string `json:"url,omitempty"`

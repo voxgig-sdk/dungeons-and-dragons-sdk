@@ -292,6 +292,7 @@ API path: `/{resource}/{index}`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `index` | Resource index for URL purposes |
 | `name` | Name of the resource |
 | `url` | URL of the resource |
@@ -405,6 +406,7 @@ Create an instance: `get_resource_list = client.GetResourceList()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `str` |  |
 | `index` | `str` | Resource index for URL purposes |
 | `name` | `str` | Name of the resource |
 | `url` | `str` | URL of the resource |

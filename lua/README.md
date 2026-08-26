@@ -277,6 +277,7 @@ API path: `/{resource}/{index}`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `index` | Resource index for URL purposes |
 | `name` | Name of the resource |
 | `url` | URL of the resource |
@@ -390,6 +391,7 @@ Create an instance: `local get_resource_list = client:GetResourceList(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `index` | `string` | Resource index for URL purposes |
 | `name` | `string` | Name of the resource |
 | `url` | `string` | URL of the resource |

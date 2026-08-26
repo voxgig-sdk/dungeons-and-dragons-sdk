@@ -227,6 +227,7 @@ get_resource_list = client.GetResourceList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `str` | No |  |
 | `index` | `str` | No | Resource index for URL purposes |
 | `name` | `str` | No | Name of the resource |
 | `url` | `str` | No | URL of the resource |

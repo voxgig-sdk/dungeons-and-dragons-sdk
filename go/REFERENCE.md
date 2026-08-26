@@ -238,6 +238,7 @@ fmt.Println(getResourceList.GetName()) // "get_resource_list"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `index` | `string` | No | Resource index for URL purposes |
 | `name` | `string` | No | Name of the resource |
 | `url` | `string` | No | URL of the resource |

@@ -84,6 +84,7 @@ class GetResourceByIndexLoadMatch(TypedDict):
 
 
 class GetResourceList(TypedDict, total=False):
+    id: str
     index: str
     name: str
     url: str

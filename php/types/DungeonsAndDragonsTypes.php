@@ -90,6 +90,7 @@ class GetResourceByIndexLoadMatch
 /** GetResourceList entity data model. */
 class GetResourceList
 {
+    public ?string $id = null;
     public ?string $index = null;
     public ?string $name = null;
     public ?string $url = null;

@@ -73,6 +73,7 @@ export interface GetResourceByIndexLoadMatch {
 }
 
 export interface GetResourceList {
+  id?: string
   index?: string
   name?: string
   url?: string

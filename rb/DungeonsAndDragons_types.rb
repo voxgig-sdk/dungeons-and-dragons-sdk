@@ -250,6 +250,9 @@ GetResourceByIndexLoadMatch = Struct.new(
 
 # GetResourceList entity data model.
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] index
 #   @return [String, nil]
 #
@@ -259,6 +262,7 @@ GetResourceByIndexLoadMatch = Struct.new(
 # @!attribute [rw] url
 #   @return [String, nil]
 GetResourceList = Struct.new(
+  :id,
   :index,
   :name,
   :url,

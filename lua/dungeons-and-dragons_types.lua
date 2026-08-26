@@ -70,6 +70,7 @@
 ---@field resource string
 
 ---@class GetResourceList
+---@field id? string
 ---@field index? string
 ---@field name? string
 ---@field url? string

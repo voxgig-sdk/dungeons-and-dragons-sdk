@@ -145,7 +145,7 @@ await entity.list()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data)
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -338,6 +338,7 @@ API path: `/{resource}/{index}`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `index` | Resource index for URL purposes |
 | `name` | Name of the resource |
 | `url` | URL of the resource |
@@ -451,6 +452,7 @@ Create an instance: `const get_resource_list = client.GetResourceList()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `index` | `string` | Resource index for URL purposes |
 | `name` | `string` | Name of the resource |
 | `url` | `string` | URL of the resource |
