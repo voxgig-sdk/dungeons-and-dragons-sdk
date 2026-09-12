@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -187,12 +198,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/",
-              "parts": [],
+              "segments": [],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": []
             }
           ]
         }
@@ -203,6 +215,10 @@ class Config {
     },
     "get_resource_by_index": {
       "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        },
         {
           "name": "index",
           "type": "`$STRING`"
@@ -216,6 +232,18 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "from": {
+          "index": "index"
+        },
+        "name": "id",
+        "parts": [
+          "resource",
+          "index"
+        ],
+        "sep": "/"
+      },
       "name": "get_resource_by_index",
       "op": {
         "load": {
@@ -244,9 +272,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/{resource}/{index}",
-              "parts": [
-                "{resource}",
-                "{index}"
+              "segments": [
+                {
+                  "var": "resource"
+                },
+                {
+                  "var": "index"
+                }
               ],
               "select": {
                 "exist": [
@@ -257,7 +289,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "{resource}",
+                "{index}"
+              ]
             }
           ]
         }
@@ -288,6 +324,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "get_resource_list",
       "op": {
         "list": {
@@ -309,14 +349,16 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/{resource}",
-              "parts": [
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "resource": "id"
                 }
               },
+              "segments": [
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id"
@@ -325,7 +367,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.results`"
-              }
+              },
+              "parts": [
+                "{id}"
+              ]
             }
           ]
         }
@@ -374,14 +419,19 @@ class Config {
               "kind": "http",
               "method": "POST",
               "orig": "/graphql",
-              "parts": [
-                "graphql"
+              "segments": [
+                {
+                  "lit": "graphql"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "graphql"
+              ]
             }
           ]
         }
@@ -397,6 +447,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

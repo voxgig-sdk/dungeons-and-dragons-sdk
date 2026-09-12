@@ -62,6 +62,7 @@ export interface GetApiRootLoadMatch {
 }
 
 export interface GetResourceByIndex {
+  id?: string
   index?: string
   name?: string
   url?: string

@@ -178,6 +178,7 @@ local get_resource_by_index = client:GetResourceByIndex(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `index` | `string` | No |  |
 | `name` | `string` | No |  |
 | `url` | `string` | No |  |

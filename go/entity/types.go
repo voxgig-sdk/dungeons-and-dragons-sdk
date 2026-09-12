@@ -72,6 +72,7 @@ type GetApiRootLoadMatch struct {
 
 // GetResourceByIndex is the typed data model for the get_resource_by_index entity.
 type GetResourceByIndex struct {
+	Id *string `json:"id,omitempty"`
 	Index *string `json:"index,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Url *string `json:"url,omitempty"`

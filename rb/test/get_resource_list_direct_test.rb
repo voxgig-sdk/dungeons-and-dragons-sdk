@@ -81,8 +81,10 @@ def get_resource_list_direct_setup(mockres)
   live = env["DUNGEONS_AND_DRAGONS_TEST_LIVE"] == "TRUE"
 
   if live
-    merged_opts = {
-    }
+    # Merged so the generated fields win: sdk-test-control.json's
+    # test.client.options adds to the live client, it does not redirect it.
+    merged_opts = Runner.live_client_options.merge({
+    })
     client = DungeonsAndDragonsSDK.new(merged_opts)
     return {
       client: client,

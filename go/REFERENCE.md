@@ -185,6 +185,7 @@ fmt.Println(getResourceByIndex.GetName()) // "get_resource_by_index"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `index` | `string` | No |  |
 | `name` | `string` | No |  |
 | `url` | `string` | No |  |

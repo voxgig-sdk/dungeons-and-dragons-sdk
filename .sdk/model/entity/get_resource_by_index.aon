@@ -6,6 +6,11 @@ main: kit: entity: get_resource_by_index: {
 
   fields: [
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "index"
       req: false
       type: "`$STRING`"
@@ -21,6 +26,19 @@ main: kit: entity: get_resource_by_index: {
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    from: {
+      index: "index"
+    }
+    name: "id"
+    parts: [
+      "resource"
+      "index"
+    ]
+    sep: "/"
+  }
 
   name: "get_resource_by_index"
   op: {
@@ -48,9 +66,13 @@ main: kit: entity: get_resource_by_index: {
           }
           method: "GET"
           orig: "/{resource}/{index}"
-          parts: [
-            "{resource}"
-            "{index}"
+          segments: [
+            {
+              var: "resource"
+            }
+            {
+              var: "index"
+            }
           ]
           select: {
             exist: [

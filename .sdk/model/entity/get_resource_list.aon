@@ -54,14 +54,16 @@ main: kit: entity: get_resource_list: {
           }
           method: "GET"
           orig: "/{resource}"
-          parts: [
-            "{id}"
-          ]
           rename: {
             param: {
               resource: "id"
             }
           }
+          segments: [
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

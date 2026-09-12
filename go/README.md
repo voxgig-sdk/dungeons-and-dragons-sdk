@@ -298,6 +298,7 @@ API path: `/`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 | `"index"` |  |
 | `"name"` |  |
 | `"url"` |  |
@@ -403,6 +404,7 @@ Create an instance: `getResourceByIndex := client.GetResourceByIndex(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `index` | `string` |  |
 | `name` | `string` |  |
 | `url` | `string` |  |

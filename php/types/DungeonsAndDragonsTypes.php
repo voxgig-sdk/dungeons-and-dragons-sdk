@@ -75,6 +75,7 @@ class GetApiRootLoadMatch
 /** GetResourceByIndex entity data model. */
 class GetResourceByIndex
 {
+    public ?string $id = null;
     public ?string $index = null;
     public ?string $name = null;
     public ?string $url = null;

@@ -146,12 +146,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/",
-                ["parts"] = {},
+                ["segments"] = {},
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {},
               },
             },
           },
@@ -162,6 +163,10 @@ local function make_config()
       },
       ["get_resource_by_index"] = {
         ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
           {
             ["name"] = "index",
             ["type"] = "`$STRING`",
@@ -174,6 +179,18 @@ local function make_config()
             ["name"] = "url",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["from"] = {
+            ["index"] = "index",
+          },
+          ["name"] = "id",
+          ["parts"] = {
+            "resource",
+            "index",
+          },
+          ["sep"] = "/",
         },
         ["name"] = "get_resource_by_index",
         ["op"] = {
@@ -203,9 +220,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{resource}/{index}",
-                ["parts"] = {
-                  "{resource}",
-                  "{index}",
+                ["segments"] = {
+                  {
+                    ["var"] = "resource",
+                  },
+                  {
+                    ["var"] = "index",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -216,6 +237,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "{resource}",
+                  "{index}",
                 },
               },
             },
@@ -247,6 +272,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "get_resource_list",
         ["op"] = {
           ["list"] = {
@@ -268,12 +297,14 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{resource}",
-                ["parts"] = {
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["resource"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -284,6 +315,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.results`",
+                },
+                ["parts"] = {
+                  "{id}",
                 },
               },
             },
@@ -333,13 +367,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/graphql",
-                ["parts"] = {
-                  "graphql",
+                ["segments"] = {
+                  {
+                    ["lit"] = "graphql",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "graphql",
                 },
               },
             },

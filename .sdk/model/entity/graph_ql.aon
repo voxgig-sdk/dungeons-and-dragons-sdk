@@ -45,8 +45,10 @@ main: kit: entity: graph_ql: {
         {
           method: "POST"
           orig: "/graphql"
-          parts: [
-            "graphql"
+          segments: [
+            {
+              lit: "graphql"
+            }
           ]
           transform: {
             req: "`reqdata`"

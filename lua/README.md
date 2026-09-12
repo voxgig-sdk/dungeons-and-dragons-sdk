@@ -265,6 +265,7 @@ API path: `/`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `index` |  |
 | `name` |  |
 | `url` |  |
@@ -366,6 +367,7 @@ Create an instance: `local get_resource_by_index = client:GetResourceByIndex(nil
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `index` | `string` |  |
 | `name` | `string` |  |
 | `url` | `string` |  |

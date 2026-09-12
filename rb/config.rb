@@ -158,12 +158,13 @@ module DungeonsAndDragonsConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/",
-                  "parts" => [],
+                  "segments" => [],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [],
                 },
               ],
             },
@@ -174,6 +175,10 @@ module DungeonsAndDragonsConfig
         },
         "get_resource_by_index" => {
           "fields" => [
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
             {
               "name" => "index",
               "type" => "`$STRING`",
@@ -187,6 +192,18 @@ module DungeonsAndDragonsConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "from" => {
+              "index" => "index",
+            },
+            "name" => "id",
+            "parts" => [
+              "resource",
+              "index",
+            ],
+            "sep" => "/",
+          },
           "name" => "get_resource_by_index",
           "op" => {
             "load" => {
@@ -215,9 +232,13 @@ module DungeonsAndDragonsConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{resource}/{index}",
-                  "parts" => [
-                    "{resource}",
-                    "{index}",
+                  "segments" => [
+                    {
+                      "var" => "resource",
+                    },
+                    {
+                      "var" => "index",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -229,6 +250,10 @@ module DungeonsAndDragonsConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "{resource}",
+                    "{index}",
+                  ],
                 },
               ],
             },
@@ -259,6 +284,10 @@ module DungeonsAndDragonsConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "get_resource_list",
           "op" => {
             "list" => {
@@ -280,14 +309,16 @@ module DungeonsAndDragonsConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{resource}",
-                  "parts" => [
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "resource" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -297,6 +328,9 @@ module DungeonsAndDragonsConfig
                     "req" => "`reqdata`",
                     "res" => "`body.results`",
                   },
+                  "parts" => [
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -345,14 +379,19 @@ module DungeonsAndDragonsConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/graphql",
-                  "parts" => [
-                    "graphql",
+                  "segments" => [
+                    {
+                      "lit" => "graphql",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "graphql",
+                  ],
                 },
               ],
             },

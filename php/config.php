@@ -172,12 +172,13 @@ class DungeonsAndDragonsConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/',
-                  'parts' => [],
+                  'segments' => [],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
+                  'parts' => [],
                 ],
               ],
             ],
@@ -188,6 +189,10 @@ class DungeonsAndDragonsConfig
         ],
         'get_resource_by_index' => [
           'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
             [
               'name' => 'index',
               'type' => '`$STRING`',
@@ -200,6 +205,18 @@ class DungeonsAndDragonsConfig
               'name' => 'url',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'from' => [
+              'index' => 'index',
+            ],
+            'name' => 'id',
+            'parts' => [
+              'resource',
+              'index',
+            ],
+            'sep' => '/',
           ],
           'name' => 'get_resource_by_index',
           'op' => [
@@ -229,9 +246,13 @@ class DungeonsAndDragonsConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{resource}/{index}',
-                  'parts' => [
-                    '{resource}',
-                    '{index}',
+                  'segments' => [
+                    [
+                      'var' => 'resource',
+                    ],
+                    [
+                      'var' => 'index',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -242,6 +263,10 @@ class DungeonsAndDragonsConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    '{resource}',
+                    '{index}',
                   ],
                 ],
               ],
@@ -273,6 +298,10 @@ class DungeonsAndDragonsConfig
               'type' => '`$STRING`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'get_resource_list',
           'op' => [
             'list' => [
@@ -294,12 +323,14 @@ class DungeonsAndDragonsConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{resource}',
-                  'parts' => [
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'resource' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -310,6 +341,9 @@ class DungeonsAndDragonsConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.results`',
+                  ],
+                  'parts' => [
+                    '{id}',
                   ],
                 ],
               ],
@@ -359,13 +393,18 @@ class DungeonsAndDragonsConfig
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/graphql',
-                  'parts' => [
-                    'graphql',
+                  'segments' => [
+                    [
+                      'lit' => 'graphql',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'graphql',
                   ],
                 ],
               ],

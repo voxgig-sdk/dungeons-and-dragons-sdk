@@ -41,9 +41,13 @@ class GetResourceByIndexEntityTest < Minitest::Test
 
     # LOAD
     get_resource_by_index_ref01_ent = client.GetResourceByIndex(nil)
-    get_resource_by_index_ref01_match_dt0 = {}
+    get_resource_by_index_ref01_match_dt0 = {
+      "id" => get_resource_by_index_ref01_data["id"],
+    }
     get_resource_by_index_ref01_data_dt0_loaded = get_resource_by_index_ref01_ent.load(get_resource_by_index_ref01_match_dt0, nil)
-    assert !get_resource_by_index_ref01_data_dt0_loaded.nil?
+    get_resource_by_index_ref01_data_dt0_load_result = Helpers.to_map(get_resource_by_index_ref01_data_dt0_loaded.respond_to?(:data_get) ? get_resource_by_index_ref01_data_dt0_loaded.data_get : get_resource_by_index_ref01_data_dt0_loaded)
+    assert !get_resource_by_index_ref01_data_dt0_load_result.nil?
+    assert_equal get_resource_by_index_ref01_data_dt0_load_result["id"], get_resource_by_index_ref01_data["id"]
 
   end
 end
@@ -91,6 +95,9 @@ def get_resource_by_index_basic_setup(extra)
 
   if env["DUNGEONS_AND_DRAGONS_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
       },
       extra || {},

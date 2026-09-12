@@ -181,6 +181,7 @@ get_resource_by_index = client.GetResourceByIndex
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `String` | No |  |
 | `index` | `String` | No |  |
 | `name` | `String` | No |  |
 | `url` | `String` | No |  |

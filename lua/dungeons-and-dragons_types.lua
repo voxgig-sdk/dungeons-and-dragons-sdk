@@ -61,6 +61,7 @@
 ---@field weaponproperties? string
 
 ---@class GetResourceByIndex
+---@field id? string
 ---@field index? string
 ---@field name? string
 ---@field url? string

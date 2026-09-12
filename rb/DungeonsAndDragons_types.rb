@@ -220,6 +220,9 @@ GetApiRootLoadMatch = Struct.new(
 
 # GetResourceByIndex entity data model.
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] index
 #   @return [String, nil]
 #
@@ -229,6 +232,7 @@ GetApiRootLoadMatch = Struct.new(
 # @!attribute [rw] url
 #   @return [String, nil]
 GetResourceByIndex = Struct.new(
+  :id,
   :index,
   :name,
   :url,

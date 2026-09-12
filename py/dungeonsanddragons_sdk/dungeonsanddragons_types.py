@@ -73,6 +73,7 @@ class GetApiRootLoadMatch(TypedDict, total=False):
 
 
 class GetResourceByIndex(TypedDict, total=False):
+    id: str
     index: str
     name: str
     url: str
