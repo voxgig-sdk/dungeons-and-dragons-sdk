@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { DungeonsAndDragonsSDK } from '@voxgig-sdk/dungeons-and-dragons'
+import { DungeonsAndDragonsSDK } from '@voxgig-sdk/dungeons-and-dragons-sdk'
 
 const client = new DungeonsAndDragonsSDK()
 ```
@@ -577,7 +577,7 @@ dungeons-and-dragons/
 Import the SDK from the package root:
 
 ```ts
-import { DungeonsAndDragonsSDK } from '@voxgig-sdk/dungeons-and-dragons'
+import { DungeonsAndDragonsSDK } from '@voxgig-sdk/dungeons-and-dragons-sdk'
 ```
 
 ### Entity state

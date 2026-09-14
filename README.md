@@ -105,7 +105,7 @@ local results, err = client:GetResourceList():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/dungeons-and-dragons` | publish pending — [install from git tag](https://github.com/voxgig-sdk/dungeons-and-dragons-sdk/releases) |
+| TypeScript | `@voxgig-sdk/dungeons-and-dragons-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/dungeons-and-dragons-sdk/releases) |
 | Python | `voxgig-sdk-dungeons-and-dragons` | publish pending — [install from git tag](https://github.com/voxgig-sdk/dungeons-and-dragons-sdk/releases) |
 | PHP | `voxgig-sdk/dungeons-and-dragons` | publish pending — [install from git tag](https://github.com/voxgig-sdk/dungeons-and-dragons-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/dungeons-and-dragons-sdk/go` | `go get github.com/voxgig-sdk/dungeons-and-dragons-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:GetResourceList():list()
 ### TypeScript
 
 ```ts
-import { DungeonsAndDragonsSDK } from '@voxgig-sdk/dungeons-and-dragons'
+import { DungeonsAndDragonsSDK } from '@voxgig-sdk/dungeons-and-dragons-sdk'
 
 const client = new DungeonsAndDragonsSDK()
 
