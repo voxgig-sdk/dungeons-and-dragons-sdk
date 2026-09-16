@@ -1,12 +1,18 @@
 # DungeonsAndDragons SDK feature factory
 
 from dungeonsanddragons_sdk.feature.base_feature import DungeonsAndDragonsBaseFeature
+from dungeonsanddragons_sdk.feature.ratelimit_feature import DungeonsAndDragonsRatelimitFeature
+from dungeonsanddragons_sdk.feature.retry_feature import DungeonsAndDragonsRetryFeature
 from dungeonsanddragons_sdk.feature.test_feature import DungeonsAndDragonsTestFeature
+from dungeonsanddragons_sdk.feature.timeout_feature import DungeonsAndDragonsTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: DungeonsAndDragonsBaseFeature(),
+    "ratelimit": lambda: DungeonsAndDragonsRatelimitFeature(),
+    "retry": lambda: DungeonsAndDragonsRetryFeature(),
     "test": lambda: DungeonsAndDragonsTestFeature(),
+    "timeout": lambda: DungeonsAndDragonsTimeoutFeature(),
 }
 
 

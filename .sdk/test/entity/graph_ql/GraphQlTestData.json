@@ -37,5 +37,85 @@
         "variables": {}
       }
     }
+  },
+  "requests": {
+    "POST /graphql": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "graphqlQuery",
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "query": "query { spell(index: \"fireball\") { name level school { name } } }"
+              },
+              "schema": {
+                "properties": {
+                  "operationName": {
+                    "description": "Optional operation name if multiple operations in query",
+                    "type": "string"
+                  },
+                  "query": {
+                    "description": "GraphQL query string",
+                    "type": "string"
+                  },
+                  "variables": {
+                    "description": "Optional variables for the query",
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "query"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "description": "Query results",
+                      "type": "object"
+                    },
+                    "errors": {
+                      "description": "Any errors that occurred",
+                      "items": {
+                        "properties": {
+                          "locations": {
+                            "items": {
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "message": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful GraphQL response"
+          },
+          "400": {
+            "description": "Bad request - invalid GraphQL query"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

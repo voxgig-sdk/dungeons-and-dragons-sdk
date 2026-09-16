@@ -52,6 +52,12 @@ main: kit: entity: get_resource_list: {
               }
             ]
           }
+          contract: {
+            id: "GET /{resource}"
+            json: "{\"operationId\":\"getResourceList\",\"parameters\":[{\"description\":\"The resource type to retrieve (e.g., spells, monsters, classes, equipment)\",\"in\":\"path\",\"name\":\"resource\",\"required\":true,\"schema\":{\"enum\":[\"ability-scores\",\"alignments\",\"backgrounds\",\"classes\",\"conditions\",\"damage-types\",\"equipment\",\"equipment-categories\",\"feats\",\"features\",\"languages\",\"magic-items\",\"magic-schools\",\"monsters\",\"proficiencies\",\"races\",\"rule-sections\",\"rules\",\"skills\",\"spells\",\"subclasses\",\"subraces\",\"traits\",\"weapon-properties\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"count\":{\"description\":\"Total number of results\",\"type\":\"integer\"},\"results\":{\"items\":{\"properties\":{\"index\":{\"description\":\"Resource index for URL purposes\",\"type\":\"string\"},\"name\":{\"description\":\"Name of the resource\",\"type\":\"string\"},\"url\":{\"description\":\"URL of the resource\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with list of resources\"},\"404\":{\"description\":\"Resource type not found\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/{resource}"
           rename: {

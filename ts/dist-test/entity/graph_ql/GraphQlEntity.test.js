@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.DUNGEONS_AND_DRAGONS_TEST_LIVE;
         for (const op of ['create']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'graph_ql.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'graph_ql.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set DUNGEONS_AND_DRAGONS_TEST_GRAPH_QL_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "name": "data", "req": false, "short": "Query results", "type": "`$OBJECT`", "index$": 0 }, { "active": true, "name": "errors", "req": false, "short": "Any errors that occurred", "type": "`$ARRAY`", "index$": 1 }, { "active": true, "name": "operationName", "req": false, "short": "Optional operation name if multiple operations in query", "type": "`$STRING`", "index$": 2 }, { "active": true, "name": "query", "req": true, "short": "GraphQL query string", "type": "`$STRING`", "index$": 3 }, { "active": true, "name": "variables", "req": false, "short": "Optional variables for the query", "type": "`$OBJECT`", "index$": 4 }], "name": "graph_ql", "op": { "create": { "input": "data", "name": "create", "points": [{ "active": true, "args": {}, "contract": { "id": "POST /graphql", "json": "{\"operationId\":\"graphqlQuery\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"example\":{\"query\":\"query { spell(index: \\\"fireball\\\") { name level school { name } } }\"},\"schema\":{\"properties\":{\"operationName\":{\"description\":\"Optional operation name if multiple operations in query\",\"type\":\"string\"},\"query\":{\"description\":\"GraphQL query string\",\"type\":\"string\"},\"variables\":{\"description\":\"Optional variables for the query\",\"type\":\"object\"}},\"required\":[\"query\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"description\":\"Query results\",\"type\":\"object\"},\"errors\":{\"description\":\"Any errors that occurred\",\"items\":{\"properties\":{\"locations\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"message\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful GraphQL response\"},\"400\":{\"description\":\"Bad request - invalid GraphQL query\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "POST", "orig": "/graphql", "segments": [{ "lit": "graphql" }], "select": {}, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "create" } }, "relations": { "ancestors": [] }, "key$": "graph_ql", "name__orig": "graph_ql", "Name": "GraphQl", "name_": "graph_ql", "name-": "graph-ql", "NAME": "GRAPH_QL", "index$": 3 }, { "active": true, "entity": "graph_ql", "key$": "BasicGraphQlFlow", "kind": "basic", "name": "BasicGraphQlFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": { "ref": "graph_ql_ref01" }, "match": {}, "op": "create", "spec": [], "valid": [], "index$": 0 }] }, 'GraphQl');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -101,12 +99,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['DUNGEONS_AND_DRAGONS_TEST_GRAPH_QL_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'DUNGEONS_AND_DRAGONS_TEST_GRAPH_QL_ENTID': idmap,
         'DUNGEONS_AND_DRAGONS_TEST_LIVE': 'FALSE',
@@ -114,7 +106,13 @@ function basicSetup(extra) {
     });
     idmap = env['DUNGEONS_AND_DRAGONS_TEST_GRAPH_QL_ENTID'];
     const live = 'TRUE' === env.DUNGEONS_AND_DRAGONS_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['DUNGEONS_AND_DRAGONS_TEST_GRAPH_QL_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.DungeonsAndDragonsSDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -125,7 +123,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -137,7 +136,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.DUNGEONS_AND_DRAGONS_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;

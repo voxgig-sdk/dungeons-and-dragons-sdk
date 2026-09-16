@@ -32,5 +32,62 @@
         "url": "sa3"
       }
     }
+  },
+  "requests": {
+    "GET /{resource}/{index}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getResourceByIndex",
+        "parameters": [
+          {
+            "description": "The resource type (e.g., spells, monsters, classes)",
+            "in": "path",
+            "name": "resource",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The index of the specific resource item",
+            "in": "path",
+            "name": "index",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "index": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with resource details"
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }
