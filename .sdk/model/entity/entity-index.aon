@@ -1,6 +1,6 @@
 # Entity Models
 
-@"get_api_root.aon"
-@"get_resource_by_index.aon"
-@"get_resource_list.aon"
-@"graph_ql.aon"
+@"./get_api_root.aon"
+@"./get_resource_by_index.aon"
+@"./get_resource_list.aon"
+@"./graph_ql.aon"

@@ -127,18 +127,18 @@ class Config {
 
     entity: {
       
-      get_api_root: {
-      },
-
-      get_resource_by_index: {
-      },
-
-      get_resource_list: {
-      },
-
-      graph_ql: {
-      },
-
+        get_api_root: {
+        },
+  
+        get_resource_by_index: {
+        },
+  
+        get_resource_list: {
+        },
+  
+        graph_ql: {
+        },
+  
     }
   }
 

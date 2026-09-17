@@ -1,6 +1,6 @@
 # Flows
 
-@"BasicGetApiRootFlow.aon"
-@"BasicGetResourceByIndexFlow.aon"
-@"BasicGetResourceListFlow.aon"
-@"BasicGraphQlFlow.aon"
+@"./BasicGetApiRootFlow.aon"
+@"./BasicGetResourceByIndexFlow.aon"
+@"./BasicGetResourceListFlow.aon"
+@"./BasicGraphQlFlow.aon"
